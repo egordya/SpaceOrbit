@@ -1,16 +1,18 @@
 package model;
 
-import javafx.geometry.Pos;
 import utilitys.Direction;
 import utilitys.Position;
 
-public interface OrbitModelObject {
+public interface GravitationModelObject {
     Position getPos();
     double getSpeed();
     Direction getDirection();
     double getMass();
-    void setPos(Position pos);
+
+    boolean getIsEffectedByGravity();
+
+    void setPos(Position position);
     void setSpeed(double speed);
-    void setDirection(Direction angle);
+    void setDirection(Direction direction);
     void setMass(double mass);
 }

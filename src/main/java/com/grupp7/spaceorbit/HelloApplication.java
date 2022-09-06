@@ -4,8 +4,8 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import model.OrbitModel;
-import model.planet;
+import model.GravitationModel;
+import model.NormalCelestialObject;
 
 import java.io.IOException;
 
@@ -13,9 +13,9 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-        planet[] planteter = new planet[10];
-        OrbitModel test = new OrbitModel(planteter);
-        planet[] planteter2 = new planet[11];
+        NormalCelestialObject[] planteter = new NormalCelestialObject[10];
+        GravitationModel test = new GravitationModel(planteter);
+        NormalCelestialObject[] planteter2 = new NormalCelestialObject[11];
         test.
 
 
