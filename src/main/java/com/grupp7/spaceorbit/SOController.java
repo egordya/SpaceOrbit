@@ -3,7 +3,7 @@ package com.grupp7.spaceorbit;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class HelloController {
+public class SOController {
     @FXML
     private Label welcomeText;
 
