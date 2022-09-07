@@ -1,16 +1,51 @@
 package model;
 
+
+import utilitys.Direction;
+import utilitys.Position;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class GravitationModel {
-    GravitationModelObject[] allObjects;
-    public GravitationModel(GravitationModelObject[] allObjects){
+    ObjectForGravitationModel[] allObjects;
+    List<ObjectForGravitationModel> allObjectsWithNextState = new ArrayList<>();
+    public GravitationModel(ObjectForGravitationModel[] allObjects){
         this.allObjects = allObjects;
     }
 
-    public void updateOrbitModelObject(GravitationModelObject[] allObjects){
+    public void updateOrbitModelObject(ObjectForGravitationModel[] allObjects){
         this.allObjects = allObjects;
     }
 
-    public void doSimulationStep(double time){
+    public ObjectForGravitationModel[] doSimulationStep(double time){
+        List<ObjectForGravitationModel> copy = new ArrayList<>();
+        for(ObjectForGravitationModel x : allObjects){
+            copy.add(x);
+        }
 
+        for(ObjectForGravitationModel x : allObjects){
+            copy.remove(x);
+            allObjectsWithNextState.add(nextStateForObject(x, copy));
+            copy.add(x);
+        }
+
+
+        return null;
+    }
+
+    private ObjectForGravitationModel nextStateForObject (ObjectForGravitationModel x, List<ObjectForGravitationModel> allOtherObjects){
+        ObjectForGravitationModel mainObject = x.clone();
+        if (!mainObject.getIsEffectedByGravity()){
+            return mainObject;
+        }
+
+
+
+        return mainObject;
+    }
+
+    private Direction getDirectionFromPointToPoint(Position startPosition, Position endPosition){
+        return null;
     }
 }

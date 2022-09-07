@@ -3,7 +3,7 @@ package model;
 import utilitys.Direction;
 import utilitys.Position;
 
-public interface GravitationModelObject {
+public interface ObjectForGravitationModel {
     Position getPos();
     double getSpeed();
     Direction getDirection();
@@ -15,4 +15,6 @@ public interface GravitationModelObject {
     void setSpeed(double speed);
     void setDirection(Direction direction);
     void setMass(double mass);
+    ObjectForGravitationModel clone();
+
 }

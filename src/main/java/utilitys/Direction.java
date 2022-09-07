@@ -3,7 +3,7 @@ package utilitys;
 public class Direction {
     double direction;
 
-    Direction(double x){
+    public Direction(double x){
         direction = x % 360;
     }
 

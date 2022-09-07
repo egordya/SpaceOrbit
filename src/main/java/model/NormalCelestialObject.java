@@ -3,7 +3,7 @@ package model;
 import utilitys.Direction;
 import utilitys.Position;
 
-public class NormalCelestialObject implements GravitationModelObject {
+public class NormalCelestialObject implements ObjectForGravitationModel {
 
     Position position;
     Direction direction;
@@ -60,5 +60,10 @@ public class NormalCelestialObject implements GravitationModelObject {
     @Override
     public void setMass(double mass) {
         this.mass = mass;
+    }
+
+    @Override
+    public ObjectForGravitationModel clone() {
+        return new NormalCelestialObject(position, direction, speed, mass);
     }
 }
