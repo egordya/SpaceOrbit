@@ -18,11 +18,19 @@ public class Vector2D {
     }
 
     public  Vector2D scalarMultiplication(double scalar){
-        return null;
+        return new Vector2D(this.getX()*scalar,this.getY()*scalar);
     }
 
-    public Vector2D add(Vector2D otherVector){
+    public Vector2D add(Vector2D otherVector){  //Denna funkar inte
         return new Vector2D(this.x + otherVector.getX(), this.y + otherVector.getY());
+    }
+
+    public Vector2D subtract(Vector2D otherVector){
+        return new Vector2D(this.x - otherVector.getX(), this.y - otherVector.getY());
+    }
+
+    public Vector2D scalarDivision(double scalar){
+        return new Vector2D(this.getX()/scalar,this.getY()/scalar);
     }
 
     public Vector2D getUnitVector(){

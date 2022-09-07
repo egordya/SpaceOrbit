@@ -27,16 +27,16 @@ public class SOMain extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        stage.setTitle("Space Orbit");
-        Canvas canvas = new Canvas(640, 480);
-        GraphicsContext gc = canvas.getGraphicsContext2D();
-        Timeline tl = new Timeline(new KeyFrame(Duration.millis(10), e -> soView.run(gc)));
-        //number of cycles in animation INDEFINITE = repeat indefinitely
-        tl.setCycleCount(Timeline.INDEFINITE);
-        stage.setScene(new Scene(new StackPane(canvas)));
-        stage.show();
-        tl.play();
-        stage.show();
+//        stage.setTitle("Space Orbit");
+//        Canvas canvas = new Canvas(640, 480);
+//        GraphicsContext gc = canvas.getGraphicsContext2D();
+//        Timeline tl = new Timeline(new KeyFrame(Duration.millis(10), e -> soView.run(gc)));
+//        //number of cycles in animation INDEFINITE = repeat indefinitely
+//        tl.setCycleCount(Timeline.INDEFINITE);
+//        stage.setScene(new Scene(new StackPane(canvas)));
+//        stage.show();
+//        tl.play();
+//        stage.show();
     }
 
 

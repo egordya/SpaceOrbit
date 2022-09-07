@@ -6,6 +6,7 @@ public interface ObjectForGravitationModel {
     Vector2D getPos();
 
     Vector2D getVelocityVector();
+
     double getMass();
 
     boolean getIsEffectedByGravity();
@@ -14,5 +15,4 @@ public interface ObjectForGravitationModel {
     void setVelocityVector(Vector2D direction);
     void setMass(double mass);
     ObjectForGravitationModel clone();
-
 }
