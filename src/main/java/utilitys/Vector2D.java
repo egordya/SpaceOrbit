@@ -29,4 +29,8 @@ public class Vector2D {
         return null;
     }
 
+    public double getVectorSize(){
+        return 0.0;
+    }
+
 }
