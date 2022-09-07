@@ -1,24 +1,14 @@
 package com.grupp7.spaceorbit;
 
-import javafx.animation.*;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.transform.Rotate;
-import javafx.util.Duration;
 
 import java.io.File;
-import java.net.URL;
-import java.util.ResourceBundle;
 
-public class SOController implements Initializable {
+public class SOView {
+
 
     private static final int width = 800;
     private static final int height = 600;
@@ -36,10 +26,6 @@ public class SOController implements Initializable {
     private double kanyeXPos = width / 2;
     private double kanyeYPos = height / 2;
 
-
-    @FXML
-    public ImageView planetMenuGif;
-
     public void run(GraphicsContext gc){
         gc.setFill(Color.BLACK);
         gc.fillRect(0, 0, width, height);
@@ -51,11 +37,5 @@ public class SOController implements Initializable {
         kanyeXPos+=kanyeXSpeed;
         kanyeYPos+=kanyeYSpeed;
         gc.drawImage(image2, kanyeXPos,kanyeYPos);
-    }
-
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        //TODO
     }
 }
