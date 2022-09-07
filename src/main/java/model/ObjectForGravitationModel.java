@@ -1,8 +1,5 @@
 package model;
 
-import utilitys.Direction;
-import utilitys.Position;
-
 public interface ObjectForGravitationModel {
     Position getPos();
     double getSpeed();

@@ -1,9 +1,6 @@
 package model;
 
 
-import utilitys.Direction;
-import utilitys.Position;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +10,8 @@ public class GravitationModel {
     public GravitationModel(ObjectForGravitationModel[] allObjects){
         this.allObjects = allObjects;
     }
+
+
 
     public void updateOrbitModelObject(ObjectForGravitationModel[] allObjects){
         this.allObjects = allObjects;

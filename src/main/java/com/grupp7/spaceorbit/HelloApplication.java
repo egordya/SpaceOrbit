@@ -6,8 +6,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.GravitationModel;
 import model.NormalCelestialObject;
-import utilitys.Direction;
-import utilitys.Position;
 
 import java.io.IOException;
 

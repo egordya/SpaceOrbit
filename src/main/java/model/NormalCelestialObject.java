@@ -1,8 +1,5 @@
 package model;
 
-import utilitys.Direction;
-import utilitys.Position;
-
 public class NormalCelestialObject implements ObjectForGravitationModel {
 
     Position position;
