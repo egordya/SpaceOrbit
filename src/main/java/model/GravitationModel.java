@@ -1,6 +1,8 @@
 package model;
 
 
+import utilitys.Vector2D;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,7 +46,7 @@ public class GravitationModel {
         return mainObject;
     }
 
-    private Direction getDirectionFromPointToPoint(Position startPosition, Position endPosition){
+    private Vector2D getDirectionFromPointToPoint(Vector2D startPosition, Vector2D endPosition){
         return null;
     }
 }

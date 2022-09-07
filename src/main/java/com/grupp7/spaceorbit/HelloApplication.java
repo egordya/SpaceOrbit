@@ -15,11 +15,11 @@ public class HelloApplication extends Application {
 
         NormalCelestialObject[] planteter = new NormalCelestialObject[3];
 
-        planteter[0] = new NormalCelestialObject(new Position(0,0), new Direction(180), 10, 10);
-        planteter[1] = new NormalCelestialObject(new Position(0,0), new Direction(150), 10, 10);
-        planteter[2] = new NormalCelestialObject(new Position(0,0), new Direction(140), 10, 10);
-        GravitationModel test = new GravitationModel(planteter);
-        test.doSimulationStep(0.1);
+        //planteter[0] = new NormalCelestialObject(new Position(0,0), new Direction(180),  10);
+        //planteter[1] = new NormalCelestialObject(new Position(0,0), new Direction(150),  10);
+        //planteter[2] = new NormalCelestialObject(new Position(0,0), new Direction(140), 10);
+        //GravitationModel test = new GravitationModel(planteter);
+        //test.doSimulationStep(0.1);
 
 
 

@@ -1,16 +1,17 @@
 package model;
 
+import utilitys.Vector2D;
+
 public interface ObjectForGravitationModel {
-    Position getPos();
-    double getSpeed();
-    Direction getDirection();
+    Vector2D getPos();
+
+    Vector2D getVelocityVector();
     double getMass();
 
     boolean getIsEffectedByGravity();
 
-    void setPos(Position position);
-    void setSpeed(double speed);
-    void setDirection(Direction direction);
+    void setPos(Vector2D position);
+    void setVelocityVector(Vector2D direction);
     void setMass(double mass);
     ObjectForGravitationModel clone();
 

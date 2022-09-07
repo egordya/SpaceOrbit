@@ -30,7 +30,7 @@ public class Vector2D {
     }
 
     public double getVectorSize(){
-        return 0.0;
+        return Math.sqrt(Math.pow(x, 2) + Math.pow(y,2));
     }
 
 }

@@ -1,32 +1,29 @@
 package model;
 
+import utilitys.Vector2D;
+
 public class NormalCelestialObject implements ObjectForGravitationModel {
 
-    Position position;
-    Direction direction;
+    Vector2D position;
+    Vector2D velocityVector;
     double speed;
     double mass;
 
-    public NormalCelestialObject(Position position, Direction direction, double speed, double mass) {
-        this.direction = direction;
+    public NormalCelestialObject(Vector2D position, Vector2D velocityVector, double mass) {
         this.position = position;
-        this.speed = speed;
+        this.velocityVector = velocityVector;
         this.mass = mass;
     }
 
+
     @Override
-    public Position getPos() {
+    public Vector2D getPos() {
         return position;
     }
 
     @Override
-    public double getSpeed() {
-        return speed;
-    }
-
-    @Override
-    public Direction getDirection() {
-        return direction;
+    public Vector2D getVelocityVector() {
+        return velocityVector;
     }
 
     @Override
@@ -40,19 +37,15 @@ public class NormalCelestialObject implements ObjectForGravitationModel {
     }
 
     @Override
-    public void setPos(Position position) {
+    public void setPos(Vector2D position) {
         this.position = position;
     }
 
     @Override
-    public void setSpeed(double speed) {
-        this.speed = speed;
+    public void setVelocityVector(Vector2D velocityVector) {
+        this.velocityVector = velocityVector;
     }
 
-    @Override
-    public void setDirection(Direction direction) {
-        this.direction = direction;
-    }
 
     @Override
     public void setMass(double mass) {
@@ -61,6 +54,6 @@ public class NormalCelestialObject implements ObjectForGravitationModel {
 
     @Override
     public ObjectForGravitationModel clone() {
-        return new NormalCelestialObject(position, direction, speed, mass);
+        return new NormalCelestialObject(position, velocityVector, mass);
     }
 }
