@@ -27,7 +27,7 @@ public class HelloApplication extends Application {
 
         NormalCelestialObject[] planteter = new NormalCelestialObject[3];
 
-        planteter[0] = new NormalCelestialObject(new Vector2D(0, 1), new Vector2D(0.2,0), 10000000);
+        planteter[0] = new NormalCelestialObject(new Vector2D(0, 0.8), new Vector2D(0.4,0), 1000000);
         planteter[1] = new NormalCelestialObject(new Vector2D(0, -1.5), new Vector2D(-0.3, 0), 1000000);
         planteter[2] = new NormalCelestialObject(new Vector2D(0, 0.001), new Vector2D(0, 0), 2100000000);
 
@@ -38,7 +38,7 @@ public class HelloApplication extends Application {
         ArrayList<double[]> obj2 = new ArrayList<>();
         ArrayList<double[]> obj3 = new ArrayList<>();
 
-        for (int i = 0; i < 30000; i++) {
+        for (int i = 0; i < 300000; i++) {
             ArrayList<ObjectForGravitationModel> objekts = test.doSimulationStep(0.005);
 
             double[] obj1pos = {objekts.get(0).getPos().getX(), objekts.get(0).getPos().getY()};
