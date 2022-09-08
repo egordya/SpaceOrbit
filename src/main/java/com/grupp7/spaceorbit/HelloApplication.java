@@ -27,9 +27,9 @@ public class HelloApplication extends Application {
 
         NormalCelestialObject[] planteter = new NormalCelestialObject[3];
 
-        planteter[0] = new NormalCelestialObject(new Vector2D(-0.2, 1), new Vector2D(0.02,0), 100000000);
-        planteter[1] = new NormalCelestialObject(new Vector2D(0, -1), new Vector2D(-0.02, 0), 100000000);
-        planteter[2] = new NormalCelestialObject(new Vector2D(1, 0), new Vector2D(-0.02, 0), 100000000);
+        planteter[0] = new NormalCelestialObject(new Vector2D(0, 1), new Vector2D(0.2,0), 10000000);
+        planteter[1] = new NormalCelestialObject(new Vector2D(0, -1.5), new Vector2D(-0.3, 0), 1000000);
+        planteter[2] = new NormalCelestialObject(new Vector2D(0, 0.001), new Vector2D(0, 0), 2100000000);
 
         GravitationModel test = new GravitationModel(planteter);
 
