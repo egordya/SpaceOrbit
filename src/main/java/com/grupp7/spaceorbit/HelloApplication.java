@@ -30,7 +30,7 @@ public class HelloApplication extends Application {
         planteter[0] = new NormalCelestialObject(new Vector2D(0, 0.8), new Vector2D(0.15,0), 10000);
         planteter[1] = new NormalCelestialObject(new Vector2D(0, -1.5), new Vector2D(-0.22, 0), 350500);
         planteter[2] = new NormalCelestialObject(new Vector2D(0, 0.001), new Vector2D(0, 0), 2200000000.0);
-        planteter[3] = new NormalCelestialObject(new Vector2D(0, -1.512), new Vector2D(-0.187, 0), 2);
+        planteter[3] = new NormalCelestialObject(new Vector2D(0, -1.512), new Vector2D(-0.187, 0), 20);
 
         GravitationModel test = new GravitationModel(planteter);
 
