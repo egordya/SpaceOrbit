@@ -37,16 +37,28 @@ public class GravitationModel {
 
     private ObjectForGravitationModel nextStateForObject (ObjectForGravitationModel x, List<ObjectForGravitationModel> allOtherObjects){
         ObjectForGravitationModel mainObject = x.clone();
+
         if (!mainObject.getIsEffectedByGravity()){
             return mainObject;
         }
 
+        ArrayList<Vector2D> otherObjectsPos = new ArrayList<>();
+        for(ObjectForGravitationModel obj : allOtherObjects){
+            otherObjectsPos.add(obj.getPos());
+        }
+
+        ArrayList<Vector2D> distanceVectors = getDistanceVectorsToSurroundingObjects(x.getPos(), otherObjectsPos);
 
 
-        return mainObject;
     }
 
-    private Vector2D getDirectionFromPointToPoint(Vector2D startPosition, Vector2D endPosition){
+    private ArrayList<Vector2D> getDistanceVectorsToSurroundingObjects(Vector2D theObjectPos, ArrayList<Vector2D> otherObjectsPos){
+
+        ArrayList<Vector2D> distanceVectors = new ArrayList<>();
+        for (Vector2D x : otherObjectsPos){
+            distanceVectors.add()
+        }
+
         return null;
     }
 }

@@ -25,6 +25,10 @@ public class Vector2D {
         return new Vector2D(this.x + otherVector.getX(), this.y + otherVector.getY());
     }
 
+    public Vector2D sub(Vector2D otherVector){
+        return new Vector2D(this.x - otherVector.getX(), this.y - otherVector.getY());
+    }
+
     public Vector2D getUnitVector(){
         return scalarMultiplication(1/ getVectorLength());
     }
@@ -35,6 +39,6 @@ public class Vector2D {
 
     @Override
     public String toString() {
-        return "("+x+","+y+")";
+        return "("+x+", "+y+")";
     }
 }
