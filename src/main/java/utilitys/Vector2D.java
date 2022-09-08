@@ -1,5 +1,7 @@
 package utilitys;
 
+import java.util.ArrayList;
+
 public class Vector2D {
     private double x;
     private double y;
@@ -41,4 +43,25 @@ public class Vector2D {
     public String toString() {
         return "("+x+", "+y+")";
     }
+
+    public static ArrayList<Vector2D> getUnitVectorsOfVectors(ArrayList<Vector2D> vector2DS) {
+        ArrayList<Vector2D> unitVectors = new ArrayList<>();
+        for(Vector2D x : vector2DS){
+            unitVectors.add(x.getUnitVector());
+        }
+
+        return unitVectors;
+
+    }
+
+    public static ArrayList<Double> getLengthOfVectors(ArrayList<Vector2D> vector2DS) {
+
+        ArrayList<Double> lengthOfVectors = new ArrayList<>();
+        for (Vector2D x : vector2DS){
+            lengthOfVectors.add(x.getVectorLength());
+        }
+
+        return lengthOfVectors;
+    }
+
 }
