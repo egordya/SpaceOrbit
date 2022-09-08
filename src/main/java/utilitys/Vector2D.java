@@ -18,7 +18,7 @@ public class Vector2D {
     }
 
     public  Vector2D scalarMultiplication(double scalar){
-        return null;
+        return new Vector2D(this.x * scalar, this.y * scalar);
     }
 
     public Vector2D add(Vector2D otherVector){
@@ -26,11 +26,15 @@ public class Vector2D {
     }
 
     public Vector2D getUnitVector(){
-        return null;
+        return scalarMultiplication(1/ getVectorLength());
     }
 
-    public double getVectorSize(){
+    public double getVectorLength(){
         return Math.sqrt(Math.pow(x, 2) + Math.pow(y,2));
     }
 
+    @Override
+    public String toString() {
+        return "("+x+","+y+")";
+    }
 }

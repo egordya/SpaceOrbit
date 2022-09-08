@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.GravitationModel;
 import model.NormalCelestialObject;
+import utilitys.Vector2D;
 
 import java.io.IOException;
 
@@ -20,7 +21,6 @@ public class HelloApplication extends Application {
         //planteter[2] = new NormalCelestialObject(new Position(0,0), new Direction(140), 10);
         //GravitationModel test = new GravitationModel(planteter);
         //test.doSimulationStep(0.1);
-
 
 
 
