@@ -16,6 +16,12 @@ public class NormalCelestialObject implements ObjectForGravitationModel {
 
 
     @Override
+    public void moveStep(double time) {
+        Vector2D positionStep = velocityVector.scalarMultiplication(time);
+        position = position.add(positionStep);
+    }
+
+    @Override
     public Vector2D getPos() {
         return position;
     }
