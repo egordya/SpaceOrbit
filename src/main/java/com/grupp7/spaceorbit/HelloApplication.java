@@ -37,7 +37,7 @@ public class HelloApplication extends Application {
         planteter[1] = new NormalCelestialObject(new Vector2D(0, -1.5), new Vector2D(-0.22, 0), 850500);
         planteter[2] = new NormalCelestialObject(new Vector2D(0, 0.001), new Vector2D(0, 0), 2200000000.0);
         planteter[3] = new NormalCelestialObject(new Vector2D(0, -1.534), new Vector2D(-0.191, 0), 200);
-        planteter[4] = new NormalCelestialObject(new Vector2D(0.7, -4), new Vector2D(0, 0.4), 5200000000.0);
+        planteter[4] = new NormalCelestialObject(new Vector2D(0.7, -15), new Vector2D(0, 0.5), 5200000000.0);
 
         GravitationModel test = new GravitationModel(planteter);
 
@@ -58,7 +58,8 @@ public class HelloApplication extends Application {
         root.getChildren().add(planet5);
 
         int s = 1000;
-        Scene scene = new Scene(root, s, s);
+        int x = 1800;
+        Scene scene = new Scene(root, x, s);
 
         stage.setScene(scene);
         stage.show();
@@ -70,7 +71,7 @@ public class HelloApplication extends Application {
             @Override
             public void run(){
                 ArrayList<ObjectForGravitationModel> objekts = new ArrayList<>();
-                for (int extra = 0; extra<100; extra++){
+                for (int extra = 0; extra<300; extra++){
                     objekts = test.doSimulationStep(0.0001);
                 }
 
@@ -84,19 +85,19 @@ public class HelloApplication extends Application {
 
                 int k = 320;
 
-                planet1.setCenterX(obj1pos[0] * k + s/2);
+                planet1.setCenterX(obj1pos[0] * k + x/2);
                 planet1.setCenterY(obj1pos[1] * k + s/2);
 
-                planet2.setCenterX(obj2pos[0] * k + s/2);
+                planet2.setCenterX(obj2pos[0] * k + x/2);
                 planet2.setCenterY(obj2pos[1] * k + s/2);
 
-                planet3.setCenterX(obj3pos[0] * k + s/2);
+                planet3.setCenterX(obj3pos[0] * k + x/2);
                 planet3.setCenterY(obj3pos[1] * k + s/2);
 
-                planet4.setCenterX(obj4pos[0] * k + s/2);
+                planet4.setCenterX(obj4pos[0] * k + x/2);
                 planet4.setCenterY(obj4pos[1] * k + s/2);
 
-                planet5.setCenterX(obj5pos[0] * k + s/2);
+                planet5.setCenterX(obj5pos[0] * k + x/2);
                 planet5.setCenterY(obj5pos[1] * k + s/2);
 
             }
