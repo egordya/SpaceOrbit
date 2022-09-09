@@ -13,4 +13,9 @@
       <module name="SpaceOrbit" target="18" />
     </bytecodeTargetLevel>
   </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="SpaceOrbit" options="--add-exports java.base/jdk.internal.loader=com.grupp7.spaceorbit" />
+    </option>
+  </component>
 </project>
