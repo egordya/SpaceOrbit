@@ -25,12 +25,7 @@ public class SOController implements Initializable {
     @FXML
     protected void onHelloButtonClick() {
         welcomeText.setText("Welcome to JavaFX Application!");
-    }
-
-    public void initialize(URL arg0, ResourceBundle arg1) {
-
-        // translate
-        TranslateTransition translate = new TranslateTransition();
+       /* TranslateTransition translate = new TranslateTransition();
         translate.setNode(planetMenuGif);
         translate.setDuration(Duration.millis(5000));
         translate.setCycleCount(TranslateTransition.INDEFINITE);
@@ -44,6 +39,13 @@ public class SOController implements Initializable {
         rotate.setCycleCount(TranslateTransition.INDEFINITE);
         rotate.setInterpolator(Interpolator.LINEAR);
         rotate.setByAngle(360);
-        rotate.play();
+        rotate.play();*/
+
+    }
+
+    public void initialize(URL arg0, ResourceBundle arg1) {
+
+        // translate
+
     }
 }
