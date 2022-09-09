@@ -32,12 +32,13 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException, InterruptedException {
 
-        NormalCelestialObject[] planteter = new NormalCelestialObject[5];
-        planteter[0] = new NormalCelestialObject(new Vector2D(0, 0.8), new Vector2D(0.15,0), 10000);
+        NormalCelestialObject[] planteter = new NormalCelestialObject[6];
+        planteter[0] = new NormalCelestialObject(new Vector2D(0, 0.8), new Vector2D(0.25,0), 10000);
         planteter[1] = new NormalCelestialObject(new Vector2D(0, -1.5), new Vector2D(-0.22, 0), 850500);
         planteter[2] = new NormalCelestialObject(new Vector2D(0, 0.001), new Vector2D(0, 0), 2200000000.0);
         planteter[3] = new NormalCelestialObject(new Vector2D(0, -1.534), new Vector2D(-0.191, 0), 200);
         planteter[4] = new NormalCelestialObject(new Vector2D(0.7, -15), new Vector2D(0, 0.5), 5200000000.0);
+        planteter[5] = new NormalCelestialObject(new Vector2D(0, 0.4), new Vector2D(0.25, 0), 100);
 
         GravitationModel test = new GravitationModel(planteter);
 
@@ -51,11 +52,13 @@ public class HelloApplication extends Application {
         Circle planet3 = new Circle(0, 0, 20, Color.YELLOW);
         Circle planet4 = new Circle(0, 0, 3, Color.GRAY);
         Circle planet5 = new Circle(0, 0, 7, Color.BLACK);
+        Circle planet6 = new Circle(0, 0, 4, Color.DARKBLUE);
         root.getChildren().add(planet1);
         root.getChildren().add(planet2);
         root.getChildren().add(planet3);
         root.getChildren().add(planet4);
         root.getChildren().add(planet5);
+        root.getChildren().add(planet6);
 
         int s = 1000;
         int x = 1800;
@@ -81,6 +84,7 @@ public class HelloApplication extends Application {
                 double[] obj3pos = {objekts.get(2).getPos().getX(), objekts.get(2).getPos().getY()};
                 double[] obj4pos = {objekts.get(3).getPos().getX(), objekts.get(3).getPos().getY()};
                 double[] obj5pos = {objekts.get(4).getPos().getX(), objekts.get(4).getPos().getY()};
+                double[] obj6pos = {objekts.get(5).getPos().getX(), objekts.get(5).getPos().getY()};
 
 
                 int k = 320;
@@ -99,6 +103,9 @@ public class HelloApplication extends Application {
 
                 planet5.setCenterX(obj5pos[0] * k + x/2);
                 planet5.setCenterY(obj5pos[1] * k + s/2);
+
+                planet6.setCenterX(obj6pos[0] * k + x/2);
+                planet6.setCenterY(obj6pos[1] * k + s/2);
 
             }
         }, 0, 20);
