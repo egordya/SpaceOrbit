@@ -32,11 +32,12 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException, InterruptedException {
 
-        NormalCelestialObject[] planteter = new NormalCelestialObject[4];
+        NormalCelestialObject[] planteter = new NormalCelestialObject[5];
         planteter[0] = new NormalCelestialObject(new Vector2D(0, 0.8), new Vector2D(0.15,0), 10000);
         planteter[1] = new NormalCelestialObject(new Vector2D(0, -1.5), new Vector2D(-0.22, 0), 850500);
         planteter[2] = new NormalCelestialObject(new Vector2D(0, 0.001), new Vector2D(0, 0), 2200000000.0);
         planteter[3] = new NormalCelestialObject(new Vector2D(0, -1.534), new Vector2D(-0.191, 0), 200);
+        planteter[4] = new NormalCelestialObject(new Vector2D(0.7, -4), new Vector2D(0, 0.4), 5200000000.0);
 
         GravitationModel test = new GravitationModel(planteter);
 
@@ -48,11 +49,13 @@ public class HelloApplication extends Application {
         Circle planet1 = new Circle(0, 0, 4, Color.RED);
         Circle planet2 = new Circle(0, 0, 4.5, Color.GREEN);
         Circle planet3 = new Circle(0, 0, 20, Color.YELLOW);
-        Circle planet4 = new Circle(0, 0, 3, Color.BLACK);
+        Circle planet4 = new Circle(0, 0, 3, Color.GRAY);
+        Circle planet5 = new Circle(0, 0, 7, Color.BLACK);
         root.getChildren().add(planet1);
         root.getChildren().add(planet2);
         root.getChildren().add(planet3);
         root.getChildren().add(planet4);
+        root.getChildren().add(planet5);
 
         int s = 1000;
         Scene scene = new Scene(root, s, s);
@@ -67,7 +70,7 @@ public class HelloApplication extends Application {
             @Override
             public void run(){
                 ArrayList<ObjectForGravitationModel> objekts = new ArrayList<>();
-                for (int extra = 0; extra<200; extra++){
+                for (int extra = 0; extra<100; extra++){
                     objekts = test.doSimulationStep(0.0001);
                 }
 
@@ -76,6 +79,7 @@ public class HelloApplication extends Application {
                 double[] obj2pos = {objekts.get(1).getPos().getX(), objekts.get(1).getPos().getY()};
                 double[] obj3pos = {objekts.get(2).getPos().getX(), objekts.get(2).getPos().getY()};
                 double[] obj4pos = {objekts.get(3).getPos().getX(), objekts.get(3).getPos().getY()};
+                double[] obj5pos = {objekts.get(4).getPos().getX(), objekts.get(4).getPos().getY()};
 
 
                 int k = 320;
@@ -91,6 +95,9 @@ public class HelloApplication extends Application {
 
                 planet4.setCenterX(obj4pos[0] * k + s/2);
                 planet4.setCenterY(obj4pos[1] * k + s/2);
+
+                planet5.setCenterX(obj5pos[0] * k + s/2);
+                planet5.setCenterY(obj5pos[1] * k + s/2);
 
             }
         }, 0, 20);
