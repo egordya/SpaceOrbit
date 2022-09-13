@@ -40,16 +40,26 @@ public class HelloApplication extends Application {
             new NormalCelestialObject(new Vector2D(0, 69.8 * Math.pow(10,6) * Math.pow(10,3)), new Vector2D(38.86 * Math.pow(10,3), 0), 0.330 * Math.pow(10,24)),
             new NormalCelestialObject(new Vector2D(0,108.9 * Math.pow(10,6) * Math.pow(10,3)), new Vector2D(34.79 * Math.pow(10,3), 0), 4.87 * Math.pow(10,24)),
             new NormalCelestialObject(new Vector2D(0, 152.1 * Math.pow(10,6) * Math.pow(10,3)), new Vector2D(29.29 * Math.pow(10,3), 0), 5.97 * Math.pow(10,24)),
-
+            new NormalCelestialObject(new Vector2D(0, 249.261 * Math.pow(10,6) * Math.pow(10,3)), new Vector2D(21.97 * Math.pow(10,3), 0), 0.642 * Math.pow(10,24)),
+            new NormalCelestialObject(new Vector2D(0, 816.4 * Math.pow(10,6) * Math.pow(10,3)), new Vector2D(12.44 * Math.pow(10,3), 0), 1898 * Math.pow(10,24)),
+                new NormalCelestialObject(new Vector2D(0, 1506.5 * Math.pow(10,6) * Math.pow(10,3)), new Vector2D(9.09 * Math.pow(10,3), 0), 568 * Math.pow(10,24)),
+                new NormalCelestialObject(new Vector2D(0, 3001.4 * Math.pow(10,6) * Math.pow(10,3)), new Vector2D(6.49 * Math.pow(10,3), 0), 86.8 * Math.pow(10,24)),
+                new NormalCelestialObject(new Vector2D(0, 4558.9 * Math.pow(10,6) * Math.pow(10,3)), new Vector2D(5.37 * Math.pow(10,3), 0), 102 * Math.pow(10,24))
         };
 
         GravitationModel test = new GravitationModel(planteter);
 
         Circle[] fxCircles = {
-            new Circle(0, 0, 10, Color.YELLOW),
-            new Circle(0, 0, 4, Color.DARKGRAY),
-            new Circle(0, 0, 5, Color.LIGHTSALMON),
-            new Circle(0, 0, 5, Color.BLUE),
+            new Circle(0, 0, 6, Color.YELLOW),
+            new Circle(0, 0, 4, Color.web("#e5e5e5")),
+            new Circle(0, 0, 5, Color.web("#a57c1b")),
+            new Circle(0, 0, 5, Color.web("#0000A5")),
+            new Circle(0, 0, 5, Color.web("#AD6242")),
+            new Circle(0, 0, 5, Color.web("#bcafb2")),
+            new Circle(0, 0, 5, Color.web("#FAE5BF")),
+            new Circle(0, 0, 5, Color.web("#4FD0E7")),
+            new Circle(0, 0, 5, Color.web("#4b70dd")),
+
             //new Circle(0,0, 2,  Color.CORAL),
             //new Circle(0, 0, 20, Color.YELLOW),
             //new Circle(0, 0, 3, Color.GRAY),
@@ -77,16 +87,20 @@ public class HelloApplication extends Application {
             @Override
             public void run(){
                 ArrayList<ObjectForGravitationModel> CelestialObjects = new ArrayList<>();
-                for (int extra = 0; extra<20000; extra++){
-                    CelestialObjects = test.doSimulationStep(1);
+
+                int stepsPerFrame = 2000;
+                double timeStep = 500;
+
+                for (int extra = 0; extra<stepsPerFrame; extra++){
+                    CelestialObjects = test.doSimulationStep(timeStep);
                 }
 
-                day += 20000.0 / 60.0 / 60.0 / 24.0;
-                day = day % 365;
-                System.out.println("dag: " + day);
+                day += (stepsPerFrame *  timeStep ) / 60.0 / 60.0 / 24.0;
+                System.out.println("dag: " + day % 365);
+                System.out.println("year " + Math.floor(day/365));
 
 
-                double k = Math.pow(10, -8.6);
+                double k = Math.pow(10, -9.97);
 
                 int i = 0;
                 for (Node x : root.getChildren()){
