@@ -16,6 +16,7 @@ import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
 import javafx.util.Duration;
+import model.CollisionModel;
 import model.GravitationModel;
 import model.NormalCelestialObject;
 import model.ObjectForGravitationModel;
@@ -32,14 +33,15 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException, InterruptedException {
 
-        NormalCelestialObject[] planteter = new NormalCelestialObject[5];
-        planteter[0] = new NormalCelestialObject(new Vector2D(0, 0.8), new Vector2D(0.15,0), 10000);
-        planteter[1] = new NormalCelestialObject(new Vector2D(0, -1.5), new Vector2D(-0.22, 0), 850500);
-        planteter[2] = new NormalCelestialObject(new Vector2D(0, 0.001), new Vector2D(0, 0), 2200000000.0);
-        planteter[3] = new NormalCelestialObject(new Vector2D(0, -1.534), new Vector2D(-0.191, 0), 200);
-        planteter[4] = new NormalCelestialObject(new Vector2D(0.7, -4), new Vector2D(0, 0.4), 5200000000.0);
+        NormalCelestialObject[] planteter = new NormalCelestialObject[4];
+        planteter[0] = new NormalCelestialObject(new Vector2D(0, 0.8), new Vector2D(0.15,0), 10000,10);
+        planteter[1] = new NormalCelestialObject(new Vector2D(0, -1.5), new Vector2D(-0.22, 0), 850500,10);
+        planteter[2] = new NormalCelestialObject(new Vector2D(0, 0.001), new Vector2D(0, 0), 2200000000.0,10);
+        planteter[3] = new NormalCelestialObject(new Vector2D(0, -1.534), new Vector2D(-0.191, 0), 200,10);
+        //planteter[4] = new NormalCelestialObject(new Vector2D(0.7, -4), new Vector2D(0, 0.4), 5200000000.0);
 
         GravitationModel test = new GravitationModel(planteter);
+        CollisionModel cm = new CollisionModel(planteter);
 
 
 
@@ -57,8 +59,9 @@ public class HelloApplication extends Application {
         root.getChildren().add(planet4);
         root.getChildren().add(planet5);
 
-        int s = 1000;
-        Scene scene = new Scene(root, s, s);
+        int s = 1200;
+        int t = 800;
+        Scene scene = new Scene(root, s, t);
 
         stage.setScene(scene);
         stage.show();
@@ -71,7 +74,9 @@ public class HelloApplication extends Application {
             public void run(){
                 ArrayList<ObjectForGravitationModel> objekts = new ArrayList<>();
                 for (int extra = 0; extra<100; extra++){
-                    objekts = test.doSimulationStep(0.0001);
+                    objekts = test.doSimulationStep(0.0005);
+                    cm.updateHitboxesPos();
+                    cm.checkForCollisions();
                 }
 
 
@@ -79,7 +84,7 @@ public class HelloApplication extends Application {
                 double[] obj2pos = {objekts.get(1).getPos().getX(), objekts.get(1).getPos().getY()};
                 double[] obj3pos = {objekts.get(2).getPos().getX(), objekts.get(2).getPos().getY()};
                 double[] obj4pos = {objekts.get(3).getPos().getX(), objekts.get(3).getPos().getY()};
-                double[] obj5pos = {objekts.get(4).getPos().getX(), objekts.get(4).getPos().getY()};
+//                double[] obj5pos = {objekts.get(4).getPos().getX(), objekts.get(4).getPos().getY()};
 
 
                 int k = 320;
@@ -96,8 +101,8 @@ public class HelloApplication extends Application {
                 planet4.setCenterX(obj4pos[0] * k + s/2);
                 planet4.setCenterY(obj4pos[1] * k + s/2);
 
-                planet5.setCenterX(obj5pos[0] * k + s/2);
-                planet5.setCenterY(obj5pos[1] * k + s/2);
+//                planet5.setCenterX(obj5pos[0] * k + s/2);
+//                planet5.setCenterY(obj5pos[1] * k + s/2);
 
             }
         }, 0, 20);
