@@ -28,14 +28,7 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException, InterruptedException {
 
         NormalCelestialObject[] planteter = {
-            //new NormalCelestialObject(new Vector2D(0, 0.8), new Vector2D(0.25, 0), 850500),
-            //new NormalCelestialObject(new Vector2D(0,0.83), new Vector2D(0.22, 0), 200),
-            //new NormalCelestialObject(new Vector2D(0, -1.5), new Vector2D(-0.22, 0), 850500),
-            //new NormalCelestialObject(new Vector2D(0, -1.47), new Vector2D(-0.245, 0), 200),
-            //new NormalCelestialObject(new Vector2D(0, 0), new Vector2D(0, 0), 2200000000.0),
-            //new NormalCelestialObject(new Vector2D(0, -1.534), new Vector2D(-0.191, 0), 200),
-            //new NormalCelestialObject(new Vector2D(0.6, -30), new Vector2D(0, 1), 5200000000.0),
-            //new NormalCelestialObject(new Vector2D(0, 0.4), new Vector2D(0.25, 0), 100)
+
             new NormalCelestialObject(new Vector2D(10000000000000.0 * 3, 28558.9 * Math.pow(10,6) * Math.pow(10,3) * 3), new Vector2D(-21.5 * Math.pow(10,3), -60.0 * Math.pow(10,3)), 1.989 * Math.pow(10,30) * 10),
             new NormalCelestialObject(new Vector2D(0, 0), new Vector2D(0, 0), 1.989 * Math.pow(10,30)),
             new NormalCelestialObject(new Vector2D(0, 69.8 * Math.pow(10,6) * Math.pow(10,3)), new Vector2D(38.86 * Math.pow(10,3), 0), 0.330 * Math.pow(10,24)),
@@ -61,12 +54,7 @@ public class HelloApplication extends Application {
             new Circle(0, 0, 6, Color.web("#FAE5BF")),
             new Circle(0, 0, 6, Color.web("#4FD0E7")),
             new Circle(0, 0, 6, Color.web("#4b70dd")),
-
-            //new Circle(0,0, 2,  Color.CORAL),
-            //new Circle(0, 0, 20, Color.YELLOW),
-            //new Circle(0, 0, 3, Color.GRAY),
-            //new Circle(0, 0, 7, Color.BLACK),
-            //new Circle(0, 0, 4, Color.DARKBLUE)
+                
         };
 
         Pane root = new Pane();
