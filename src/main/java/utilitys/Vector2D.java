@@ -2,7 +2,7 @@ package utilitys;
 
 import java.util.ArrayList;
 
-public class Vector2D {
+final public class Vector2D {
     private double x;
     private double y;
 
