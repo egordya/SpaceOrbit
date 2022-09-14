@@ -14,24 +14,22 @@ import javax.json.JsonValue;
 import javax.json.stream.JsonParser;
 
 public class LevelModel {
-    public static void main(String[] args) {
-        // Create Json and print
-        JsonObject json = Json.createObjectBuilder()
-                .add("name", "Falco")
-                .add("age", BigDecimal.valueOf(3))
-                .add("biteable", Boolean.FALSE).build();
-        String result = json.toString();
 
-        System.out.println(result);
+    public static void main(String[] args)  throws Exception {
 
-        // Read back
-        JsonReader jsonReader = Json.createReader(new StringReader("{\"name\":\"Falco\",\"age\":3,\"bitable\":false}"));
-        JsonObject jobj = jsonReader.readObject();
-        System.out.println(jobj);
+        InputStream levelTest = new FileInputStream("/Users/madmax/Documents/level1.json");
+        JsonReader reader = Json.createReader(levelTest);
+        JsonObject levelObject = reader.readObject();
+        reader.close();
 
-        // Output
-        //  {"name":"Falco","age":3,"biteable":false}
-        //  {"name":"Falco","age":3,"bitable":false}
+        JsonArray planetArray = levelObject.getJsonArray("planets");
+        JsonObject planetObject = planetArray.getJsonObject(1);
+        System.out.println(planetObject.getString("name"));
+        System.out.println(planetArray.getJsonObject(0).getString("name"));
+
+        String name = planetObject.getString("name");
+
+        System.out.println(name);
 
     }
 }
