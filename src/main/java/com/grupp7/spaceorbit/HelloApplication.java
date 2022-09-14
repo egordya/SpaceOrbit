@@ -40,8 +40,6 @@ public class HelloApplication extends Application {
 
         GravitationModel test = new GravitationModel(planteter);
 
-
-
         Pane root = new Pane();
 
         root.getChildren().clear();
