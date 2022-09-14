@@ -17,7 +17,7 @@ public class LevelModel {
 
     public static void main(String[] args)  throws Exception {
 
-        InputStream levelTest = new FileInputStream("/Users/madmax/Documents/level1.json");
+        InputStream levelTest = new FileInputStream("");
         JsonReader reader = Json.createReader(levelTest);
         JsonObject levelObject = reader.readObject();
         reader.close();
