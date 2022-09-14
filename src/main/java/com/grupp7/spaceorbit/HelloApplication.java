@@ -34,10 +34,10 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException, InterruptedException {
 
         NormalCelestialObject[] planteter = new NormalCelestialObject[4];
-        planteter[0] = new NormalCelestialObject(new Vector2D(0, 0.8), new Vector2D(0.15,0), 10000,10);
-        planteter[1] = new NormalCelestialObject(new Vector2D(0, -1.5), new Vector2D(-0.22, 0), 850500,10);
-        planteter[2] = new NormalCelestialObject(new Vector2D(0, 0.001), new Vector2D(0, 0), 2200000000.0,10);
-        planteter[3] = new NormalCelestialObject(new Vector2D(0, -1.534), new Vector2D(-0.191, 0), 200,10);
+        planteter[0] = new NormalCelestialObject(new Vector2D(0, 0.8), new Vector2D(0.15,0), 10000,4/320);
+        planteter[1] = new NormalCelestialObject(new Vector2D(0, -1.5), new Vector2D(-0.22, 0), 850500,4.5/320);
+        planteter[2] = new NormalCelestialObject(new Vector2D(0, 0.001), new Vector2D(0, 0), 2200000000.0,20/320);
+        planteter[3] = new NormalCelestialObject(new Vector2D(0, -1.534), new Vector2D(-0.191, 0), 200,3/320);
         //planteter[4] = new NormalCelestialObject(new Vector2D(0.7, -4), new Vector2D(0, 0.4), 5200000000.0);
 
         GravitationModel test = new GravitationModel(planteter);
@@ -53,6 +53,7 @@ public class HelloApplication extends Application {
         Circle planet3 = new Circle(0, 0, 20, Color.YELLOW);
         Circle planet4 = new Circle(0, 0, 3, Color.GRAY);
         Circle planet5 = new Circle(0, 0, 7, Color.BLACK);
+
         root.getChildren().add(planet1);
         root.getChildren().add(planet2);
         root.getChildren().add(planet3);

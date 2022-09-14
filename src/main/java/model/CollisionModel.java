@@ -1,5 +1,7 @@
 package model;
 
+import javafx.scene.shape.Shape;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,11 +43,11 @@ public class CollisionModel {
 
     boolean checkIfCollision(Collisionable object1, Collisionable object2){
         if(object1.getHitbox().getBoundsInParent().intersects(object2.getHitbox().getBoundsInParent())){
+            System.out.println(object1.getHitbox().getBoundsInParent());
+            System.out.println(object2.getHitbox().getBoundsInParent());
             return true;
         }
         else
             return false;
     }
-
-
 }
