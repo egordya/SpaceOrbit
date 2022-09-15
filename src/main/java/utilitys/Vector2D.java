@@ -3,7 +3,7 @@ package utilitys;
 import java.util.ArrayList;
 
 /**
- * The Vector2D class is a representation of a 2d vector
+ * The immutable Vector2D class is a representation of a 2d vector
  * It contains methods for executing simple vector operations, such as vector addition and subtraction.
  */
 final public class Vector2D {
