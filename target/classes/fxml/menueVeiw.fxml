@@ -15,7 +15,7 @@
     <Label fx:id="welcomeText" />
     <ImageView fx:id="planetMenuGif" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
       <image>
-         <Image url="@../../../img/spAcEOrBiT.png" />
+         <Image url="src/main/resources/img/spAcEOrBiT.png" />
       </image>
     </ImageView>
     <Button onAction="#onHelloButtonClick" text="Start Game!" />
