@@ -5,9 +5,9 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 
-public class MenuController extends AnchorPane{
-    public MenuController() {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/menu.fxml"));
+public class GameController extends AnchorPane {
+    public GameController() {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/game.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 
