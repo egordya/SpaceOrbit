@@ -26,7 +26,6 @@ public class TargetModel {
         }
     }
 
-
         public TargetModel(JsonObject targetObject) {
             targetName = targetObject.get("name");
             targetMass = targetObject.get("mass");

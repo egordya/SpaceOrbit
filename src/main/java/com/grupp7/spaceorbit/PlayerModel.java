@@ -5,7 +5,6 @@ import javax.json.JsonObject;
 import javax.json.JsonValue;
 
 public class PlayerModel {
-
     JsonValue playerName;
     JsonValue playerMass;
     JsonValue playerRadius;
@@ -20,8 +19,8 @@ public class PlayerModel {
     public static void createPlayerObject(JsonObject levelObject) {
         JsonArray playerArray = levelObject.getJsonArray("playerObject");
         JsonObject playerObject = playerArray.getJsonObject(0);
-        PlayerModel TestLevelModel = new PlayerModel(playerObject);
-        System.out.println(TestLevelModel);
+        PlayerModel playerModel = new PlayerModel(playerObject);
+        System.out.println(playerModel);
     }
 
         public PlayerModel(JsonObject playerObject) {
