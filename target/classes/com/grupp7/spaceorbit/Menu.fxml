@@ -7,7 +7,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" spacing="20.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupp7.spaceorbit.SOController">
+<VBox alignment="CENTER" spacing="20.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupp7.spaceorbit.MenuController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
@@ -18,5 +18,5 @@
          <Image url="@../../../img/spAcEOrBiT.png" />
       </image>
     </ImageView>
-    <Button onAction="#onHelloButtonClick" text="Start Game!" />
+    <Button onAction="#startGame" text="Start Game!" />
 </VBox>
