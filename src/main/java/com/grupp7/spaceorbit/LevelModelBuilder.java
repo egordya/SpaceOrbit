@@ -7,17 +7,15 @@ import java.io.InputStream;
 import javax.json.*;
 
 
-class LevelModel {
+class LevelModelBuilder {
 
     public static void main(String[] args)  throws Exception {
 
         JsonObject levelObject = getJsonObject();
-
         PlanetModel.createPlanet(levelObject);
         PlayerModel.createPlayerObject(levelObject);
         TargetModel.createTarget(levelObject);
     }
-
 
     private static JsonObject getJsonObject() throws FileNotFoundException {
         String jsonPath = "src/main/resources/json/levels/level2.json";

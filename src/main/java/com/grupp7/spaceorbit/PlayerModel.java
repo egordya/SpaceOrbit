@@ -15,7 +15,6 @@ public class PlayerModel {
     JsonValue velY;
     JsonValue img_path;
 
-
     public static void createPlayerObject(JsonObject levelObject) {
         JsonArray playerArray = levelObject.getJsonArray("playerObject");
         JsonObject playerObject = playerArray.getJsonObject(0);
