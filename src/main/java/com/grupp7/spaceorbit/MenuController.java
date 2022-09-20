@@ -6,7 +6,11 @@ import javafx.scene.layout.AnchorPane;
 import java.io.IOException;
 
 public class MenuController extends AnchorPane{
-    public MenuController() {
+    Mediator mediator;
+    public MenuController(Mediator mediator) {
+
+        this.mediator = mediator;
+
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/menu.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);

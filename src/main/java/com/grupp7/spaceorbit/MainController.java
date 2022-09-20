@@ -19,10 +19,11 @@ public class MainController implements Initializable, Mediator{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        menuController = new MenuController();
-        gameController = new GameController();
-        theStackPane.getChildren().add(menuController);
+        menuController = new MenuController(this);
+        gameController = new GameController(this);
         theStackPane.getChildren().add(gameController);
+        theStackPane.getChildren().add(menuController);
+
     }
 
 
@@ -33,7 +34,7 @@ public class MainController implements Initializable, Mediator{
 
     @Override
     public void notify(Object pointer) {
-
+        System.out.println("awdawd");
     }
 
     private void showMenu(){
