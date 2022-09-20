@@ -1,10 +1,13 @@
 package com.grupp7.spaceorbit;
 
+import model.CelestialObject;
+import utilitys.Vector2D;
+
 import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.json.JsonValue;
 
-public class PlanetModel {
+public class CelestialObjectBuilder {
     JsonValue planetName;
     JsonValue planetMass;
     JsonValue planetRadius;
@@ -20,12 +23,12 @@ public class PlanetModel {
 
         for (int i = 0; i < planetArray.size(); i++) {
             JsonObject planetObject = planetArray.getJsonObject(i);
-            PlanetModel planetModel = new PlanetModel(planetObject);
-            System.out.println(planetModel);
+            CelestialObjectBuilder celestialObjectBuilder = new CelestialObjectBuilder(planetObject);
+            System.out.println(celestialObjectBuilder);
         }
     }
 
-        public PlanetModel(JsonObject planetObject) {
+        public CelestialObjectBuilder(JsonObject planetObject) {
             planetName = planetObject.get("name");
             planetMass = planetObject.get("mass");
             planetRadius = planetObject.get("radius");

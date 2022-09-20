@@ -5,7 +5,7 @@ import utilitys.Vector2D;
 
 
 
-public class NormalCelestialObject implements ObjectForGravitationModel,Collisionable {
+public class CelestialObject implements ObjectForGravitationModel,Collisionable {
 
     Vector2D position;
     Vector2D velocityVector;
@@ -13,7 +13,7 @@ public class NormalCelestialObject implements ObjectForGravitationModel,Collisio
     Circle planetHitbox = new Circle(0,0,0);
     double radius;
 
-    public NormalCelestialObject(Vector2D position, Vector2D velocityVector, double mass, double radius) {
+    public CelestialObject(Vector2D position, Vector2D velocityVector, double mass, double radius) {
         this.position = position;
         this.velocityVector = velocityVector;
         this.mass = mass;
@@ -66,7 +66,7 @@ public class NormalCelestialObject implements ObjectForGravitationModel,Collisio
 
     @Override
     public ObjectForGravitationModel clone() {
-        return new NormalCelestialObject(position, velocityVector, mass, radius);
+        return new CelestialObject(position, velocityVector, mass, radius);
     }
 
     public Circle getHitbox(){

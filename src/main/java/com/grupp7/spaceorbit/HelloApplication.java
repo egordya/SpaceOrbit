@@ -12,7 +12,7 @@ import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
 import model.GravitationModel;
-import model.NormalCelestialObject;
+import model.CelestialObject;
 import model.ObjectForGravitationModel;
 import utilitys.Vector2D;
 
@@ -42,18 +42,18 @@ public class HelloApplication extends Application {
 
 
     public void startGameMain(){
-        NormalCelestialObject[] planteter = {
+        CelestialObject[] planteter = {
 
-                new NormalCelestialObject(new Vector2D(10000000000000.0 * 3, 28558.9 * Math.pow(10,6) * Math.pow(10,3) * 3), new Vector2D(-21.5 * Math.pow(10,3), -60.0 * Math.pow(10,3)), 1.989 * Math.pow(10,30) * 10, 2),
-                new NormalCelestialObject(new Vector2D(0, 0), new Vector2D(0, 0), 1.989 * Math.pow(10,30), 2),
-                new NormalCelestialObject(new Vector2D(0, 69.8 * Math.pow(10,6) * Math.pow(10,3)), new Vector2D(38.86 * Math.pow(10,3), 0), 0.330 * Math.pow(10,24), 2),
-                new NormalCelestialObject(new Vector2D(0,108.9 * Math.pow(10,6) * Math.pow(10,3)), new Vector2D(34.79 * Math.pow(10,3), 0), 4.87 * Math.pow(10,24), 2),
-                new NormalCelestialObject(new Vector2D(0, 152.1 * Math.pow(10,6) * Math.pow(10,3)), new Vector2D(29.29 * Math.pow(10,3), 0), 5.97 * Math.pow(10,24), 2),
-                new NormalCelestialObject(new Vector2D(0, 249.261 * Math.pow(10,6) * Math.pow(10,3)), new Vector2D(21.97 * Math.pow(10,3), 0), 0.642 * Math.pow(10,24), 2),
-                new NormalCelestialObject(new Vector2D(0, 816.4 * Math.pow(10,6) * Math.pow(10,3)), new Vector2D(12.44 * Math.pow(10,3), 0), 1898 * Math.pow(10,24), 2),
-                new NormalCelestialObject(new Vector2D(0, 1506.5 * Math.pow(10,6) * Math.pow(10,3)), new Vector2D(9.09 * Math.pow(10,3), 0), 568 * Math.pow(10,24), 2),
-                new NormalCelestialObject(new Vector2D(0, 3001.4 * Math.pow(10,6) * Math.pow(10,3)), new Vector2D(6.49 * Math.pow(10,3), 0), 86.8 * Math.pow(10,24), 2),
-                new NormalCelestialObject(new Vector2D(0, 4558.9 * Math.pow(10,6) * Math.pow(10,3)), new Vector2D(5.37 * Math.pow(10,3), 0), 102 * Math.pow(10,24),2)
+                new CelestialObject(new Vector2D(10000000000000.0 * 3, 28558.9 * Math.pow(10,6) * Math.pow(10,3) * 3), new Vector2D(-21.5 * Math.pow(10,3), -60.0 * Math.pow(10,3)), 1.989 * Math.pow(10,30) * 10, 2),
+                new CelestialObject(new Vector2D(0, 0), new Vector2D(0, 0), 1.989 * Math.pow(10,30), 2),
+                new CelestialObject(new Vector2D(0, 69.8 * Math.pow(10,6) * Math.pow(10,3)), new Vector2D(38.86 * Math.pow(10,3), 0), 0.330 * Math.pow(10,24), 2),
+                new CelestialObject(new Vector2D(0,108.9 * Math.pow(10,6) * Math.pow(10,3)), new Vector2D(34.79 * Math.pow(10,3), 0), 4.87 * Math.pow(10,24), 2),
+                new CelestialObject(new Vector2D(0, 152.1 * Math.pow(10,6) * Math.pow(10,3)), new Vector2D(29.29 * Math.pow(10,3), 0), 5.97 * Math.pow(10,24), 2),
+                new CelestialObject(new Vector2D(0, 249.261 * Math.pow(10,6) * Math.pow(10,3)), new Vector2D(21.97 * Math.pow(10,3), 0), 0.642 * Math.pow(10,24), 2),
+                new CelestialObject(new Vector2D(0, 816.4 * Math.pow(10,6) * Math.pow(10,3)), new Vector2D(12.44 * Math.pow(10,3), 0), 1898 * Math.pow(10,24), 2),
+                new CelestialObject(new Vector2D(0, 1506.5 * Math.pow(10,6) * Math.pow(10,3)), new Vector2D(9.09 * Math.pow(10,3), 0), 568 * Math.pow(10,24), 2),
+                new CelestialObject(new Vector2D(0, 3001.4 * Math.pow(10,6) * Math.pow(10,3)), new Vector2D(6.49 * Math.pow(10,3), 0), 86.8 * Math.pow(10,24), 2),
+                new CelestialObject(new Vector2D(0, 4558.9 * Math.pow(10,6) * Math.pow(10,3)), new Vector2D(5.37 * Math.pow(10,3), 0), 102 * Math.pow(10,24),2)
         };
 
         GravitationModel test = new GravitationModel(planteter);

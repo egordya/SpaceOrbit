@@ -12,7 +12,7 @@ class LevelModelBuilder {
     public static void main(String[] args)  throws Exception {
 
         JsonObject levelObject = getJsonObject();
-        PlanetModel.createPlanet(levelObject);
+        CelestialObjectBuilder.createPlanet(levelObject);
         PlayerModel.createPlayerObject(levelObject);
         TargetModel.createTarget(levelObject);
     }
