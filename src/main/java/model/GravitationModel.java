@@ -67,13 +67,18 @@ public class GravitationModel {
             otherObjectsMass.add(obj.getMass());
         }
         ArrayList<Vector2D> distanceVectors = getDistanceVectorsToSurroundingObjects(mainObject.getPos(), otherObjectsPos);
+
         ArrayList<Double> lengthOfDistanceVectors = Vector2D.getLengthOfVectors(distanceVectors);
         ArrayList<Vector2D> unitVectorsOfDistanceVectors = Vector2D.getUnitVectorsOfVectors(distanceVectors);
+
         Vector2D summedForceVector = getSummedForceVector(unitVectorsOfDistanceVectors, lengthOfDistanceVectors, mainObject.getMass(), otherObjectsMass);
+
         double lengthOfSummedForceVector = summedForceVector.getVectorLength();
         Vector2D unitVectorOfSummedForceVector = summedForceVector.getUnitVector();
+
         double acceleration = lengthOfSummedForceVector/mainObject.getMass();
-        Vector2D velocityVector = unitVectorOfSummedForceVector.scalarMultiplication(acceleration*time*0.5);
+
+        Vector2D velocityVector = unitVectorOfSummedForceVector.scalarMultiplication(acceleration*time);
 
         Vector2D previousVelocityVector = mainObject.getVelocityVector();
         Vector2D newVelocityVector = previousVelocityVector.add(velocityVector);
