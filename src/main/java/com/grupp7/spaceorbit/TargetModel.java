@@ -3,6 +3,7 @@ package com.grupp7.spaceorbit;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.json.JsonValue;
+import java.util.ArrayList;
 
 public class TargetModel {
 
@@ -17,12 +18,13 @@ public class TargetModel {
     JsonValue img_path;
 
 
-    public static void createTarget(JsonObject levelObject) {
+    public static void createTarget(JsonObject levelObject, ArrayList<TargetModel> allObjects) {
         JsonArray targetArray = levelObject.getJsonArray("target");
         for (int i = 0; i < targetArray.size(); i++) {
             JsonObject targetObject = targetArray.getJsonObject(i);
             TargetModel targetModel = new TargetModel(targetObject);
             System.out.println(targetModel);
+            allObjects.add(targetModel);
         }
     }
 

@@ -3,6 +3,7 @@ package com.grupp7.spaceorbit;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.json.JsonValue;
+import java.util.ArrayList;
 
 public class PlayerModel {
     JsonValue playerName;
@@ -15,10 +16,11 @@ public class PlayerModel {
     JsonValue velY;
     JsonValue img_path;
 
-    public static void createPlayerObject(JsonObject levelObject) {
+    public static void createPlayerObject(JsonObject levelObject, ArrayList<PlayerModel> allobjects) {
         JsonArray playerArray = levelObject.getJsonArray("playerObject");
         JsonObject playerObject = playerArray.getJsonObject(0);
         PlayerModel playerModel = new PlayerModel(playerObject);
+        allobjects.add(playerModel);
         System.out.println(playerModel);
     }
 
