@@ -15,7 +15,7 @@ public class CelestialObject implements ObjectForGravitationModel, Collisionable
     Circle planetHitbox = new Circle(0,0,0);
     double radius;
 
-    public CelestialObject(Vector2D position, Vector2D velocityVector, double mass, double radius) {
+    public CelestialObject(Vector2D position, Vector2D velocityVector, double mass, double radius, String imagePath, boolean fixedPosition, String name) {
         this.position = position;
         this.velocityVector = velocityVector;
         this.mass = mass;
@@ -68,7 +68,7 @@ public class CelestialObject implements ObjectForGravitationModel, Collisionable
 
     @Override
     public ObjectForGravitationModel clone() {
-        return new CelestialObject(position, velocityVector, mass, radius);
+        return new CelestialObject(position, velocityVector, mass, radius, imagePath, fixedPosition, name);
     }
 
     public Circle getHitbox(){

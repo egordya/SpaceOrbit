@@ -15,32 +15,95 @@ import java.util.ArrayList;
 import javax.json.*;
 
 
-class GameModelBuilder {
+public class GameModelBuilder {
 
-    GameModel theProduct = new GameModel();
+    static GameModel gameModel = new GameModel();
 
-    ArrayList<CelestialObjectBuilder> planets = new ArrayList<>();
-    ArrayList<PlayerModel> players = new ArrayList<>();                         //Anteckningar för Olof och endast Olof dessa tre listor behöver man slå ihop till en lista av normalCelestialObjects
-    ArrayList<TargetModel> targets = new ArrayList<>();                         // All data ska in som parametrar new CelestialObject()
 
-    public void buildLevel()  throws Exception {
-
-        JsonObject levelObject = getJsonObject();
-        CelestialObjectBuilder.createPlanet(levelObject,planets);
-        PlayerModel.createPlayerObject(levelObject, players);
-        TargetModel.createTarget(levelObject, targets);
-    }
-
-    public GameModel getProduct(){
-        return null;
-    }
-
-    private static JsonObject getJsonObject() throws FileNotFoundException {
+    public static GameModel getGameModel(String pathToJsonLevel) throws FileNotFoundException {
         String jsonPath = "src/main/resources/json/levels/level2.json";
         InputStream levelTest = new FileInputStream(jsonPath);
         JsonReader reader = Json.createReader(levelTest);
         JsonObject levelObject = reader.readObject();
         reader.close();
-        return levelObject;
+
+        ArrayList<CelestialObject> planets = getPlanets(levelObject);
+        ArrayList<CelestialObject> targets = getTargets(levelObject);
+        ArrayList<CelestialObject> players = getPlayers(levelObject);
+
+        ArrayList<CelestialObject> allCelestialObjects = new ArrayList<>();
+        allCelestialObjects.addAll(planets);
+        allCelestialObjects.addAll(targets);
+        allCelestialObjects.addAll(players);
+
+        GravitationModel gravitationModel = createGravitationModel(allCelestialObjects);
+        CollisionModel collisionModel = createCollisionModel(allCelestialObjects);
+
+
+        //ArrayList<CelestialObject> allCelestialObjects1 = (ArrayList<CelestialObject>) Stream.concat(planets.stream(), targets.stream(), players.stream()).toList();
+
+
+
+        return null; // Remoev whe
     }
+
+    private static CollisionModel createCollisionModel(ArrayList<CelestialObject> allObjects) {
+    CollisionModel collisionModel = new CollisionModel(allObjects.toArray(new Collisionable[0]));
+    return collisionModel;
+    }
+
+    private static GravitationModel createGravitationModel(ArrayList<CelestialObject> allObjects){
+        GravitationModel gravitationModel = new GravitationModel(allObjects.toArray(new ObjectForGravitationModel[0]));
+        return gravitationModel;
+    }
+
+    private static ArrayList<CelestialObject> getPlanets(JsonObject levelObject){
+        ArrayList<CelestialObject> planets = new ArrayList<>();
+        JsonArray planetArray = levelObject.getJsonArray("planets");
+        for (int i = 0; i < planetArray.size(); i++) {
+            JsonObject planetObject = planetArray.getJsonObject(i);
+            planets.add(createCelestialObjects(planetObject));
+        }
+        return planets;
+    }
+
+    private static ArrayList<CelestialObject> getTargets(JsonObject levelObject){
+        ArrayList<CelestialObject> targets = new ArrayList<>();
+        JsonArray planetArray = levelObject.getJsonArray("target");
+        for (int i = 0; i < planetArray.size(); i++) {
+            JsonObject planetObject = planetArray.getJsonObject(i);
+            targets.add(createCelestialObjects(planetObject));
+        }
+        return targets;
+    }
+
+    private static ArrayList<CelestialObject> getPlayers(JsonObject levelObject){
+        ArrayList<CelestialObject> player = new ArrayList<>();
+        JsonArray planetArray = levelObject.getJsonArray("playerObject");
+        for (int i = 0; i < planetArray.size(); i++) {
+            JsonObject planetObject = planetArray.getJsonObject(i);
+            player.add(createCelestialObjects(planetObject));
+        }
+        return player;
+    }
+
+    private static CelestialObject createCelestialObjects(JsonObject jsonObject){
+        String planetName = jsonObject.get("name").toString();
+        double planetMass = Double.parseDouble(jsonObject.get("mass").toString());
+        double planetRadius = Double.parseDouble(jsonObject.get("radius").toString());
+        boolean fixedPosition = Boolean.parseBoolean(jsonObject.get("fixedPosition").toString());
+        double posX = Double.parseDouble(jsonObject.get("posX").toString());
+        double posY = Double.parseDouble(jsonObject.get("posY").toString());
+        double velX = Double.parseDouble(jsonObject.get("velX").toString());
+        double velY = Double.parseDouble(jsonObject.get("velY").toString());
+        String img_path = jsonObject.get("img_path").toString();
+
+        Vector2D positionVec = new Vector2D(posX, posY);
+        Vector2D velocityVec = new Vector2D(velX, velY);
+
+        CelestialObject theproduct = new CelestialObject(positionVec, velocityVec, planetMass, planetRadius, img_path, fixedPosition, planetName);
+        return  theproduct;
+    }
+
+    //private static
 }
