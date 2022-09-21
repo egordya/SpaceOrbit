@@ -1,8 +1,5 @@
 package com.grupp7.spaceorbit;
 
-import model.CelestialObject;
-import utilitys.Vector2D;
-
 import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.json.JsonValue;

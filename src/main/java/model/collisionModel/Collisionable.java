@@ -1,4 +1,4 @@
-package model;
+package model.collisionModel;
 
 import javafx.scene.shape.Shape;
 

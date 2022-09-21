@@ -6,4 +6,5 @@ module com.grupp7.spaceorbit {
 
     opens com.grupp7.spaceorbit to javafx.fxml;
     exports com.grupp7.spaceorbit;
+
 }

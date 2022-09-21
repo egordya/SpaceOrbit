@@ -1,11 +1,13 @@
-package model;
+package model.modelObjects;
 
 import javafx.scene.shape.Circle;
+import model.collisionModel.Collisionable;
+import model.gravitationModel.ObjectForGravitationModel;
 import utilitys.Vector2D;
 
 
 
-public class CelestialObject implements ObjectForGravitationModel,Collisionable {
+public class CelestialObject implements ObjectForGravitationModel, Collisionable {
 
     Vector2D position;
     Vector2D velocityVector;

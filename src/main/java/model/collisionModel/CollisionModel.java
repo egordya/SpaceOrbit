@@ -1,6 +1,4 @@
-package model;
-
-import javafx.scene.shape.Shape;
+package model.collisionModel;
 
 import java.util.ArrayList;
 import java.util.List;

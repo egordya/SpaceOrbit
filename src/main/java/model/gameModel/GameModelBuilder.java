@@ -1,4 +1,8 @@
-package com.grupp7.spaceorbit;
+package model.gameModel;
+
+import com.grupp7.spaceorbit.CelestialObjectBuilder;
+import com.grupp7.spaceorbit.PlayerModel;
+import com.grupp7.spaceorbit.TargetModel;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -8,7 +12,10 @@ import java.util.ArrayList;
 import javax.json.*;
 
 
-class LevelModelBuilder {
+class GameModelBuilder {
+
+    GameModel theProduct = new GameModel();
+
     ArrayList<CelestialObjectBuilder> planets = new ArrayList<>();
     ArrayList<PlayerModel> players = new ArrayList<>();                         //Anteckningar för Olof och endast Olof dessa tre listor behöver man slå ihop till en lista av normalCelestialObjects
     ArrayList<TargetModel> targets = new ArrayList<>();                         // All data ska in som parametrar new CelestialObject()
@@ -19,6 +26,10 @@ class LevelModelBuilder {
         CelestialObjectBuilder.createPlanet(levelObject,planets);
         PlayerModel.createPlayerObject(levelObject, players);
         TargetModel.createTarget(levelObject, targets);
+    }
+
+    public GameModel getProduct(){
+        return null;
     }
 
     private static JsonObject getJsonObject() throws FileNotFoundException {

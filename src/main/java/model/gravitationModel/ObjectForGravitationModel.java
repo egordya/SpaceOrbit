@@ -1,4 +1,4 @@
-package model;
+package model.gravitationModel;
 
 import utilitys.Vector2D;
 

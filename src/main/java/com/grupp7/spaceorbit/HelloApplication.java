@@ -11,9 +11,9 @@ import javafx.scene.shape.Circle;
 
 import javafx.stage.Stage;
 
-import model.GravitationModel;
-import model.CelestialObject;
-import model.ObjectForGravitationModel;
+import model.gravitationModel.GravitationModel;
+import model.modelObjects.CelestialObject;
+import model.gravitationModel.ObjectForGravitationModel;
 import utilitys.Vector2D;
 
 import java.io.IOException;
@@ -29,6 +29,7 @@ public class HelloApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException, InterruptedException {
+
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/main.fxml"));
 
