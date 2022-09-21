@@ -28,7 +28,7 @@ public class MainController implements Initializable, Mediator{
 
 
     @Override
-    public void notify(Object pointer) {
+    public void notify(Object pointer, MediatorCommand command) {
         if (pointer == menuController){
             theStackPane.getChildren().clear();
             theStackPane.getChildren().add(gameController);

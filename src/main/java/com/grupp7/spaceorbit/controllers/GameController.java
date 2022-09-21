@@ -30,6 +30,7 @@ public class GameController extends AnchorPane implements Observer {
 
     public void loadGameModel(GameModel gameModel){
         this.gameModel = gameModel;
+        this.gameModel.addObserver(this);
     }
 
     @Override

@@ -26,6 +26,6 @@ public class MenuController extends AnchorPane{
 
     @FXML
     public void testbutton(){
-        mediator.notify(this);
+        mediator.notify(this, MediatorCommand.STANDARD);
     }
 }
