@@ -1,8 +1,11 @@
 package model.gameModel;
 
-import model.modelObjects.CelestialObjectBuilder;
-import model.modelObjects.PlayerModel;
-import model.modelObjects.TargetModel;
+import model.collisionModel.CollisionModel;
+import model.collisionModel.Collisionable;
+import model.gravitationModel.GravitationModel;
+import model.gravitationModel.ObjectForGravitationModel;
+import model.modelObjects.CelestialObject;
+import utilitys.Vector2D;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
