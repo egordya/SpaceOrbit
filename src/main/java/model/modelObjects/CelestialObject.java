@@ -1,5 +1,6 @@
 package model.modelObjects;
 
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import model.collisionModel.Collisionable;
 import model.gravitationModel.ObjectForGravitationModel;
@@ -14,6 +15,13 @@ public class CelestialObject implements ObjectForGravitationModel, Collisionable
     double mass;
     Circle planetHitbox = new Circle(0,0,0);
     double radius;
+    String imagePath;
+    boolean fixedPosition;
+    String name;
+
+
+    // Temporary graphics
+    Circle drawCircle = new Circle(0, 0, 4, Color.YELLOW);
 
     public CelestialObject(Vector2D position, Vector2D velocityVector, double mass, double radius, String imagePath, boolean fixedPosition, String name) {
         this.position = position;
@@ -21,6 +29,12 @@ public class CelestialObject implements ObjectForGravitationModel, Collisionable
         this.mass = mass;
         this.radius = radius;
         this.planetHitbox.setRadius(this.radius);
+        this.imagePath = imagePath;
+        this.fixedPosition = fixedPosition;
+        this.name = name;
+
+        // Temporary graphics
+        this.drawCircle.setRadius(this.radius);
     }
 
     @Override
@@ -83,5 +97,11 @@ public class CelestialObject implements ObjectForGravitationModel, Collisionable
     public void setHitboxPos(){
         this.planetHitbox.setCenterX(this.getPos().getX());
         this.planetHitbox.setCenterY(this.getPos().getY());
+
+
+        // Temporary graphics
+        this.drawCircle.setCenterX(this.getPos().getX());
+        this.drawCircle.setCenterY(this.getPos().getY());
+
     }
 }
