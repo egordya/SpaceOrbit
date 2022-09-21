@@ -32,6 +32,9 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException, InterruptedException {
 
+
+
+
         NormalCelestialObject[] planteter = new NormalCelestialObject[4];
         planteter[0] = new NormalCelestialObject(new Vector2D(0, 0.8), new Vector2D(0.15,0), 10000);
         planteter[1] = new NormalCelestialObject(new Vector2D(0, -1.5), new Vector2D(-0.22, 0), 850500);

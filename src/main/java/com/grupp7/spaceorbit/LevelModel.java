@@ -1,5 +1,5 @@
 package com.grupp7.spaceorbit;
 
-public interface GravObj {
+public class LevelModel {
 
 }

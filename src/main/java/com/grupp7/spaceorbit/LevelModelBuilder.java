@@ -6,7 +6,6 @@ import java.io.InputStream;
 
 import javax.json.*;
 
-
 class LevelModelBuilder {
 
     public static void main(String[] args)  throws Exception {
@@ -15,6 +14,7 @@ class LevelModelBuilder {
         PlanetModel.createPlanet(levelObject);
         PlayerModel.createPlayerObject(levelObject);
         TargetModel.createTarget(levelObject);
+        System.out.println();
     }
 
     private static JsonObject getJsonObject() throws FileNotFoundException {
