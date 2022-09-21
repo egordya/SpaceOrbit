@@ -14,24 +14,28 @@ public class MainController implements Initializable, Mediator{
 
     MenuController menuController;
     GameController gameController;
+    CustomLevelController customLevelController;
+
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         menuController = new MenuController(this);
         gameController = new GameController(this);
+        customLevelController = new CustomLevelController(this);
+
 
         theStackPane.getChildren().add(gameController);
         theStackPane.getChildren().add(menuController);
 
-    }
 
+    }
 
     @Override
     public void notify(Object pointer, MediatorCommand command) {
-        if (pointer == menuController){
+        if (pointer == menuController) {
             theStackPane.getChildren().clear();
-            theStackPane.getChildren().add(gameController);
+            theStackPane.getChildren().add(customLevelController);
         }
     }
 
@@ -42,6 +46,7 @@ public class MainController implements Initializable, Mediator{
     private void showGame(){
 
     }
+
 
 
 

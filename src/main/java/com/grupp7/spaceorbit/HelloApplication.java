@@ -16,8 +16,14 @@ import model.modelObjects.CelestialObject;
 import model.gravitationModel.ObjectForGravitationModel;
 import utilitys.Vector2D;
 
+import javax.json.Json;
+import javax.json.JsonObject;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -30,14 +36,11 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException, InterruptedException {
 
-
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/main.fxml"));
 
         Scene scene = new Scene(fxmlLoader.load());
         stage.setScene(scene);
         stage.show();
-
-
 
     }
 

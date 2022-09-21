@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<fx:root prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: black;" type="AnchorPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button layoutX="38.0" layoutY="346.0" mnemonicParsing="false" text="Reset" />
+      <TextField fx:id="nameInput" layoutX="220.0" layoutY="123.0" promptText="Object Name" />
+      <Text fill="WHITE" layoutX="168.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:" />
+      <Text fill="WHITE" layoutX="33.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Radius:" />
+      <TextField fx:id="radiusInput" layoutX="168.0" layoutY="173.0" prefHeight="26.0" prefWidth="77.0" promptText="9999" />
+      <Text fill="WHITE" layoutX="31.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Static: " />
+      <TextField fx:id="massInput" layoutX="168.0" layoutY="209.0" prefHeight="26.0" prefWidth="77.0" promptText="9999" />
+      <Text fill="WHITE" layoutX="33.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mass:" />
+      <ComboBox fx:id="staticComboBoxInput" layoutX="168.0" layoutY="247.0" prefHeight="26.0" prefWidth="77.0" promptText="False" />
+      <Button layoutX="517.0" layoutY="346.0" mnemonicParsing="false" onAction="#submitButton" text="Submit" />
+      <Text fill="WHITE" layoutX="333.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start Position" />
+      <TextField fx:id="startXInput" layoutX="468.0" layoutY="173.0" prefHeight="26.0" prefWidth="77.0" promptText="X" />
+      <Text fill="WHITE" layoutX="331.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Image:" />
+      <TextField fx:id="startYInput" layoutX="468.0" layoutY="209.0" prefHeight="26.0" prefWidth="77.0" promptText="Y" />
+      <Text fill="WHITE" layoutX="333.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start Position:" />
+      <ComboBox fx:id="imageComboBoxInput" layoutX="468.0" layoutY="247.0" prefHeight="26.0" prefWidth="77.0" promptText="Green Planet">
+      <items>
+         <FXCollections fx:factory="observableArrayList">
+            <String fx:value="Green Planet" />
+            <String fx:value="Blue Planet" />
+            <String fx:value="PlaKanyet West" />
+         </FXCollections>
+      </items>
+      </ComboBox>
+      <Text fill="WHITE" layoutX="168.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type:" />
+      <ChoiceBox fx:id="typeChoiceBox" layoutX="225.0" layoutY="72.0" prefWidth="150.0" value="Planet">
+         <items>
+            <FXCollections fx:factory="observableArrayList">
+               <String fx:value="Planet" />
+               <String fx:value="Target" />
+            </FXCollections>
+         </items>
+      </ChoiceBox>
+      <ImageView fx:id="planetPreview" fitHeight="80.0" fitWidth="105.0" layoutX="247.0" layoutY="306.0" pickOnBounds="true" preserveRatio="true" />
+   </children>
+</fx:root>
