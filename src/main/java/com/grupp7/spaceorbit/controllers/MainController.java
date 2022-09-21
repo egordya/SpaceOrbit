@@ -1,6 +1,5 @@
-package com.grupp7.spaceorbit;
+package com.grupp7.spaceorbit.controllers;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.StackPane;
@@ -21,20 +20,19 @@ public class MainController implements Initializable, Mediator{
     public void initialize(URL url, ResourceBundle resourceBundle) {
         menuController = new MenuController(this);
         gameController = new GameController(this);
+
         theStackPane.getChildren().add(gameController);
         theStackPane.getChildren().add(menuController);
 
     }
 
 
-    @FXML
-    public void startGame(ActionEvent event){
-
-    }
-
     @Override
     public void notify(Object pointer) {
-        System.out.println("awdawd");
+        if (pointer == menuController){
+            theStackPane.getChildren().clear();
+            theStackPane.getChildren().add(gameController);
+        }
     }
 
     private void showMenu(){

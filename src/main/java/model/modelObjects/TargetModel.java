@@ -1,4 +1,4 @@
-package com.grupp7.spaceorbit;
+package model.modelObjects;
 
 import javax.json.JsonArray;
 import javax.json.JsonObject;

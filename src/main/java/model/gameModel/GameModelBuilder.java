@@ -1,8 +1,8 @@
 package model.gameModel;
 
-import com.grupp7.spaceorbit.CelestialObjectBuilder;
-import com.grupp7.spaceorbit.PlayerModel;
-import com.grupp7.spaceorbit.TargetModel;
+import model.modelObjects.CelestialObjectBuilder;
+import model.modelObjects.PlayerModel;
+import model.modelObjects.TargetModel;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

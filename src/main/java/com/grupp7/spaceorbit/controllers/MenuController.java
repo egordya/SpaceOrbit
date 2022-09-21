@@ -1,5 +1,6 @@
-package com.grupp7.spaceorbit;
+package com.grupp7.spaceorbit.controllers;
 
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 
@@ -21,5 +22,10 @@ public class MenuController extends AnchorPane{
             throw new RuntimeException(exception);
         }
 
+    }
+
+    @FXML
+    public void testbutton(){
+        mediator.notify(this);
     }
 }
