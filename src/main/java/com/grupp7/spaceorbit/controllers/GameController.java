@@ -3,8 +3,10 @@ package com.grupp7.spaceorbit.controllers;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import model.gameModel.GameModel;
+import model.gameModel.GameModelBuilder;
 import model.gameModel.Observer;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class GameController extends AnchorPane implements Observer {
@@ -28,8 +30,8 @@ public class GameController extends AnchorPane implements Observer {
 
     }
 
-    public void loadGameModel(GameModel gameModel){
-        this.gameModel = gameModel;
+    public void loadGameModel(String jsonPath) throws FileNotFoundException {
+        this.gameModel = GameModelBuilder.getGameModel(jsonPath);
         this.gameModel.addObserver(this);
     }
 
