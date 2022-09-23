@@ -45,7 +45,7 @@ public class GameModelBuilder {
         product.setGravitationModel(gravitationModel);
         product.setTargets(targets.toArray(new CelestialObject[0]));
         product.setPlanets(planets.toArray(new CelestialObject[0]));
-        product.setPlayers(targets.toArray(new CelestialObject[0]));
+        product.setPlayers(players.toArray(new CelestialObject[0]));
         product.setAllCelestialObjects(allCelestialObjects.toArray(new CelestialObject[0]));
 
         return product;
