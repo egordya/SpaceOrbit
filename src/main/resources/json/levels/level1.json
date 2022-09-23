@@ -3,10 +3,10 @@
     {
       "name": "planet1",
       "mass": 10000,
-      "radius": 64,
+      "radius": 1,
       "fixedPosition": false,
-      "posX": 500,
-      "posY": 500,
+      "posX": 10000,
+      "posY": 1000,
       "velX": 20,
       "velY": 20,
       "img_path": "/test/hest/best/yes-t"
@@ -14,10 +14,10 @@
     {
       "name": "planet2",
       "mass": 500,
-      "radius": 32,
+      "radius": 1,
       "fixedPosition": false,
-      "posX": 600,
-      "posY": 600,
+      "posX": 1000,
+      "posY": 1000,
       "velX": 20,
       "velY": 20,
       "img_path": ""
@@ -27,7 +27,7 @@
     {
       "name": "playerObj",
       "mass": 500,
-      "radius": 32,
+      "radius": 20,
       "fixedPosition": false,
       "posX": 50,
       "posY": 50,
@@ -42,8 +42,8 @@
     "mass": null,
     "radius": 64,
     "fixedPosition": true,
-    "posX": 50,
-    "posY": 50,
+    "posX": 100,
+    "posY": 100,
     "velX": 0,
     "velY": 0,
     "img_path": ""

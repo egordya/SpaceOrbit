@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.StackPane;
 
+import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -33,6 +34,11 @@ public class MainController implements Initializable, Mediator{
             System.out.println("Here");
             theStackPane.getChildren().clear();
             theStackPane.getChildren().add(gameController);
+            try {
+                gameController.loadGameModel("afawfghjesgbhlesglbh");
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
