@@ -1,14 +1,16 @@
 package model.modelObjects;
 
+import com.grupp7.spaceorbit.controllers.Drawable;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Shape;
 import model.collisionModel.Collisionable;
 import model.gravitationModel.ObjectForGravitationModel;
 import utilitys.Vector2D;
 
 
 
-public class CelestialObject implements ObjectForGravitationModel, Collisionable {
+public class CelestialObject implements ObjectForGravitationModel, Collisionable, Drawable {
 
     Vector2D position;
     Vector2D velocityVector;
@@ -20,8 +22,6 @@ public class CelestialObject implements ObjectForGravitationModel, Collisionable
     String name;
 
 
-    // Temporary graphics
-    Circle drawCircle = new Circle(0, 0, 4, Color.YELLOW);
 
     public CelestialObject(Vector2D position, Vector2D velocityVector, double mass, double radius, String imagePath, boolean fixedPosition, String name) {
         this.position = position;
@@ -32,9 +32,6 @@ public class CelestialObject implements ObjectForGravitationModel, Collisionable
         this.imagePath = imagePath;
         this.fixedPosition = fixedPosition;
         this.name = name;
-
-        // Temporary graphics
-        this.drawCircle.setRadius(this.radius);
     }
 
     @Override
@@ -81,7 +78,7 @@ public class CelestialObject implements ObjectForGravitationModel, Collisionable
     }
 
     @Override
-    public ObjectForGravitationModel clone() {
+    public CelestialObject clone() {
         return new CelestialObject(position, velocityVector, mass, radius, imagePath, fixedPosition, name);
     }
 
@@ -98,10 +95,30 @@ public class CelestialObject implements ObjectForGravitationModel, Collisionable
         this.planetHitbox.setCenterX(this.getPos().getX());
         this.planetHitbox.setCenterY(this.getPos().getY());
 
+    }
 
-        // Temporary graphics
-        this.drawCircle.setCenterX(this.getPos().getX());
-        this.drawCircle.setCenterY(this.getPos().getY());
+    @Override
+    public double getXPos() {
+        return position.getX();
+    }
 
+    @Override
+    public double getYPos() {
+        return position.getY();
+    }
+
+    @Override
+    public Shape getShape() {
+        return planetHitbox;
+    }
+
+    @Override
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    @Override
+    public String getName() {
+        return name;
     }
 }
