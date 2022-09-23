@@ -9,13 +9,14 @@ public class CollisionModel {
         this.allObjects = allObjects;
     }
 
-    public void updateHitboxesPos(){
+    private void updateHitboxesPos(){
         for (Collisionable x : allObjects){
             x.setHitboxPos();
         }
     }
 
     public boolean checkForCollisions(){
+        updateHitboxesPos();
         List<Collisionable> copy = new ArrayList<>();
         for (Collisionable x : allObjects){
             copy.add(x);

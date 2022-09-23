@@ -1,5 +1,6 @@
 package model.gameModel;
 
+import javafx.scene.control.Label;
 import model.collisionModel.CollisionModel;
 import model.collisionModel.Collisionable;
 import model.gravitationModel.GravitationModel;
@@ -11,17 +12,16 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.stream.Stream;
 
 import javax.json.*;
 
 
 public class GameModelBuilder {
 
-    static GameModel gameModel = new GameModel();
-
 
     public static GameModel getGameModel(String pathToJsonLevel) throws FileNotFoundException {
+
+
         String jsonPath = "src/main/resources/json/levels/level2.json";
         InputStream levelTest = new FileInputStream(jsonPath);
         JsonReader reader = Json.createReader(levelTest);
@@ -40,12 +40,15 @@ public class GameModelBuilder {
         GravitationModel gravitationModel = createGravitationModel(allCelestialObjects);
         CollisionModel collisionModel = createCollisionModel(allCelestialObjects);
 
+        GameModel product = new GameModel();
+        product.setCollisionModel(collisionModel);
+        product.setGravitationModel(gravitationModel);
+        product.setTargets(targets.toArray(new CelestialObject[0]));
+        product.setPlanets(planets.toArray(new CelestialObject[0]));
+        product.setPlayers(players.toArray(new CelestialObject[0]));
+        product.setAllCelestialObjects(allCelestialObjects.toArray(new CelestialObject[0]));
 
-        //ArrayList<CelestialObject> allCelestialObjects1 = (ArrayList<CelestialObject>) Stream.concat(planets.stream(), targets.stream(), players.stream()).toList();
-
-
-
-        return null; // Remoev whe
+        return product;
     }
 
     private static CollisionModel createCollisionModel(ArrayList<CelestialObject> allObjects) {
