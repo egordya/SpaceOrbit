@@ -14,7 +14,6 @@ import javafx.scene.control.TextField;
 import javax.json.*;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Map;
 
 
 public class CustomLevelController extends AnchorPane {
@@ -53,14 +52,17 @@ public class CustomLevelController extends AnchorPane {
     private ChoiceBox<String> typeChoiceBox;
 
     Mediator mediator;
-    ObservableList<String> finalFinalObjectKEKW = FXCollections.observableArrayList();
+    ObservableList<String> finalTestFile = FXCollections.observableArrayList();
     JsonObject finalPlanetObject = Json.createObjectBuilder()
             .add("type", "Planet").build();
+
+    ObservableList<String> finalFile = FXCollections.observableArrayList();
+
 
 
     public CustomLevelController(Mediator mediator) {
         this.mediator = mediator;
-        finalFinalObjectKEKW.add(finalPlanetObject.toString());
+        finalTestFile.add(finalPlanetObject.toString());
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/customlevel.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
@@ -85,7 +87,8 @@ public class CustomLevelController extends AnchorPane {
         JsonObject json = Json.createObjectBuilder()
                 .add("Type", type).build();
 
-        JsonBuilderFactory factory = Json.createBuilderFactory(json);
+        JsonBuilderFactory factory = Json.createBuilderFactory(finalPlanetObject);
+
         JsonArray value = factory.createArrayBuilder()
                 .add(factory.createObjectBuilder()
                         .add("name", name)
@@ -97,19 +100,19 @@ public class CustomLevelController extends AnchorPane {
                 .build();
 
 
-            finalFinalObjectKEKW.add(value.toString());
+            finalTestFile.add(value.toString());
 
-        System.out.println("final object:" + finalPlanetObject);
-        System.out.println("Kek: " + finalFinalObjectKEKW.toString());
-        return finalFinalObjectKEKW;
+        System.out.println("final Planet text: " + finalPlanetObject);
+        System.out.println("Final file to be written to json file: " + finalTestFile.toString());
+        return finalTestFile;
     }
 
     @FXML
     public void submitButtonTwo() throws IOException {
-
-        FileWriter fileWriter = new FileWriter("src/main/resources/json/levels/reeee.json");
-        //System.out.println(finalFinalObjectKEKW);
-        fileWriter.write(String.valueOf(finalFinalObjectKEKW));
+        //Kanske loopa igenom varje array för att lägga till i en ny array?
+        finalFile.add(finalPlanetObject.toString() + finalTestFile.toString());
+        FileWriter fileWriter = new FileWriter("src/main/resources/json/levels/testingpurpose.json");
+        fileWriter.write(String.valueOf(finalFile));
         fileWriter.flush();
     }
 
