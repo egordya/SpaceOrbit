@@ -5,8 +5,11 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 
 import javafx.stage.Stage;
@@ -37,13 +40,10 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException, InterruptedException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/main.fxml"));
-
         Scene scene = new Scene(fxmlLoader.load());
         stage.setScene(scene);
         stage.show();
-
     }
-
 
     public void startGameMain(){
         CelestialObject[] planteter = {
@@ -63,6 +63,7 @@ public class HelloApplication extends Application {
         GravitationModel test = new GravitationModel(planteter);
 
         Circle[] fxCircles = {
+
                 new Circle(0, 0, 6, Color.rgb(25, 25, 25)),
                 new Circle(0, 0, 4, Color.YELLOW),
                 new Circle(0, 0, 3, Color.web("#e5e5e5")),
@@ -73,7 +74,6 @@ public class HelloApplication extends Application {
                 new Circle(0, 0, 6, Color.web("#FAE5BF")),
                 new Circle(0, 0, 6, Color.web("#4FD0E7")),
                 new Circle(0, 0, 6, Color.web("#4b70dd")),
-
         };
 
         Pane root = new Pane();

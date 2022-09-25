@@ -1,22 +1,26 @@
 package com.grupp7.spaceorbit.controllers;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.TextField;
 
-import javax.json.Json;
-import javax.json.JsonArray;
-import javax.json.JsonBuilderFactory;
-import javax.json.JsonObject;
+import javax.json.*;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Map;
 
 
 public class CustomLevelController extends AnchorPane {
+
+    @FXML
+    private AnchorPane addObjectCustomLevelAnchorPane;
 
     @FXML
     private ComboBox<String> imageComboBoxInput;
@@ -25,7 +29,13 @@ public class CustomLevelController extends AnchorPane {
     private TextField massInput;
 
     @FXML
+    private AnchorPane nameCustomLevelAnchorPane;
+
+    @FXML
     private TextField nameInput;
+
+    @FXML
+    private ImageView planetPreview;
 
     @FXML
     private TextField radiusInput;
@@ -43,10 +53,14 @@ public class CustomLevelController extends AnchorPane {
     private ChoiceBox<String> typeChoiceBox;
 
     Mediator mediator;
+    ObservableList<String> finalFinalObjectKEKW = FXCollections.observableArrayList();
+    JsonObject finalPlanetObject = Json.createObjectBuilder()
+            .add("type", "Planet").build();
+
 
     public CustomLevelController(Mediator mediator) {
         this.mediator = mediator;
-
+        finalFinalObjectKEKW.add(finalPlanetObject.toString());
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/customlevel.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
@@ -59,7 +73,7 @@ public class CustomLevelController extends AnchorPane {
     }
 
     @FXML
-    public void submitButton() throws IOException {
+    public ObservableList<String> submitButton() throws IOException {
         String name = nameInput.getText();
         int mass = Integer.parseInt(massInput.getText());
         int radius = Integer.parseInt(radiusInput.getText());
@@ -68,12 +82,10 @@ public class CustomLevelController extends AnchorPane {
         String imagePath = imageComboBoxInput.getValue();
         String type = typeChoiceBox.getValue();
 
-
         JsonObject json = Json.createObjectBuilder()
                 .add("Type", type).build();
 
         JsonBuilderFactory factory = Json.createBuilderFactory(json);
-
         JsonArray value = factory.createArrayBuilder()
                 .add(factory.createObjectBuilder()
                         .add("name", name)
@@ -84,17 +96,22 @@ public class CustomLevelController extends AnchorPane {
                         .add("radius", radius))
                 .build();
 
-        JsonObject finalObject = Json.createObjectBuilder()
-                .add(type, value).build();
 
-        FileWriter fileWriter = new FileWriter("src/main/resources/json/levels/" + name +  ".json");
-        System.out.println(finalObject);
+            finalFinalObjectKEKW.add(value.toString());
 
-        fileWriter.write(String.valueOf(finalObject));
-        fileWriter.flush();
+        System.out.println("final object:" + finalPlanetObject);
+        System.out.println("Kek: " + finalFinalObjectKEKW.toString());
+        return finalFinalObjectKEKW;
     }
 
+    @FXML
+    public void submitButtonTwo() throws IOException {
 
+        FileWriter fileWriter = new FileWriter("src/main/resources/json/levels/reeee.json");
+        //System.out.println(finalFinalObjectKEKW);
+        fileWriter.write(String.valueOf(finalFinalObjectKEKW));
+        fileWriter.flush();
+    }
 
 
     @Override

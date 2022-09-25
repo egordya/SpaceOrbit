@@ -25,7 +25,6 @@ public class GameController extends AnchorPane implements Observer {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
-
     }
 
     public void loadGameModel(GameModel gameModel){
