@@ -31,6 +31,7 @@ public class GameModel{
 
     //package private
     GameModel() {
+
     }
 
     public void addObserver(Observer observer){
@@ -75,12 +76,13 @@ public class GameModel{
 
 
     public void startGame(){
-        while (true){
+        long duration = 10000000;
+        while(true){
             long startTime = System.nanoTime();
-            //FIXME Här har vi the things
+            gravitationModel.doSimulationStep(duration / 1000000000.0);
+            collisionModel.checkForCollisions();
             long endTime = System.nanoTime();
-
-            duration = (endTime - startTime);
+            duration = (endTime - startTime);  //divide by 1000000 to get milliseconds.
         }
     }
 

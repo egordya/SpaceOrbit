@@ -1,7 +1,6 @@
 package model.modelObjects;
 
 import com.grupp7.spaceorbit.controllers.Drawable;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
 import model.collisionModel.Collisionable;
@@ -12,18 +11,23 @@ import utilitys.Vector2D;
 
 public class CelestialObject implements ObjectForGravitationModel, Collisionable, Drawable {
 
-    Vector2D position;
-    Vector2D velocityVector;
-    double mass;
-    Circle planetHitbox = new Circle(0,0,0);
-    double radius;
-    String imagePath;
-    boolean fixedPosition;
-    String name;
+    private Vector2D position;
+    private Vector2D velocityVector;
+    private double mass;
+    private Circle planetHitbox = new Circle(0,0,0);
+    private double radius;
+    private String imagePath;
+    private boolean fixedPosition;
+    private String name;
+
+    private Boolean hasCrash;
+    private String type;
+    private String crashWithType;
 
 
 
-    public CelestialObject(Vector2D position, Vector2D velocityVector, double mass, double radius, String imagePath, boolean fixedPosition, String name) {
+    public CelestialObject(Vector2D position, Vector2D velocityVector, double mass, double radius, String imagePath,
+                           boolean fixedPosition, String name, boolean hasCrash, String type, String crashWithType) {
         this.position = position;
         this.velocityVector = velocityVector;
         this.mass = mass;
@@ -32,6 +36,13 @@ public class CelestialObject implements ObjectForGravitationModel, Collisionable
         this.imagePath = imagePath;
         this.fixedPosition = fixedPosition;
         this.name = name;
+        this.hasCrash = hasCrash;
+        this.type = type;
+        this.crashWithType = crashWithType;
+    }
+
+    public boolean getHasCrashed(){
+        return this.hasCrash;
     }
 
     @Override
@@ -79,17 +90,25 @@ public class CelestialObject implements ObjectForGravitationModel, Collisionable
 
     @Override
     public CelestialObject clone() {
-        return new CelestialObject(position, velocityVector, mass, radius, imagePath, fixedPosition, name);
+        return new CelestialObject(position, velocityVector, mass, radius, imagePath, fixedPosition, name, hasCrash, type, crashWithType);
+    }
+
+    @Override
+    public void crash(String crashWithType) {
+        this.hasCrash = true;
+        this.crashWithType = crashWithType;
+    }
+
+
+    @Override
+    public String getType(){
+        return this.type;
     }
 
     public Circle getHitbox(){
         return this.planetHitbox;
     }
 
-    public void crash(){
-        System.out.println("Collision!");
-        System.out.println(this);
-    }
 
     public void setHitboxPos(){
         this.planetHitbox.setCenterX(this.getPos().getX());

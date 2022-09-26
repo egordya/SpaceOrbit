@@ -24,20 +24,19 @@ public class CollisionModel {
 
         for(Collisionable x : allObjects){
             copy.remove(x);
-            if(checkForCollisionsWithX(x, copy))
-                return true;
+            checkForCollisionsWithX(x, copy);
             copy.add(x);
         }
         return false;
     }
 
-    private boolean checkForCollisionsWithX(Collisionable theObject, List<Collisionable> otherObjects) {
+    private void checkForCollisionsWithX(Collisionable theObject, List<Collisionable> otherObjects) {
         for(Collisionable x : otherObjects){
-            if(checkIfCollision(theObject,x))
-                theObject.crash();
-                return true;
+            if(checkIfCollision(theObject,x)){
+                theObject.crash(x.getType());
+            }
         }
-        return false;
+
     }
 
     boolean checkIfCollision(Collisionable object1, Collisionable object2){

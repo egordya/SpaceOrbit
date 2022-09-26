@@ -66,7 +66,7 @@ public class GameModelBuilder {
         JsonArray planetArray = levelObject.getJsonArray("planets");
         for (int i = 0; i < planetArray.size(); i++) {
             JsonObject planetObject = planetArray.getJsonObject(i);
-            planets.add(createCelestialObjects(planetObject));
+            planets.add(createCelestialObjects(planetObject, "planet"));
         }
         return planets;
     }
@@ -76,7 +76,7 @@ public class GameModelBuilder {
         JsonArray planetArray = levelObject.getJsonArray("target");
         for (int i = 0; i < planetArray.size(); i++) {
             JsonObject planetObject = planetArray.getJsonObject(i);
-            targets.add(createCelestialObjects(planetObject));
+            targets.add(createCelestialObjects(planetObject, "target"));
         }
         return targets;
     }
@@ -86,12 +86,12 @@ public class GameModelBuilder {
         JsonArray planetArray = levelObject.getJsonArray("playerObject");
         for (int i = 0; i < planetArray.size(); i++) {
             JsonObject planetObject = planetArray.getJsonObject(i);
-            player.add(createCelestialObjects(planetObject));
+            player.add(createCelestialObjects(planetObject, "player"));
         }
         return player;
     }
 
-    private static CelestialObject createCelestialObjects(JsonObject jsonObject){
+    private static CelestialObject createCelestialObjects(JsonObject jsonObject, String type){
         String planetName = jsonObject.get("name").toString();
         double planetMass = Double.parseDouble(jsonObject.get("mass").toString());
         double planetRadius = Double.parseDouble(jsonObject.get("radius").toString());
@@ -101,11 +101,14 @@ public class GameModelBuilder {
         double velX = Double.parseDouble(jsonObject.get("velX").toString());
         double velY = Double.parseDouble(jsonObject.get("velY").toString());
         String img_path = jsonObject.get("img_path").toString();
+        boolean hasCrashed = false;
+        String hasCrashedWith = "hasNotCrashed";
 
         Vector2D positionVec = new Vector2D(posX, posY);
         Vector2D velocityVec = new Vector2D(velX, velY);
-
-        CelestialObject theproduct = new CelestialObject(positionVec, velocityVec, planetMass, planetRadius, img_path, fixedPosition, planetName);
+        // String name, boolean hasCrash, String type, String crashWithType
+        CelestialObject theproduct = new CelestialObject(positionVec, velocityVec, planetMass, planetRadius, img_path,
+                                                        fixedPosition, planetName, hasCrashed,type,hasCrashedWith);
         return  theproduct;
     }
 

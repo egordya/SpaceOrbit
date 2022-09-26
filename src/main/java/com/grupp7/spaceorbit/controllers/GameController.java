@@ -53,6 +53,7 @@ public class GameController extends AnchorPane implements Observer {
         Drawable[] players = gameModel.getPlayers();
         Drawable[] targets = gameModel.getTargets();
 
+
         for (Drawable p : planets){
             renderSurface.getChildren().add(p.getShape());
         }
