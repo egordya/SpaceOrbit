@@ -45,6 +45,10 @@ public class CelestialObject implements ObjectForGravitationModel, Collisionable
         return this.hasCrash;
     }
 
+    public String getCrashWithType(){
+        return this.crashWithType;
+    }
+
     @Override
     public void moveStep(double time) {
         Vector2D positionStep = velocityVector.scalarMultiplication(time);

@@ -8,6 +8,7 @@ import utilitys.Vector2D;
 
 import java.util.ArrayList;
 import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class GameModel{
@@ -19,12 +20,18 @@ public class GameModel{
     CelestialObject[] targets;
     CelestialObject[] players;
     CelestialObject[] allCelestialObjects;
-    long duration;
 
     ArrayList<Observer> observers = new ArrayList<>();
 
     private Thread thread;           // Timer variable
     private boolean running = false; // Timer variable
+
+    boolean gameLoopLock = false;
+
+
+    Timer tr;
+
+    final long timePeriod = 20;
 
 
     //planets(new Vector2D(0, 69.8 *Math.pow(10,6) * Math.pow(10,3)), new Vector2D(38.86 *Math.pow(10,3), 0), 0.330 * Math.pow(10,24), 2),
@@ -32,10 +39,6 @@ public class GameModel{
     //package private
     GameModel() {
 
-    }
-
-    public void addObserver(Observer observer){
-        observers.add(observer);
     }
 
     private void notifyObservers(){
@@ -73,24 +76,31 @@ public class GameModel{
 
 
 
+    public void addObserver(Observer observer){
+        observers.add(observer);
+    }
 
+    private TimerTask getTimerTask(){
+        return new TimerTask(){
+            @Override
+            public void run(){
+                gameStep(timePeriod * Math.pow(10, -3));
+            }
+        };
+    }
 
     public void startGame(){
-        long duration = 10000000;
-        while(true){
-            long startTime = System.nanoTime();
-            gravitationModel.doSimulationStep(duration / 1000000000.0);
-            collisionModel.checkForCollisions();
-            long endTime = System.nanoTime();
-            duration = (endTime - startTime);  //divide by 1000000 to get milliseconds.
-        }
+        this.tr = new Timer();
+        this.tr.schedule(getTimerTask(), 0, timePeriod);
     }
 
     public void pause(){
-
+        tr.cancel();
     }
 
     public void endGame(){
+        tr.cancel();
+        // notify controller that its game over or win
 
     }
 
@@ -143,6 +153,25 @@ public class GameModel{
     //package private
     void setAllCelestialObjects(CelestialObject[] celestialObjects){
         this.allCelestialObjects = celestialObjects;
+    }
+
+    private void gameStep(double time){
+        simulationStep(time);
+        handleCollisions();
+    }
+
+
+    private void handleCollisions() {
+        for (CelestialObject x : players){
+            if(x.getHasCrashed() && x.getCrashWithType().equals("target")){
+                System.out.println("PLAYER HIT TARGET");
+            }
+        }
+    }
+
+    private void simulationStep(double time){
+        gravitationModel.doSimulationStep(0.0000001);
+        collisionModel.checkForCollisions();
     }
 
 }

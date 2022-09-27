@@ -42,6 +42,7 @@ public class GameController extends AnchorPane implements Observer {
         this.gameModel = GameModelBuilder.getGameModel(jsonPath);
         this.gameModel.addObserver(this);
         init();
+        gameModel.startGame();
 
     }
 
@@ -73,6 +74,6 @@ public class GameController extends AnchorPane implements Observer {
 
     @Override
     public void commandFromModel() {
-
+        System.out.println("awdawdawd");
     }
 }

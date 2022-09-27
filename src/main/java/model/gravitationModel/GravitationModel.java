@@ -43,7 +43,6 @@ public class GravitationModel {
     private void mutateAllObjectsArray(List<ObjectForGravitationModel> allObjectsWithNextState){
         for(int i = 0; i<allObjects.length; i++){
             allObjects[i].setPos(allObjectsWithNextState.get(i).getPos());
-            allObjects[i].setMass(allObjectsWithNextState.get(i).getMass());
             allObjects[i].setVelocityVector(allObjectsWithNextState.get(i).getVelocityVector());
         }
     }
