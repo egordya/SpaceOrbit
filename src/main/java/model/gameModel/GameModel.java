@@ -82,7 +82,6 @@ public class GameModel{
     }
 
     public void startGame(){
-
         if (!isRunning) {
             this.tr = new Timer();
             this.tr.schedule(getTimerTask(), 0, timePeriod);
@@ -91,8 +90,10 @@ public class GameModel{
     }
 
     public void pauseGame(){
-        tr.cancel();
-        isRunning = false;
+        if(isRunning) {
+            tr.cancel();
+            isRunning = false;
+        }
     }
 
     public void setPlayerVelocity(Vector2D[] velocitys){
