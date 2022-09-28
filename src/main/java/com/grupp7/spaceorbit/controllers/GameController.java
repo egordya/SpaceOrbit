@@ -38,6 +38,31 @@ public class GameController extends AnchorPane implements Observer {
 
     }
 
+    @FXML
+    private void pause(){
+        gameModel.pauseGame();
+    }
+
+    @FXML
+    private void resume(){
+        gameModel.startGame();
+    }
+
+    @FXML
+    private void restart() throws FileNotFoundException {
+        gameModel.pauseGame();
+        this.gameModel = GameModelBuilder.getGameModel(pathToCurrentLevel);
+        this.gameModel.addObserver(this);
+        init();
+    }
+
+    @FXML
+    private void backToMainMenu(){
+        gameModel.pauseGame();
+        this.gameModel = null;
+        mediator.notify(this, MediatorCommand.STANDARD);
+    }
+
     public void loadGameModel(String jsonPath) throws FileNotFoundException {
         pathToCurrentLevel = jsonPath;
         this.gameModel = GameModelBuilder.getGameModel(jsonPath);
@@ -71,24 +96,6 @@ public class GameController extends AnchorPane implements Observer {
 
 
 
-    }
-
-    @FXML
-    private void pause(){
-        gameModel.pauseGame();
-    }
-
-    @FXML
-    private void resume(){
-        gameModel.startGame();
-    }
-
-    @FXML
-    private void restart() throws FileNotFoundException {
-        gameModel.pauseGame();
-        this.gameModel = GameModelBuilder.getGameModel(pathToCurrentLevel);
-        this.gameModel.addObserver(this);
-        init();
     }
 
     @Override

@@ -39,6 +39,11 @@ public class MainController implements Initializable, Mediator{
                 throw new RuntimeException(e);
             }
         }
+
+        else if (pointer == gameController) {
+            theStackPane.getChildren().clear();
+            theStackPane.getChildren().add(menuController);
+        }
     }
 
     private void showMenu(){
