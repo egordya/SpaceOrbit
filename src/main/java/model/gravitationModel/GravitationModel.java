@@ -13,15 +13,15 @@ public class GravitationModel {
     ObjectForGravitationModel[] allObjects;
     public GravitationModel(ObjectForGravitationModel[] allObjects){
         this.allObjects = allObjects;
+
     }
 
-
-
-    public void updateOrbitModelObject(ObjectForGravitationModel[] allObjects){
+    public void updateGravitationModelObjects(ObjectForGravitationModel[] allObjects){
         this.allObjects = allObjects;
+
     }
 
-    public ArrayList<ObjectForGravitationModel> doSimulationStep(double time){
+    public ObjectForGravitationModel[] doSimulationStep(double time){
         List<ObjectForGravitationModel> copy = new ArrayList<>();
         for(ObjectForGravitationModel x : allObjects){
             copy.add(x);
@@ -34,17 +34,17 @@ public class GravitationModel {
             copy.add(x);
         }
 
-        mutateAllObjectsArray(allObjectsWithNextState);
+        mutateAllObjectsArray(allObjectsWithNextState.toArray(new ObjectForGravitationModel[0]));
 
 
-        return allObjectsWithNextState;
+        return allObjectsWithNextState.toArray(new ObjectForGravitationModel[0]);
     }
 
-    private void mutateAllObjectsArray(List<ObjectForGravitationModel> allObjectsWithNextState){
-        for(int i = 0; i<allObjects.length; i++){
-            allObjects[i].setPos(allObjectsWithNextState.get(i).getPos());
-            allObjects[i].setMass(allObjectsWithNextState.get(i).getMass());
-            allObjects[i].setVelocityVector(allObjectsWithNextState.get(i).getVelocityVector());
+    private void mutateAllObjectsArray(ObjectForGravitationModel[] allObjectsWithNextState){
+        for (int i = 0; i<allObjects.length; i++){
+            allObjects[i].setVelocityVector(allObjectsWithNextState[i].getVelocityVector());
+            allObjects[i].setPos(allObjectsWithNextState[i].getPos());
+
         }
     }
 
@@ -54,6 +54,7 @@ public class GravitationModel {
 
 
         if (!mainObject.getIsEffectedByGravity()){
+            mainObject.moveStep(time);
             return mainObject;
         }
 

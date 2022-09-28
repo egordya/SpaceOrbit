@@ -37,27 +37,22 @@ public class GameModelBuilder {
         allCelestialObjects.addAll(targets);
         allCelestialObjects.addAll(players);
 
-        GravitationModel gravitationModel = createGravitationModel(allCelestialObjects);
-        CollisionModel collisionModel = createCollisionModel(allCelestialObjects);
+        CelestialObject[] allCelestialObjectsArray = allCelestialObjects.toArray(new CelestialObject[0]);
+
+        GravitationModel gravitationModel = createGravitationModel(allCelestialObjectsArray);
 
         GameModel product = new GameModel();
-        product.setCollisionModel(collisionModel);
         product.setGravitationModel(gravitationModel);
-        product.setTargets(targets.toArray(new CelestialObject[0]));
         product.setPlanets(planets.toArray(new CelestialObject[0]));
+        product.setTargets(targets.toArray(new CelestialObject[0]));
         product.setPlayers(players.toArray(new CelestialObject[0]));
-        product.setAllCelestialObjects(allCelestialObjects.toArray(new CelestialObject[0]));
+        product.setAllCelestialObjects(allCelestialObjectsArray);
 
         return product;
     }
 
-    private static CollisionModel createCollisionModel(ArrayList<CelestialObject> allObjects) {
-    CollisionModel collisionModel = new CollisionModel(allObjects.toArray(new Collisionable[0]));
-    return collisionModel;
-    }
-
-    private static GravitationModel createGravitationModel(ArrayList<CelestialObject> allObjects){
-        GravitationModel gravitationModel = new GravitationModel(allObjects.toArray(new ObjectForGravitationModel[0]));
+    private static GravitationModel createGravitationModel(CelestialObject[] allObjects){
+        GravitationModel gravitationModel = new GravitationModel(allObjects);
         return gravitationModel;
     }
 
@@ -66,7 +61,7 @@ public class GameModelBuilder {
         JsonArray planetArray = levelObject.getJsonArray("planets");
         for (int i = 0; i < planetArray.size(); i++) {
             JsonObject planetObject = planetArray.getJsonObject(i);
-            planets.add(createCelestialObjects(planetObject));
+            planets.add(createCelestialObjects(planetObject, "planet"));
         }
         return planets;
     }
@@ -76,7 +71,7 @@ public class GameModelBuilder {
         JsonArray planetArray = levelObject.getJsonArray("target");
         for (int i = 0; i < planetArray.size(); i++) {
             JsonObject planetObject = planetArray.getJsonObject(i);
-            targets.add(createCelestialObjects(planetObject));
+            targets.add(createCelestialObjects(planetObject, "target"));
         }
         return targets;
     }
@@ -86,16 +81,16 @@ public class GameModelBuilder {
         JsonArray planetArray = levelObject.getJsonArray("playerObject");
         for (int i = 0; i < planetArray.size(); i++) {
             JsonObject planetObject = planetArray.getJsonObject(i);
-            player.add(createCelestialObjects(planetObject));
+            player.add(createCelestialObjects(planetObject, "player"));
         }
         return player;
     }
 
-    private static CelestialObject createCelestialObjects(JsonObject jsonObject){
+    private static CelestialObject createCelestialObjects(JsonObject jsonObject, String type){
         String planetName = jsonObject.get("name").toString();
         double planetMass = Double.parseDouble(jsonObject.get("mass").toString());
         double planetRadius = Double.parseDouble(jsonObject.get("radius").toString());
-        boolean fixedPosition = Boolean.parseBoolean(jsonObject.get("fixedPosition").toString());
+        boolean isAffectedByGravity = Boolean.parseBoolean(jsonObject.get("isAffectedByGravity").toString());
         double posX = Double.parseDouble(jsonObject.get("posX").toString());
         double posY = Double.parseDouble(jsonObject.get("posY").toString());
         double velX = Double.parseDouble(jsonObject.get("velX").toString());
@@ -104,8 +99,8 @@ public class GameModelBuilder {
 
         Vector2D positionVec = new Vector2D(posX, posY);
         Vector2D velocityVec = new Vector2D(velX, velY);
-
-        CelestialObject theproduct = new CelestialObject(positionVec, velocityVec, planetMass, planetRadius, img_path, fixedPosition, planetName);
+        // String name, boolean hasCrash, String type, String crashWithType
+        CelestialObject theproduct = new CelestialObject(positionVec, velocityVec, planetMass, planetRadius, img_path, isAffectedByGravity, planetName,type);
         return  theproduct;
     }
 

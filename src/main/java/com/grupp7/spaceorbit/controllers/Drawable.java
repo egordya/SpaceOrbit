@@ -8,4 +8,5 @@ public interface Drawable {
     Shape getShape();
     String getImagePath();
     String getName();
+    String getType();
 }

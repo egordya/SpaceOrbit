@@ -2,14 +2,12 @@ package com.grupp7.spaceorbit.controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Shape;
 import model.gameModel.GameModel;
 import model.gameModel.GameModelBuilder;
 import model.gameModel.Observer;
+import model.gameModel.ObserverCommand;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -21,6 +19,8 @@ public class GameController extends AnchorPane implements Observer {
     
     Mediator mediator;
     GameModel gameModel;
+
+    String pathToCurrentLevel;
 
     public GameController(Mediator mediator) {
 
@@ -38,20 +38,48 @@ public class GameController extends AnchorPane implements Observer {
 
     }
 
+    @FXML
+    private void pause(){
+        gameModel.pauseGame();
+    }
+
+    @FXML
+    private void resume(){
+        gameModel.startGame();
+    }
+
+    @FXML
+    private void restart() throws FileNotFoundException {
+        gameModel.pauseGame();
+        this.gameModel = GameModelBuilder.getGameModel(pathToCurrentLevel);
+        this.gameModel.addObserver(this);
+        init();
+    }
+
+    @FXML
+    private void backToMainMenu(){
+        gameModel.pauseGame();
+        this.gameModel = null;
+        mediator.notify(this, MediatorCommand.STANDARD);
+    }
+
     public void loadGameModel(String jsonPath) throws FileNotFoundException {
+        pathToCurrentLevel = jsonPath;
         this.gameModel = GameModelBuilder.getGameModel(jsonPath);
         this.gameModel.addObserver(this);
         init();
+
+        // för test, ta bort när klart
 
     }
 
     private void init(){
 
-        gameModel.init();
-
         Drawable[] planets = gameModel.getPlanets();
         Drawable[] players = gameModel.getPlayers();
         Drawable[] targets = gameModel.getTargets();
+
+        renderSurface.getChildren().clear();
 
         for (Drawable p : planets){
             renderSurface.getChildren().add(p.getShape());
@@ -71,7 +99,9 @@ public class GameController extends AnchorPane implements Observer {
     }
 
     @Override
-    public void commandFromModel() {
-
+    public void commandFromModel(ObserverCommand command) {
+        if(command == ObserverCommand.Win){
+            gameModel.pauseGame();
+        }
     }
 }
