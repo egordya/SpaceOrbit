@@ -42,13 +42,15 @@ public class GameController extends AnchorPane implements Observer {
         this.gameModel = GameModelBuilder.getGameModel(jsonPath);
         this.gameModel.addObserver(this);
         init();
+
+
+
+        // för test, ta bort när klart
         gameModel.startGame();
 
     }
 
     private void init(){
-
-        gameModel.init();
 
         Drawable[] planets = gameModel.getPlanets();
         Drawable[] players = gameModel.getPlayers();

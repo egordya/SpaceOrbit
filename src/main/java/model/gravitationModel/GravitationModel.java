@@ -12,10 +12,9 @@ public class GravitationModel {
 
     ObjectForGravitationModel[] allObjects;
     public GravitationModel(ObjectForGravitationModel[] allObjects){
-        this.allObjects = allObjects;
-        for (ObjectForGravitationModel x : allObjects){
-            System.out.println(x.getPos().toString());
-            System.out.println(x.getVelocityVector().toString());
+        this.allObjects = new ObjectForGravitationModel[allObjects.length];
+        for (int i = 0; i<allObjects.length; i++){
+            this.allObjects[i] = allObjects[i].clone();
         }
     }
 
@@ -32,6 +31,7 @@ public class GravitationModel {
         List<ObjectForGravitationModel> copy = new ArrayList<>();
         for(ObjectForGravitationModel x : allObjects){
             copy.add(x);
+            System.out.println(x.getPos().toString());
         }
 
         ArrayList<ObjectForGravitationModel> allObjectsWithNextState = new ArrayList<>();

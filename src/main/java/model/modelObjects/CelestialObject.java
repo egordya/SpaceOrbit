@@ -17,42 +17,40 @@ public class CelestialObject implements ObjectForGravitationModel, Collisionable
     private Circle planetHitbox = new Circle(0,0,0);
     private double radius;
     private String imagePath;
-    private boolean fixedPosition;
+    private boolean isAffectedByGravity;
     private String name;
-
-    private Boolean hasCrash;
     private String type;
-    private String crashWithType;
 
 
 
     public CelestialObject(Vector2D position, Vector2D velocityVector, double mass, double radius, String imagePath,
-                           boolean fixedPosition, String name, boolean hasCrash, String type, String crashWithType) {
+                           boolean isAffectedByGravity, String name, String type) {
         this.position = position;
         this.velocityVector = velocityVector;
         this.mass = mass;
         this.radius = radius;
         this.planetHitbox.setRadius(this.radius);
         this.imagePath = imagePath;
-        this.fixedPosition = fixedPosition;
+        this.isAffectedByGravity = isAffectedByGravity;
         this.name = name;
-        this.hasCrash = hasCrash;
         this.type = type;
-        this.crashWithType = crashWithType;
+
+        updateHitBoxPos();
     }
 
-    public boolean getHasCrashed(){
-        return this.hasCrash;
+
+    public void updateHitBoxPos(){
+        this.planetHitbox.setCenterX(this.getPos().getX());
+        this.planetHitbox.setCenterY(this.getPos().getY());
     }
 
-    public String getCrashWithType(){
-        return this.crashWithType;
-    }
 
     @Override
     public void moveStep(double time) {
         Vector2D positionStep = velocityVector.scalarMultiplication(time);
         position = position.add(positionStep);
+        updateHitBoxPos();
+
     }
 
     @Override
@@ -65,7 +63,6 @@ public class CelestialObject implements ObjectForGravitationModel, Collisionable
         return velocityVector;
     }
 
-
     @Override
     public double getMass() {
         return mass;
@@ -73,7 +70,7 @@ public class CelestialObject implements ObjectForGravitationModel, Collisionable
 
     @Override
     public boolean getIsEffectedByGravity() {
-        return true;
+        return isAffectedByGravity;
     }
 
     @Override
@@ -86,7 +83,6 @@ public class CelestialObject implements ObjectForGravitationModel, Collisionable
         this.velocityVector = velocityVector;
     }
 
-
     @Override
     public void setMass(double mass) {
         this.mass = mass;
@@ -94,30 +90,17 @@ public class CelestialObject implements ObjectForGravitationModel, Collisionable
 
     @Override
     public CelestialObject clone() {
-        return new CelestialObject(position, velocityVector, mass, radius, imagePath, fixedPosition, name, hasCrash, type, crashWithType);
+        return new CelestialObject(position.clone(), velocityVector.clone(), mass, radius, imagePath, isAffectedByGravity, name, type);
     }
-
-    @Override
-    public void crash(String crashWithType) {
-        this.hasCrash = true;
-        this.crashWithType = crashWithType;
-    }
-
 
     @Override
     public String getType(){
         return this.type;
     }
 
+    @Override
     public Circle getHitbox(){
         return this.planetHitbox;
-    }
-
-
-    public void setHitboxPos(){
-        this.planetHitbox.setCenterX(this.getPos().getX());
-        this.planetHitbox.setCenterY(this.getPos().getY());
-
     }
 
     @Override

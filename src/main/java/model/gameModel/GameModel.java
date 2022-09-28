@@ -14,7 +14,7 @@ import java.util.TimerTask;
 public class GameModel{
 
     GravitationModel gravitationModel;
-    CollisionModel collisionModel;
+    CollisionModel collisionModel = new CollisionModel();
 
     CelestialObject[] planets;
     CelestialObject[] targets;
@@ -111,10 +111,6 @@ public class GameModel{
         //fixa för fler spelare senare
     }
 
-    public void init(){
-        collisionModel.checkForCollisions();
-    }
-
     public Drawable[] getPlanets(){
         return planets;
     }
@@ -133,10 +129,6 @@ public class GameModel{
     ///package private
     void setGravitationModel(GravitationModel gravitationModel) {
         this.gravitationModel = gravitationModel;
-    }
-    //package private
-    void setCollisionModel(CollisionModel collisionModel){
-        this.collisionModel = collisionModel;
     }
     //package private
     void setTargets(CelestialObject[] targets){
@@ -162,16 +154,12 @@ public class GameModel{
 
 
     private void handleCollisions() {
-        for (CelestialObject x : players){
-            if(x.getHasCrashed() && x.getCrashWithType().equals("target")){
-                System.out.println("PLAYER HIT TARGET");
-            }
-        }
+
     }
 
     private void simulationStep(double time){
         gravitationModel.doSimulationStep(0.1);
-        collisionModel.checkForCollisions();
+        //collisionModel.checkForCollisions();
     }
 
 }

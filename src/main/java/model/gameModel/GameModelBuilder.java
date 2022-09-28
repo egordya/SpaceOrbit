@@ -38,10 +38,8 @@ public class GameModelBuilder {
         allCelestialObjects.addAll(players);
 
         GravitationModel gravitationModel = createGravitationModel(allCelestialObjects);
-        CollisionModel collisionModel = createCollisionModel(allCelestialObjects);
 
         GameModel product = new GameModel();
-        product.setCollisionModel(collisionModel);
         product.setGravitationModel(gravitationModel);
         product.setTargets(targets.toArray(new CelestialObject[0]));
         product.setPlanets(planets.toArray(new CelestialObject[0]));
@@ -49,11 +47,6 @@ public class GameModelBuilder {
         product.setAllCelestialObjects(allCelestialObjects.toArray(new CelestialObject[0]));
 
         return product;
-    }
-
-    private static CollisionModel createCollisionModel(ArrayList<CelestialObject> allObjects) {
-    CollisionModel collisionModel = new CollisionModel(allObjects.toArray(new Collisionable[0]));
-    return collisionModel;
     }
 
     private static GravitationModel createGravitationModel(ArrayList<CelestialObject> allObjects){
@@ -95,20 +88,17 @@ public class GameModelBuilder {
         String planetName = jsonObject.get("name").toString();
         double planetMass = Double.parseDouble(jsonObject.get("mass").toString());
         double planetRadius = Double.parseDouble(jsonObject.get("radius").toString());
-        boolean fixedPosition = Boolean.parseBoolean(jsonObject.get("fixedPosition").toString());
+        boolean isAffectedByGravity = Boolean.parseBoolean(jsonObject.get("isAffectedByGravity").toString());
         double posX = Double.parseDouble(jsonObject.get("posX").toString());
         double posY = Double.parseDouble(jsonObject.get("posY").toString());
         double velX = Double.parseDouble(jsonObject.get("velX").toString());
         double velY = Double.parseDouble(jsonObject.get("velY").toString());
         String img_path = jsonObject.get("img_path").toString();
-        boolean hasCrashed = false;
-        String hasCrashedWith = "hasNotCrashed";
 
         Vector2D positionVec = new Vector2D(posX, posY);
         Vector2D velocityVec = new Vector2D(velX, velY);
         // String name, boolean hasCrash, String type, String crashWithType
-        CelestialObject theproduct = new CelestialObject(positionVec, velocityVec, planetMass, planetRadius, img_path,
-                                                        fixedPosition, planetName, hasCrashed,type,hasCrashedWith);
+        CelestialObject theproduct = new CelestialObject(positionVec, velocityVec, planetMass, planetRadius, img_path, isAffectedByGravity, planetName,type);
         return  theproduct;
     }
 

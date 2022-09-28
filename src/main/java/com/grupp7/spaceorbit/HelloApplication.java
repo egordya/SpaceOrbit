@@ -33,11 +33,6 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException, InterruptedException {
 
 
-
-
-
-        
-
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/main.fxml"));
 
         Scene scene = new Scene(fxmlLoader.load());
