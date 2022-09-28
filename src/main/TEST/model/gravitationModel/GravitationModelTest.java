@@ -11,7 +11,7 @@ class GravitationModelTest {
 
     double timeStep = 10000.0; //Seconds
 
-    double error = 0.031; // 3.1%
+    double error = 0.0309; // 3.09%
 
     double[] orbitPeriodsForPlanets = {88.0, 224.7, 365.2, 687.0, 4331, 10747, 30589, 59800}; //days
     double[] AphelionForPlanets = {69.8 * Math.pow(10,6) * Math.pow(10,3), 108.9 * Math.pow(10,6) * Math.pow(10,3), 152.1 * Math.pow(10,6) * Math.pow(10,3), 249.261 * Math.pow(10,6) * Math.pow(10,3), 816.4 * Math.pow(10,6) * Math.pow(10,3), 1506.5 * Math.pow(10,6) * Math.pow(10,3), 3001.4 * Math.pow(10,6) * Math.pow(10,3), 4558.9 * Math.pow(10,6) * Math.pow(10,3)}; //m
@@ -58,7 +58,7 @@ class GravitationModelTest {
     }
 
     private void test (int index){
-        
+
         CelestialObject[] planteter = getSolarSystem();
         GravitationModel theModel = new GravitationModel(planteter);
         for (int i = 0; i<orbitPeriodsForPlanets[index]*24*60*60/timeStep; i++){
