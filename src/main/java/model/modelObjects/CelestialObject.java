@@ -76,6 +76,7 @@ public class CelestialObject implements ObjectForGravitationModel, Collisionable
     @Override
     public void setPos(Vector2D position) {
         this.position = position;
+        updateHitBoxPos();
     }
 
     @Override

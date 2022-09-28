@@ -2,6 +2,7 @@ package model.gameModel;
 
 import com.grupp7.spaceorbit.controllers.Drawable;
 import model.collisionModel.CollisionModel;
+import model.collisionModel.Collisionable;
 import model.modelObjects.CelestialObject;
 import model.gravitationModel.GravitationModel;
 import utilitys.Vector2D;
@@ -15,22 +16,12 @@ public class GameModel{
 
     GravitationModel gravitationModel;
     CollisionModel collisionModel = new CollisionModel();
-
-    CelestialObject[] planets;
-    CelestialObject[] targets;
-    CelestialObject[] players;
     CelestialObject[] allCelestialObjects;
-
+    CelestialObject[] players;
+    CelestialObject[] targets;
+    CelestialObject[] planets;
     ArrayList<Observer> observers = new ArrayList<>();
-
-    private Thread thread;           // Timer variable
-    private boolean running = false; // Timer variable
-
-    boolean gameLoopLock = false;
-
-
     Timer tr;
-
     final long timePeriod = 20;
 
 
@@ -41,9 +32,9 @@ public class GameModel{
 
     }
 
-    private void notifyObservers(){
+    private void notifyObservers(ObserverCommand command){
         for (Observer o : observers){
-            o.commandFromModel();
+            o.commandFromModel(command);
         }
     }
 
@@ -111,55 +102,63 @@ public class GameModel{
         //fixa för fler spelare senare
     }
 
-    public Drawable[] getPlanets(){
-        return planets;
+    public Drawable[] getAllDrawableObjects(){
+        return allCelestialObjects;
     }
 
-    public Drawable[] getPlayers(){
+    public Drawable[] getPlayers() {
         return players;
     }
 
-    public Drawable[] getTargets(){
+    public Drawable[] getTargets() {
         return targets;
     }
 
-
-
+    public Drawable[] getPlanets() {
+        return planets;
+    }
 
     ///package private
     void setGravitationModel(GravitationModel gravitationModel) {
         this.gravitationModel = gravitationModel;
     }
-    //package private
-    void setTargets(CelestialObject[] targets){
-        this.targets = targets;
-    }
-    //package private
-    void setPlanets(CelestialObject[] planets){
-        this.planets = planets;
-    }
-    //package private
-    void setPlayers(CelestialObject[] players){
-        this.players = players;
-    }
+
+
     //package private
     void setAllCelestialObjects(CelestialObject[] celestialObjects){
         this.allCelestialObjects = celestialObjects;
     }
 
+    void setPlayers(CelestialObject[] players) {
+        this.players = players;
+    }
+
+    void setTargets(CelestialObject[] targets) {
+        this.targets = targets;
+    }
+
+    void setPlanets(CelestialObject[] planets) {
+        this.planets = planets;
+    }
+
     private void gameStep(double time){
-        //simulationStep(time);
-        //handleCollisions();
+        simulationStep(time);
+        handleCollisions();
     }
 
 
     private void handleCollisions() {
-
+        Collisionable[][] collided = collisionModel.checkForCollisions(allCelestialObjects);
+        for(Collisionable[] x : collided){
+            if (x[0].getType().equals("player") && x[1].getType().equals("target")) {
+                notifyObservers(ObserverCommand.Win);
+            }
+        }
     }
 
     private void simulationStep(double time){
-        gravitationModel.doSimulationStep(0.1);
-        //collisionModel.checkForCollisions();
+        gravitationModel.doSimulationStep(time);
     }
+
 
 }

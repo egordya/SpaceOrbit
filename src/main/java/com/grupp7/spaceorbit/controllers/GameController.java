@@ -2,6 +2,7 @@ package com.grupp7.spaceorbit.controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -10,6 +11,7 @@ import javafx.scene.shape.Shape;
 import model.gameModel.GameModel;
 import model.gameModel.GameModelBuilder;
 import model.gameModel.Observer;
+import model.gameModel.ObserverCommand;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -74,8 +76,20 @@ public class GameController extends AnchorPane implements Observer {
 
     }
 
+    @FXML
+    private void stop(){
+        gameModel.endGame();
+    }
+
+    @FXML
+    private void resume(){
+        gameModel.startGame();
+    }
+
     @Override
-    public void commandFromModel() {
-        System.out.println("awdawdawd");
+    public void commandFromModel(ObserverCommand command) {
+        if(command == ObserverCommand.Win){
+            gameModel.endGame();
+        }
     }
 }

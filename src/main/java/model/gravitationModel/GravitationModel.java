@@ -12,26 +12,19 @@ public class GravitationModel {
 
     ObjectForGravitationModel[] allObjects;
     public GravitationModel(ObjectForGravitationModel[] allObjects){
-        this.allObjects = new ObjectForGravitationModel[allObjects.length];
-        for (int i = 0; i<allObjects.length; i++){
-            this.allObjects[i] = allObjects[i].clone();
-        }
+        this.allObjects = allObjects;
+
     }
 
+    public void updateGravitationModelObjects(ObjectForGravitationModel[] allObjects){
+        this.allObjects = allObjects;
 
-
-    public void updateOrbitModelObject(ObjectForGravitationModel[] allObjects){
-        this.allObjects = new ObjectForGravitationModel[allObjects.length];
-        for (int i = 0; i<allObjects.length; i++){
-            this.allObjects[i] = allObjects[i].clone();
-        }
     }
 
-    public ArrayList<ObjectForGravitationModel> doSimulationStep(double time){
+    public ObjectForGravitationModel[] doSimulationStep(double time){
         List<ObjectForGravitationModel> copy = new ArrayList<>();
         for(ObjectForGravitationModel x : allObjects){
             copy.add(x);
-            System.out.println(x.getPos().toString());
         }
 
         ArrayList<ObjectForGravitationModel> allObjectsWithNextState = new ArrayList<>();
@@ -41,18 +34,18 @@ public class GravitationModel {
             copy.add(x);
         }
 
-        updateAllObjectsArray(allObjectsWithNextState.toArray(new ObjectForGravitationModel[0]));
+        mutateAllObjectsArray(allObjectsWithNextState.toArray(new ObjectForGravitationModel[0]));
 
 
-        return allObjectsWithNextState;
+        return allObjectsWithNextState.toArray(new ObjectForGravitationModel[0]);
     }
 
-    private void updateAllObjectsArray(ObjectForGravitationModel[] allObjectsWithNextState){
-        this.allObjects = new ObjectForGravitationModel[allObjectsWithNextState.length];
-        for (int i = 0; i<allObjectsWithNextState.length; i++){
-            this.allObjects[i] = allObjectsWithNextState[i].clone();
-        }
+    private void mutateAllObjectsArray(ObjectForGravitationModel[] allObjectsWithNextState){
+        for (int i = 0; i<allObjects.length; i++){
+            allObjects[i].setVelocityVector(allObjectsWithNextState[i].getVelocityVector());
+            allObjects[i].setPos(allObjectsWithNextState[i].getPos());
 
+        }
     }
 
     private ObjectForGravitationModel nextStateForObject (ObjectForGravitationModel x, List<ObjectForGravitationModel> allOtherObjects, double time){
@@ -61,6 +54,7 @@ public class GravitationModel {
 
 
         if (!mainObject.getIsEffectedByGravity()){
+            mainObject.moveStep(time);
             return mainObject;
         }
 

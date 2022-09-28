@@ -37,20 +37,22 @@ public class GameModelBuilder {
         allCelestialObjects.addAll(targets);
         allCelestialObjects.addAll(players);
 
-        GravitationModel gravitationModel = createGravitationModel(allCelestialObjects);
+        CelestialObject[] allCelestialObjectsArray = allCelestialObjects.toArray(new CelestialObject[0]);
+
+        GravitationModel gravitationModel = createGravitationModel(allCelestialObjectsArray);
 
         GameModel product = new GameModel();
         product.setGravitationModel(gravitationModel);
-        product.setTargets(targets.toArray(new CelestialObject[0]));
         product.setPlanets(planets.toArray(new CelestialObject[0]));
+        product.setTargets(targets.toArray(new CelestialObject[0]));
         product.setPlayers(players.toArray(new CelestialObject[0]));
-        product.setAllCelestialObjects(allCelestialObjects.toArray(new CelestialObject[0]));
+        product.setAllCelestialObjects(allCelestialObjectsArray);
 
         return product;
     }
 
-    private static GravitationModel createGravitationModel(ArrayList<CelestialObject> allObjects){
-        GravitationModel gravitationModel = new GravitationModel(allObjects.toArray(new ObjectForGravitationModel[0]));
+    private static GravitationModel createGravitationModel(CelestialObject[] allObjects){
+        GravitationModel gravitationModel = new GravitationModel(allObjects);
         return gravitationModel;
     }
 
