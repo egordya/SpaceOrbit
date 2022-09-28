@@ -14,13 +14,9 @@ class GravitationModelTest {
     double error = 0.031; // 3.1%
 
     double[] orbitPeriodsForPlanets = {88.0, 224.7, 365.2, 687.0, 4331, 10747, 30589, 59800}; //days
-    double[] AphelionForPlanets = {69.8 * Math.pow(10,6) * Math.pow(10,3), 108.9 * Math.pow(10,6) * Math.pow(10,3), 152.1 * Math.pow(10,6) * Math.pow(10,3), 249.261 * Math.pow(10,6) * Math.pow(10,3), 816.4 * Math.pow(10,6) * Math.pow(10,3), 1506.5 * Math.pow(10,6) * Math.pow(10,3), 3001.4 * Math.pow(10,6) * Math.pow(10,3), 4558.9 * Math.pow(10,6) * Math.pow(10,3)};
-    double[] PerihelionForPlanets = {-46.000 * Math.pow(10,6) * Math.pow(10,3), -107.5 * Math.pow(10,6) * Math.pow(10,3), -147.1 * Math.pow(10,6) * Math.pow(10,3), -206.7 * Math.pow(10,6) * Math.pow(10,3), -740.6 * Math.pow(10,6) * Math.pow(10,3), -1357.6 * Math.pow(10,6) * Math.pow(10,3), -2732.7 * Math.pow(10,6) * Math.pow(10,3), -4471.1 * Math.pow(10,6) * Math.pow(10,3)};
-
-    @Test
-    void updateGravitationModelObjects() {
-    }
-
+    double[] AphelionForPlanets = {69.8 * Math.pow(10,6) * Math.pow(10,3), 108.9 * Math.pow(10,6) * Math.pow(10,3), 152.1 * Math.pow(10,6) * Math.pow(10,3), 249.261 * Math.pow(10,6) * Math.pow(10,3), 816.4 * Math.pow(10,6) * Math.pow(10,3), 1506.5 * Math.pow(10,6) * Math.pow(10,3), 3001.4 * Math.pow(10,6) * Math.pow(10,3), 4558.9 * Math.pow(10,6) * Math.pow(10,3)}; //m
+    double[] PerihelionForPlanets = {-46.000 * Math.pow(10,6) * Math.pow(10,3), -107.5 * Math.pow(10,6) * Math.pow(10,3), -147.1 * Math.pow(10,6) * Math.pow(10,3), -206.7 * Math.pow(10,6) * Math.pow(10,3), -740.6 * Math.pow(10,6) * Math.pow(10,3), -1357.6 * Math.pow(10,6) * Math.pow(10,3), -2732.7 * Math.pow(10,6) * Math.pow(10,3), -4471.1 * Math.pow(10,6) * Math.pow(10,3)}; //m
+    
     @Test
     void doSimulationStep() {
         test(0);
