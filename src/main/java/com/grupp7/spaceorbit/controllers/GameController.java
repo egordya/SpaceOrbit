@@ -2,12 +2,8 @@ package com.grupp7.spaceorbit.controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Shape;
 import model.gameModel.GameModel;
 import model.gameModel.GameModelBuilder;
 import model.gameModel.Observer;
@@ -23,6 +19,8 @@ public class GameController extends AnchorPane implements Observer {
     
     Mediator mediator;
     GameModel gameModel;
+
+    String pathToCurrentLevel;
 
     public GameController(Mediator mediator) {
 
@@ -41,14 +39,12 @@ public class GameController extends AnchorPane implements Observer {
     }
 
     public void loadGameModel(String jsonPath) throws FileNotFoundException {
+        pathToCurrentLevel = jsonPath;
         this.gameModel = GameModelBuilder.getGameModel(jsonPath);
         this.gameModel.addObserver(this);
         init();
 
-
-
         // för test, ta bort när klart
-        gameModel.startGame();
 
     }
 
@@ -77,8 +73,8 @@ public class GameController extends AnchorPane implements Observer {
     }
 
     @FXML
-    private void stop(){
-        gameModel.endGame();
+    private void pause(){
+        gameModel.pauseGame();
     }
 
     @FXML
@@ -86,10 +82,19 @@ public class GameController extends AnchorPane implements Observer {
         gameModel.startGame();
     }
 
+    @FXML
+    private void restart() throws FileNotFoundException {
+        gameModel.pauseGame();
+        renderSurface.getChildren().clear();
+        this.gameModel = GameModelBuilder.getGameModel(pathToCurrentLevel);
+        this.gameModel.addObserver(this);
+        init();
+    }
+
     @Override
     public void commandFromModel(ObserverCommand command) {
         if(command == ObserverCommand.Win){
-            gameModel.endGame();
+            gameModel.pauseGame();
         }
     }
 }

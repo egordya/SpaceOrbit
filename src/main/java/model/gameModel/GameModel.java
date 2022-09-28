@@ -24,6 +24,7 @@ public class GameModel{
     Timer tr;
     final long timePeriod = 20;
 
+    boolean isRunning = false;
 
     //planets(new Vector2D(0, 69.8 *Math.pow(10,6) * Math.pow(10,3)), new Vector2D(38.86 *Math.pow(10,3), 0), 0.330 * Math.pow(10,24), 2),
 
@@ -81,18 +82,17 @@ public class GameModel{
     }
 
     public void startGame(){
-        this.tr = new Timer();
-        this.tr.schedule(getTimerTask(), 0, timePeriod);
+
+        if (!isRunning) {
+            this.tr = new Timer();
+            this.tr.schedule(getTimerTask(), 0, timePeriod);
+            isRunning = true;
+        }
     }
 
-    public void pause(){
+    public void pauseGame(){
         tr.cancel();
-    }
-
-    public void endGame(){
-        tr.cancel();
-        // notify controller that its game over or win
-
+        isRunning = false;
     }
 
     public void setPlayerVelocity(Vector2D[] velocitys){

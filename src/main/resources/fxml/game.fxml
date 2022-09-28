@@ -7,7 +7,8 @@
 <fx:root prefHeight="400.0" prefWidth="600.0" style="´: red;" type="AnchorPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane fx:id="renderSurface" layoutX="10.0" layoutY="61.0" prefHeight="277.0" prefWidth="580.0" />
-      <Button layoutX="36.0" layoutY="14.0" mnemonicParsing="false" onAction="#stop" text="stop" />
-      <Button layoutX="91.0" layoutY="14.0" mnemonicParsing="false" onAction="#resume" text="resume" />
+      <Button layoutX="36.0" layoutY="14.0" mnemonicParsing="false" onAction="#pause" text="Pause" />
+      <Button layoutX="91.0" layoutY="14.0" mnemonicParsing="false" onAction="#resume" text="Resume" />
+      <Button layoutX="154.0" layoutY="14.0" mnemonicParsing="false" onAction="#restart" text="Restart" />
    </children>
 </fx:root>
