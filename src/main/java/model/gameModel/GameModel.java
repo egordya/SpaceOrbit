@@ -17,7 +17,7 @@ public class GameModel{
     GravitationModel gravitationModel;
     CollisionModel collisionModel = new CollisionModel();
     CelestialObject[] allCelestialObjects;
-    CelestialObject[] players;
+    public CelestialObject[] players;
     CelestialObject[] targets;
     CelestialObject[] planets;
     ArrayList<Observer> observers = new ArrayList<>();

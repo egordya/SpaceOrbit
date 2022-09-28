@@ -2,6 +2,7 @@ package com.grupp7.spaceorbit.controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import model.gameModel.GameModel;
@@ -16,7 +17,10 @@ public class GameController extends AnchorPane implements Observer {
     
     @FXML
     Pane renderSurface;
-    
+
+//    @FXML
+//    Canvas renderSurface;
+
     Mediator mediator;
     GameModel gameModel;
 
