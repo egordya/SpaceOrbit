@@ -54,6 +54,7 @@ public class GameController extends AnchorPane implements Observer {
         Drawable[] players = gameModel.getPlayers();
         Drawable[] targets = gameModel.getTargets();
 
+        renderSurface.getChildren().clear();
 
         for (Drawable p : planets){
             renderSurface.getChildren().add(p.getShape());
@@ -85,7 +86,6 @@ public class GameController extends AnchorPane implements Observer {
     @FXML
     private void restart() throws FileNotFoundException {
         gameModel.pauseGame();
-        renderSurface.getChildren().clear();
         this.gameModel = GameModelBuilder.getGameModel(pathToCurrentLevel);
         this.gameModel.addObserver(this);
         init();
