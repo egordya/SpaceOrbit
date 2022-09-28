@@ -156,8 +156,8 @@ public class GameModel{
     }
 
     private void gameStep(double time){
-        simulationStep(time);
-        handleCollisions();
+        //simulationStep(time);
+        //handleCollisions();
     }
 
 
@@ -170,7 +170,7 @@ public class GameModel{
     }
 
     private void simulationStep(double time){
-        gravitationModel.doSimulationStep(0.0000001);
+        gravitationModel.doSimulationStep(0.1);
         collisionModel.checkForCollisions();
     }
 

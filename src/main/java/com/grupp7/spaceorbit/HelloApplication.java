@@ -33,7 +33,10 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException, InterruptedException {
 
 
-        GameModelBuilder.getGameModel("awdawf");
+
+
+
+        
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/main.fxml"));
 
