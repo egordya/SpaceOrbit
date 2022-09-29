@@ -7,9 +7,7 @@ import model.modelObjects.CelestialObject;
 import model.gravitationModel.GravitationModel;
 import utilitys.Vector2D;
 
-import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 
 public class GameModel{
@@ -153,6 +151,9 @@ public class GameModel{
         for(Collisionable[] x : collided){
             if (x[0].getType().equals("player") && x[1].getType().equals("target")) {
                 notifyObservers(ObserverCommand.Win);
+                //List<CelestialObject> lista =  Arrays.stream(players).toList();
+                //lista.(x);
+                //players = lista.toArray(new CelestialObject[0]);
             }
         }
     }
