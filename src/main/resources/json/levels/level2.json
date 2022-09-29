@@ -56,6 +56,17 @@
       "velX": -9,
       "velY": -23.5,
       "img_path": ""
+    },
+    {
+      "name": "playerObj",
+      "mass": 4,
+      "radius": 3,
+      "isAffectedByGravity": true,
+      "posX": 200,
+      "posY": 300,
+      "velX": -9,
+      "velY": -23.5,
+      "img_path": ""
     }
   ],
   "target": [
