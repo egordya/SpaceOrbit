@@ -75,6 +75,12 @@ public abstract class AGameModel {
         this.planets = planets;
     }
 
+    void notifyObservers(ObserverCommand command){
+        for (Observer o : observers){
+            o.commandFromModel(command);
+        }
+    }
+
     private TimerTask getTimerTask(){
         return new TimerTask(){
             @Override
@@ -82,12 +88,6 @@ public abstract class AGameModel {
                 gameStep(timePeriod * Math.pow(10, -3));
             }
         };
-    }
-
-    void notifyObservers(ObserverCommand command){
-        for (Observer o : observers){
-            o.commandFromModel(command);
-        }
     }
 
     abstract void gameStep(double time);
