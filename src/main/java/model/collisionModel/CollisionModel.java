@@ -11,12 +11,9 @@ public class CollisionModel{
      * @param originalAllObjects all the objects to be accounted in the check
      * @return an array that contains arrays of two collided objects
      */
-    public Collisionable[][] checkForCollisions(Collisionable[] originalAllObjects){
+    public Collisionable[][] checkForCollisions(Collisionable[] allObjects){
 
-        Collisionable[] allObjects = new Collisionable[originalAllObjects.length];
-        for(int i = 0; i<originalAllObjects.length; i++){
-            allObjects[i] = originalAllObjects[i].clone();
-        }
+
 
         List<Collisionable> copy = new ArrayList<>();
         for (Collisionable x : allObjects){

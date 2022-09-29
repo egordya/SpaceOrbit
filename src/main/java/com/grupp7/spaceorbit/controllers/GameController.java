@@ -1,12 +1,9 @@
 package com.grupp7.spaceorbit.controllers;
 
-import javafx.event.Event;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -111,8 +108,16 @@ public class GameController extends AnchorPane implements Observer {
     @Override
     public void commandFromModel(ObserverCommand command) {
         if(command == ObserverCommand.Win){
-            //anchor.getChildren().add(winBox);
+            Platform.runLater(() -> {
+                anchor.getChildren().add(winBox);
+            });
+
             gameModel.pauseGame();
+            System.out.println("win");
+        } else if (command == ObserverCommand.Update) {
+            Platform.runLater(() -> {
+                showObjects();
+            });
         }
     }
 
@@ -121,7 +126,7 @@ public class GameController extends AnchorPane implements Observer {
         pathToCurrentLevel = jsonPath;
         this.gameModel = GameModelBuilder.getGameModel(jsonPath);
         this.gameModel.addObserver(this);
-        init();
+        showObjects();
 
         lines = new Line[gameModel.getPlayers().length];
         for(int i = 0; i<gameModel.getPlayers().length; i++){
@@ -133,7 +138,7 @@ public class GameController extends AnchorPane implements Observer {
     }
 
 
-    private void init(){
+    private void showObjects(){
         Drawable[] planets = gameModel.getPlanets();
         Drawable[] players = gameModel.getPlayers();
         Drawable[] targets = gameModel.getTargets();
@@ -205,7 +210,7 @@ public class GameController extends AnchorPane implements Observer {
         gameModel.pauseGame();
         this.gameModel = GameModelBuilder.getGameModel(pathToCurrentLevel);
         this.gameModel.addObserver(this);
-        init();
+        showObjects();
     }
 
     @FXML

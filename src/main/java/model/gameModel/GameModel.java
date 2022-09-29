@@ -10,33 +10,7 @@ import utilitys.Vector2D;
 import java.util.*;
 
 
-public class GameModel{
-
-    GravitationModel gravitationModel;
-    CollisionModel collisionModel = new CollisionModel();
-    CelestialObject[] allCelestialObjects;
-    CelestialObject[] players;
-    CelestialObject[] targets;
-    CelestialObject[] planets;
-    ArrayList<Observer> observers = new ArrayList<>();
-    Timer tr;
-    final long timePeriod = 20;
-
-    boolean isRunning = false;
-
-    //planets(new Vector2D(0, 69.8 *Math.pow(10,6) * Math.pow(10,3)), new Vector2D(38.86 *Math.pow(10,3), 0), 0.330 * Math.pow(10,24), 2),
-
-    //package private
-    GameModel() {
-
-    }
-
-    private void notifyObservers(ObserverCommand command){
-        for (Observer o : observers){
-            o.commandFromModel(command);
-        }
-    }
-
+public class GameModel extends AGameModel{
 
     //method
     //    start
@@ -55,117 +29,62 @@ public class GameModel{
     // - Rest of the code goes here
     // - Timer
     // - Regler:
-        // TODO - Man vinner när player krockar med target
-        //  - man förlorar om player kommer 1000 pixlar utanför skärmen
-        //  - man förlorar om player krockar i planet
-        //      Om man förlorar startas leveln om.
+    // TODO - Man vinner när player krockar med target
+    //  - man förlorar om player kommer 1000 pixlar utanför skärmen
+    //  - man förlorar om player krockar i planet
+    //      Om man förlorar startas leveln om.
     //(scoringsystem) tid och stjärnor
 
 
 
-
-
-
-    public void addObserver(Observer observer){
-        observers.add(observer);
-    }
-
-    private TimerTask getTimerTask(){
-        return new TimerTask(){
-            @Override
-            public void run(){
-                gameStep(timePeriod * Math.pow(10, -3));
-            }
-        };
-    }
-
-    public void startGame(){
-        if (!isRunning) {
-            this.tr = new Timer();
-            this.tr.schedule(getTimerTask(), 0, timePeriod);
-            isRunning = true;
-        }
-    }
-
-    public void pauseGame(){
-        if(isRunning) {
-            tr.cancel();
-            isRunning = false;
-        }
-    }
-
-    public void setPlayerVelocity(Vector2D[] velocitys){
-        if(!isRunning) {
-            for (int i = 0; i < players.length; i++) {
-                this.players[i].setVelocityVector(velocitys[i]);
-            }
-        }
-        //fixa för fler spelare senare
-    }
-
-    public Drawable[] getAllDrawableObjects(){
-        return allCelestialObjects;
-    }
-
-    public Drawable[] getPlayers() {
-        return players;
-    }
-
-    public Drawable[] getTargets() {
-        return targets;
-    }
-
-    public Drawable[] getPlanets() {
-        return planets;
-    }
-
-    ///package private
-    void setGravitationModel(GravitationModel gravitationModel) {
-        this.gravitationModel = gravitationModel;
-    }
-
+    //planets(new Vector2D(0, 69.8 *Math.pow(10,6) * Math.pow(10,3)), new Vector2D(38.86 *Math.pow(10,3), 0), 0.330 * Math.pow(10,24), 2),
 
     //package private
-    void setAllCelestialObjects(CelestialObject[] celestialObjects){
-        this.allCelestialObjects = celestialObjects;
+    GameModel() {}
+
+    private CelestialObject[] getAllCelestialObjects(){
+        ArrayList<CelestialObject> allCelestialObjects = new ArrayList<>();
+        allCelestialObjects.addAll(Arrays.stream(planets).toList());
+        allCelestialObjects.addAll(Arrays.stream(targets).toList());
+        allCelestialObjects.addAll(Arrays.stream(players).toList());
+        return allCelestialObjects.toArray(new CelestialObject[0]);
     }
 
-    void setPlayers(CelestialObject[] players) {
-        this.players = players;
-    }
-
-    void setTargets(CelestialObject[] targets) {
-        this.targets = targets;
-    }
-
-    void setPlanets(CelestialObject[] planets) {
-        this.planets = planets;
-    }
-
-    private void gameStep(double time){
+    @Override
+    void gameStep(double time){
         simulationStep(time);
         handleCollisions();
+        handleWinLose();
     }
 
-
-    private void handleCollisions() {
-        Collisionable[][] collided = collisionModel.checkForCollisions(allCelestialObjects);
-        for(Collisionable[] x : collided){
-            if (x[0].getType().equals("player") && x[1].getType().equals("target")) {
-                //notifyObservers(ObserverCommand.Win);
-                List<CelestialObject> lista =  Arrays.stream(players).toList();
-                lista.get(lista.indexOf(x[0])).setVelocityVector(new Vector2D(0,0));
-                lista.get(lista.indexOf(x[0])).setAffectedByGravity(false);
-
-                lista.get(lista.indexOf(x[1])).setVelocityVector(new Vector2D(0,0));
-                lista.get(lista.indexOf(x[1])).setAffectedByGravity(false);
-            }
+    private void handleWinLose() {
+        if (players.length == 0){
+            notifyObservers(ObserverCommand.Win);
         }
     }
 
     private void simulationStep(double time){
+        gravitationModel.updateGravitationModelObjects(getAllCelestialObjects());
         gravitationModel.doSimulationStep(time);
     }
+
+    private void handleCollisions() {
+
+        Collisionable[][] collided = collisionModel.checkForCollisions(getAllCelestialObjects());
+        for(Collisionable[] x : collided){
+            handlePlayerTargetCollision(x);
+        }
+    }
+
+    private void handlePlayerTargetCollision(Collisionable[] x){
+        if (x[0].getType().equals("player") && x[1].getType().equals("target")) {
+            List<CelestialObject> players = new ArrayList<>(Arrays.stream(this.players).toList());
+            players.remove(players.get(players.indexOf(x[0])));
+            this.players = players.toArray(new CelestialObject[0]);
+            notifyObservers(ObserverCommand.Update);
+        }
+    }
+
 
 
 }
