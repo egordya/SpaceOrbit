@@ -64,8 +64,7 @@ public class GameModel extends AGameModel{
     }
 
     private void simulationStep(double time){
-        gravitationModel.updateGravitationModelObjects(getAllCelestialObjects());
-        gravitationModel.doSimulationStep(time);
+        gravitationModel.doSimulationStep(getAllCelestialObjects(), time);
     }
 
     private void handleCollisions() {

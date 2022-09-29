@@ -11,17 +11,14 @@ public class GravitationModel {
     final double G = 0.0000000000667430;
 
     ObjectForGravitationModel[] allObjects;
-    public GravitationModel(ObjectForGravitationModel[] allObjects){
-        this.allObjects = allObjects;
-
+    public GravitationModel(){
     }
 
-    public void updateGravitationModelObjects(ObjectForGravitationModel[] allObjects){
-        this.allObjects = allObjects;
 
-    }
+    public ObjectForGravitationModel[] doSimulationStep(ObjectForGravitationModel[] Objects, double time){
 
-    public ObjectForGravitationModel[] doSimulationStep(double time){
+        allObjects = Objects;
+
         List<ObjectForGravitationModel> copy = new ArrayList<>();
         for(ObjectForGravitationModel x : allObjects){
             copy.add(x);

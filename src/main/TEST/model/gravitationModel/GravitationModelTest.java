@@ -60,16 +60,16 @@ class GravitationModelTest {
     private void test (int index){
 
         CelestialObject[] planteter = getSolarSystem();
-        GravitationModel theModel = new GravitationModel(planteter);
+        GravitationModel theModel = new GravitationModel();
         for (int i = 0; i<orbitPeriodsForPlanets[index]*24*60*60/timeStep; i++){
-            theModel.doSimulationStep(timeStep);
+            theModel.doSimulationStep(planteter, timeStep);
         }
         Assertions.assertEquals(true, (planteter[index + 1].getPos().getY() > (AphelionForPlanets[index]*(1-error))) && planteter[index+1].getPos().getY() < (AphelionForPlanets[index]*(1+error)));
 
         planteter = getSolarSystem();
-        theModel = new GravitationModel(planteter);
+        theModel = new GravitationModel();
         for (int i = 0; i<orbitPeriodsForPlanets[index]*24*60*60/timeStep/2; i++){
-            theModel.doSimulationStep(timeStep);
+            theModel.doSimulationStep(planteter, timeStep);
         }
         Assertions.assertEquals(true, (planteter[index + 1].getPos().getY() < (PerihelionForPlanets[index]*(1-error))) && planteter[index+1].getPos().getY() > (PerihelionForPlanets[index]*(1+error)));
 

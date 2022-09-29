@@ -11,8 +11,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public abstract class AGameModel {
-
-    GravitationModel gravitationModel;
+    GravitationModel gravitationModel = new GravitationModel();
     CollisionModel collisionModel = new CollisionModel();
     CelestialObject[] players;
     CelestialObject[] targets;
@@ -61,11 +60,6 @@ public abstract class AGameModel {
 
     public Drawable[] getPlanets() {
         return planets;
-    }
-
-    ///package private
-    void setGravitationModel(GravitationModel gravitationModel) {
-        this.gravitationModel = gravitationModel;
     }
 
     //package private
