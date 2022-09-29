@@ -79,6 +79,10 @@ public class CelestialObject implements ObjectForGravitationModel, Collisionable
         updateHitBoxPos();
     }
 
+    public void setAffectedByGravity(boolean affectedByGravity) {
+        isAffectedByGravity = affectedByGravity;
+    }
+
     @Override
     public void setVelocityVector(Vector2D velocityVector) {
         this.velocityVector = velocityVector;
