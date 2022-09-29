@@ -5,7 +5,7 @@ import javafx.scene.shape.Shape;
 public interface Drawable {
     double getXPos();
     double getYPos();
-    Shape getShape();
+    Shape getGeometry();
     String getImagePath();
     String getName();
     String getType();

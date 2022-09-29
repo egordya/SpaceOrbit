@@ -146,15 +146,15 @@ public class GameController extends AnchorPane implements Observer {
         renderSurface.getChildren().clear();
 
         for (Drawable p : planets){
-            renderSurface.getChildren().add(p.getShape());
+            renderSurface.getChildren().add(p.getGeometry());
         }
 
         for (Drawable p : players){
-            renderSurface.getChildren().add(p.getShape());
+            renderSurface.getChildren().add(p.getGeometry());
         }
 
         for (Drawable p : targets){
-            renderSurface.getChildren().add(p.getShape());
+            renderSurface.getChildren().add(p.getGeometry());
         }
     }
 

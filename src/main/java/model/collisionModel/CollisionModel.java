@@ -42,6 +42,6 @@ public class CollisionModel{
     }
 
     private boolean checkIfCollision(Collisionable object1, Collisionable object2){
-        return object1.getHitbox().getBoundsInParent().intersects(object2.getHitbox().getBoundsInParent());
+        return object1.getGeometry().getBoundsInParent().intersects(object2.getGeometry().getBoundsInParent());
     }
 }

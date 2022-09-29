@@ -14,7 +14,7 @@ public class CelestialObject implements ObjectForGravitationModel, Collisionable
     private Vector2D position;
     private Vector2D velocityVector;
     private double mass;
-    private Circle planetHitbox = new Circle(0,0,0);
+    private Circle Geometry = new Circle(0,0,0);
     private double radius;
     private String imagePath;
     private boolean isAffectedByGravity;
@@ -29,7 +29,7 @@ public class CelestialObject implements ObjectForGravitationModel, Collisionable
         this.velocityVector = velocityVector;
         this.mass = mass;
         this.radius = radius;
-        this.planetHitbox.setRadius(this.radius);
+        this.Geometry.setRadius(this.radius);
         this.imagePath = imagePath;
         this.isAffectedByGravity = isAffectedByGravity;
         this.name = name;
@@ -40,8 +40,8 @@ public class CelestialObject implements ObjectForGravitationModel, Collisionable
 
 
     public void updateHitBoxPos(){
-        this.planetHitbox.setCenterX(this.getPos().getX());
-        this.planetHitbox.setCenterY(this.getPos().getY());
+        this.Geometry.setCenterX(this.getPos().getX());
+        this.Geometry.setCenterY(this.getPos().getY());
     }
 
 
@@ -88,7 +88,6 @@ public class CelestialObject implements ObjectForGravitationModel, Collisionable
         this.velocityVector = velocityVector;
     }
 
-    @Override
     public void setMass(double mass) {
         this.mass = mass;
     }
@@ -97,15 +96,9 @@ public class CelestialObject implements ObjectForGravitationModel, Collisionable
     public CelestialObject clone() {
         return new CelestialObject(position.clone(), velocityVector.clone(), mass, radius, imagePath, isAffectedByGravity, name, type);
     }
-
     @Override
     public String getType(){
         return this.type;
-    }
-
-    @Override
-    public Circle getHitbox(){
-        return this.planetHitbox;
     }
 
     @Override
@@ -119,8 +112,8 @@ public class CelestialObject implements ObjectForGravitationModel, Collisionable
     }
 
     @Override
-    public Shape getShape() {
-        return planetHitbox;
+    public Shape getGeometry() {
+        return Geometry;
     }
 
     @Override
