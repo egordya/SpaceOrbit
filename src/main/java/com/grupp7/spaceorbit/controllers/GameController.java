@@ -9,6 +9,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
 import model.gameModel.GameModel;
@@ -24,8 +25,13 @@ public class GameController extends AnchorPane implements Observer {
     
     @FXML
     Pane renderSurface;
+    @FXML
+    HBox winBox;
+    @FXML
+    Pane anchor;
 
     Line[] lines;
+
 
     Mediator mediator;
     GameModel gameModel;
@@ -105,6 +111,7 @@ public class GameController extends AnchorPane implements Observer {
     @Override
     public void commandFromModel(ObserverCommand command) {
         if(command == ObserverCommand.Win){
+            //anchor.getChildren().add(winBox);
             gameModel.pauseGame();
         }
     }
@@ -130,7 +137,7 @@ public class GameController extends AnchorPane implements Observer {
         Drawable[] planets = gameModel.getPlanets();
         Drawable[] players = gameModel.getPlayers();
         Drawable[] targets = gameModel.getTargets();
-
+        anchor.getChildren().remove(winBox);
         renderSurface.getChildren().clear();
 
         for (Drawable p : planets){
@@ -150,6 +157,8 @@ public class GameController extends AnchorPane implements Observer {
 
         for(Line l : lines){
             renderSurface.getChildren().remove(l);
+
+            l.setStrokeWidth(1);
         }
 
         for(int i = 0; i<lines.length; i++){
