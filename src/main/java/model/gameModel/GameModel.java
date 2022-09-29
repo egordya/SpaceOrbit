@@ -1,11 +1,7 @@
 package model.gameModel;
 
-import com.grupp7.spaceorbit.controllers.Drawable;
-import model.collisionModel.CollisionModel;
-import model.collisionModel.Collisionable;
 import model.modelObjects.CelestialObject;
-import model.gravitationModel.GravitationModel;
-import utilitys.Vector2D;
+import utilitys.Collision_2_Tuple;
 
 import java.util.*;
 
@@ -69,16 +65,17 @@ public class GameModel extends AGameModel{
 
     private void handleCollisions() {
 
-        Collisionable[][] collided = collisionModel.checkForCollisions(getAllCelestialObjects());
-        for(Collisionable[] x : collided){
+        Collision_2_Tuple[] collided = collisionModel.checkForCollisions(getAllCelestialObjects());
+
+        for(Collision_2_Tuple x : collided){
             handlePlayerTargetCollision(x);
         }
     }
 
-    private void handlePlayerTargetCollision(Collisionable[] x){
-        if (x[0].getType().equals("player") && x[1].getType().equals("target")) {
+    private void handlePlayerTargetCollision(Collision_2_Tuple x){
+        if (x.getFirstCollided().getType().equals("player") && x.getSecondCollided().getType().equals("target")) {
             List<CelestialObject> players = new ArrayList<>(Arrays.stream(this.players).toList());
-            players.remove(players.get(players.indexOf(x[0])));
+            players.remove(players.get(players.indexOf(x.getFirstCollided())));
             this.players = players.toArray(new CelestialObject[0]);
             notifyObservers(ObserverCommand.Update);
         }

@@ -1,6 +1,6 @@
 package model.collisionModel;
 
-import model.modelObjects.CelestialObject;
+import utilitys.Collision_2_Tuple;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ public class CollisionModel{
      * @param originalAllObjects all the objects to be accounted in the check
      * @return an array that contains arrays of two collided objects
      */
-    public Collisionable[][] checkForCollisions(Collisionable[] allObjects){
+    public Collision_2_Tuple[] checkForCollisions(Collisionable[] allObjects){
 
 
 
@@ -20,23 +20,22 @@ public class CollisionModel{
             copy.add(x);
         }
 
-        ArrayList<Collisionable[]> allCollidedObjects = new ArrayList<>();
+        ArrayList<Collision_2_Tuple> allCollidedObjects = new ArrayList<>();
         for(Collisionable x : allObjects){
             copy.remove(x);
             allCollidedObjects.addAll(checkForCollisionsWithX(x, copy));
             copy.add(x);
         }
 
-        return allCollidedObjects.toArray(new Collisionable[0][0]);
+        return allCollidedObjects.toArray(new Collision_2_Tuple[0]);
     }
 
-    private ArrayList<Collisionable[]> checkForCollisionsWithX(Collisionable theObject, List<Collisionable> otherObjects) {
+    private ArrayList<Collision_2_Tuple> checkForCollisionsWithX(Collisionable theObject, List<Collisionable> otherObjects) {
 
-        ArrayList<Collisionable[]> collidedObjects = new ArrayList<>();
+        ArrayList<Collision_2_Tuple> collidedObjects = new ArrayList<>();
         for(Collisionable x : otherObjects){
             if (checkIfCollision(theObject,x)){
-                Collisionable[] collided = {theObject, x};
-                collidedObjects.add(collided);
+                collidedObjects.add(new Collision_2_Tuple(theObject, x));
             }
         }
         return collidedObjects;
