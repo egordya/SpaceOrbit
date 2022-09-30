@@ -88,6 +88,15 @@ final public class Vector2D {
         return "("+x+", "+y+")";
     }
 
+
+    /**
+     * the clone method will clone this object
+     * @return Clone of this Vector2D object
+     */
+    public Vector2D clone(){
+        return new Vector2D(x, y);
+    }
+
     /**
      * the getUnitVectorsOfVectors weill calculate all the unitVectors of a Vector2D list
      * @param vector2DS the Vector2D list
