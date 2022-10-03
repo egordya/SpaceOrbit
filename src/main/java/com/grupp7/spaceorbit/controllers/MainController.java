@@ -37,14 +37,14 @@ public class MainController implements Initializable, Mediator{
             theStackPane.getChildren().clear();
             theStackPane.getChildren().add(gameView);
 
-            String[] levelPaths = menuView.getRemainingLevels();
-            List<String> levelPathsList = Arrays.stream(levelPaths).toList();
+            //String[] levelPaths = menuView.getRemainingLevels();
+            //List<String> levelPathsList = Arrays.stream(levelPaths).toList();
 
-            String firstLevelPath = levelPathsList.get(0);
-            levelPathsList.remove(firstLevelPath);
-            String[] levelPathsArray = levelPathsList.toArray(new String[0]);
+            //String firstLevelPath = levelPathsList.get(0);
+            //levelPathsList.remove(firstLevelPath);
+            //String[] levelPathsArray = levelPathsList.toArray(new String[0]);
 
-            gameView.loadGameModel(firstLevelPath, levelPathsArray);
+            gameView.loadGameModel("firstLevelPath", null);
         }
 
         else if (pointer == gameView) {
