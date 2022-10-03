@@ -1,12 +1,9 @@
 package com.grupp7.spaceorbit.controllers;
 
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.shape.Line;
 import model.gameModel.GameModel;
-import utilitys.Vector2D;
 
 public class GameController implements EventHandler<MouseEvent> {
 
@@ -18,7 +15,7 @@ public class GameController implements EventHandler<MouseEvent> {
 
     @Override
     public void handle(MouseEvent event) {
-        EventType type = event.getEventType();
+        EventType<? extends MouseEvent> type = event.getEventType();
 
         if (type == MouseEvent.MOUSE_PRESSED){
             handleMousePressed(event);
