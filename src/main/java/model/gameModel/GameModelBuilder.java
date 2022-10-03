@@ -1,10 +1,5 @@
 package model.gameModel;
 
-import javafx.scene.control.Label;
-import model.collisionModel.CollisionModel;
-import model.collisionModel.Collisionable;
-import model.gravitationModel.GravitationModel;
-import model.gravitationModel.ObjectForGravitationModel;
 import model.modelObjects.CelestialObject;
 import utilitys.Vector2D;
 
@@ -28,9 +23,9 @@ public class GameModelBuilder {
         JsonObject levelObject = reader.readObject();
         reader.close();
 
-        ArrayList<CelestialObject> planets = getPlanets(levelObject);
-        ArrayList<CelestialObject> targets = getTargets(levelObject);
-        ArrayList<CelestialObject> players = getPlayers(levelObject);
+        ArrayList<CelestialObject> planets = getCelestialObjetsFromJson(levelObject, "planets", "planet");
+        ArrayList<CelestialObject> targets = getCelestialObjetsFromJson(levelObject, "target", "target");
+        ArrayList<CelestialObject> players = getCelestialObjetsFromJson(levelObject, "playerObject", "player");
 
         GameModel product = new GameModel();
         product.setPlanets(planets.toArray(new CelestialObject[0]));
@@ -40,36 +35,16 @@ public class GameModelBuilder {
         return product;
     }
 
-    private static ArrayList<CelestialObject> getPlanets(JsonObject levelObject){
+    private static ArrayList<CelestialObject> getCelestialObjetsFromJson(JsonObject levelObject, String jsonFilter, String type){
         ArrayList<CelestialObject> planets = new ArrayList<>();
-        JsonArray planetArray = levelObject.getJsonArray("planets");
+        JsonArray planetArray = levelObject.getJsonArray(jsonFilter);
         for (int i = 0; i < planetArray.size(); i++) {
             JsonObject planetObject = planetArray.getJsonObject(i);
-            planets.add(createCelestialObjects(planetObject, "planet"));
+            planets.add(createCelestialObjects(planetObject, type));
         }
         return planets;
     }
-
-    private static ArrayList<CelestialObject> getTargets(JsonObject levelObject){
-        ArrayList<CelestialObject> targets = new ArrayList<>();
-        JsonArray planetArray = levelObject.getJsonArray("target");
-        for (int i = 0; i < planetArray.size(); i++) {
-            JsonObject planetObject = planetArray.getJsonObject(i);
-            targets.add(createCelestialObjects(planetObject, "target"));
-        }
-        return targets;
-    }
-
-    private static ArrayList<CelestialObject> getPlayers(JsonObject levelObject){
-        ArrayList<CelestialObject> player = new ArrayList<>();
-        JsonArray planetArray = levelObject.getJsonArray("playerObject");
-        for (int i = 0; i < planetArray.size(); i++) {
-            JsonObject planetObject = planetArray.getJsonObject(i);
-            player.add(createCelestialObjects(planetObject, "player"));
-        }
-        return player;
-    }
-
+    
     private static CelestialObject createCelestialObjects(JsonObject jsonObject, String type){
         String planetName = jsonObject.get("name").toString();
         double planetMass = Double.parseDouble(jsonObject.get("mass").toString());
