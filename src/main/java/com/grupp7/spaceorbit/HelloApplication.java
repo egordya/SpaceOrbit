@@ -2,6 +2,7 @@ package com.grupp7.spaceorbit;
 
 import javafx.application.Application;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -11,6 +12,7 @@ import javafx.scene.shape.Circle;
 
 import javafx.stage.Stage;
 
+import javafx.stage.WindowEvent;
 import model.gameModel.GameModel;
 import model.gameModel.GameModelBuilder;
 import model.gravitationModel.GravitationModel;
@@ -37,6 +39,13 @@ public class HelloApplication extends Application {
 
         Scene scene = new Scene(fxmlLoader.load());
         stage.setScene(scene);
+
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            public void handle(WindowEvent we) {
+                System.exit(0);
+            }
+        });
+
         stage.show();
 
 

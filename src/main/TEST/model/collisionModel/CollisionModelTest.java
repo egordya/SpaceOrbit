@@ -2,6 +2,7 @@ package model.collisionModel;
 
 import model.modelObjects.CelestialObject;
 import org.junit.jupiter.api.Test;
+import utilitys.Collision_2_Tuple;
 import utilitys.Vector2D;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -41,11 +42,11 @@ class CollisionModelTest {
                 a, b};
 
 
-        Collisionable[][] collided = model.checkForCollisions(allObjects);
+        Collision_2_Tuple[] collided = model.checkForCollisions(allObjects);
 
         assertEquals(6 + 4, collided.length);
 
-        Collisionable[][] collided2 = model.checkForCollisions(allObjects);
+        Collision_2_Tuple[] collided2 = model.checkForCollisions(allObjects);
 
         assertEquals(6 + 4, collided2.length);
 

@@ -28,4 +28,12 @@ public class MenuController extends AnchorPane{
     public void testbutton(){
         mediator.notify(this, MediatorCommand.STANDARD);
     }
+    @FXML
+    public void quitgame(){System.exit(0);}
+
+
 }
+
+
+
+

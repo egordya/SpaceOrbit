@@ -5,6 +5,6 @@ import javafx.scene.shape.Shape;
 public interface Collisionable {
 
     String getType();
-    Shape getHitbox();
+    Shape getGeometry();
     Collisionable clone();
 }
