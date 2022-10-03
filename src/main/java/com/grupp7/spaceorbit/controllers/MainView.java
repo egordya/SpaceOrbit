@@ -7,11 +7,9 @@ import model.menuModel.MenuModel;
 
 import java.io.FileNotFoundException;
 import java.net.URL;
-import java.util.Arrays;
-import java.util.List;
 import java.util.ResourceBundle;
 
-public class MainController implements Initializable, Mediator{
+public class MainView implements Initializable, Mediator{
 
     @FXML
     StackPane theStackPane;
