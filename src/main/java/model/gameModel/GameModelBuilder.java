@@ -44,7 +44,7 @@ public class GameModelBuilder {
         }
         return planets;
     }
-    
+
     private static CelestialObject createCelestialObjects(JsonObject jsonObject, String type){
         String planetName = jsonObject.get("name").toString();
         double planetMass = Double.parseDouble(jsonObject.get("mass").toString());
