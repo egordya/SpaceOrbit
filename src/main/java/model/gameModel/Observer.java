@@ -1,5 +1,5 @@
 package model.gameModel;
 
 public interface Observer {
-    void commandFromModel();
+    void commandFromModel(ObserverCommand command);
 }
