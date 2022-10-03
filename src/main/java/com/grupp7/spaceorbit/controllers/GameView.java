@@ -35,6 +35,8 @@ public class GameView extends AnchorPane implements Observer {
     Mediator mediator;
     GameModel gameModel;
 
+    GameController gameController;
+
     String pathToCurrentLevel;
 
     double pX, pY;
@@ -56,54 +58,6 @@ public class GameView extends AnchorPane implements Observer {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
-
-
-
-        renderSurface.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent e) {
-                pX = e.getX();
-                pY = e.getY();
-            }
-        });
-        renderSurface.setOnMouseReleased(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent e) {
-                rX = e.getX();
-                rY = e.getY();
-
-                for(Line l : lines){
-                    renderSurface.getChildren().remove(l);
-                }
-
-                shoot();
-
-            }
-        });
-
-        renderSurface.setOnMouseDragged(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent e) {
-
-
-                double deltaX = e.getX() - pX;
-                double deltaY = e.getY() - pY;
-
-                gameModel.getPlayers()[0].getXPos();
-                gameModel.getPlayers()[0].getYPos();
-
-                double[] setX = new double[gameModel.getPlayers().length];
-                double[] setY = new double[gameModel.getPlayers().length];
-                int i = 0;
-                for(Drawable x : gameModel.getPlayers()) {
-                    setX[i] = x.getXPos() + deltaX;
-                    setY[i] = x.getYPos() + deltaY;
-                    i++;
-                }
-
-                drawArrow(setX, setY);
-            }
-        });
 
     }
 
@@ -139,9 +93,17 @@ public class GameView extends AnchorPane implements Observer {
 
     public void loadGameModel(String jsonPath, String[] allNextLevelPaths) throws FileNotFoundException {
         pathToCurrentLevel = jsonPath;
+
         this.gameModel = GameModelBuilder.getGameModel(jsonPath);
         this.gameModel.addObserver(this);
         this.gameModel.setAllNextLevelPaths(allNextLevelPaths);
+
+        this.gameController = new GameController(gameModel);
+
+        renderSurface.setOnMousePressed(gameController);
+        renderSurface.setOnMouseReleased(gameController);
+        renderSurface.setOnMouseDragged(gameController);
+
         showObjects();
 
         lines = new Line[gameModel.getPlayers().length];
