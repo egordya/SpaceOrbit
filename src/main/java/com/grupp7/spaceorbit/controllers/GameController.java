@@ -6,10 +6,11 @@ import javafx.event.EventType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Line;
 import model.gameModel.GameModel;
+import utilitys.Vector2D;
 
 public class GameController implements EventHandler<MouseEvent> {
 
-    GameModel model;
+    private GameModel model;
 
     public GameController(GameModel model) {
         this.model = model;
@@ -56,5 +57,19 @@ public class GameController implements EventHandler<MouseEvent> {
         //    setX[i] = x.getXPos() + deltaX;
         //   setY[i] = x.getYPos() + deltaY;
         //    i++;
+    }
+
+    private void shoot(){
+        //double vY  = (rY - pY);
+        //double vX = (rX - pX);
+
+
+        //Vector2D[] vectors = new Vector2D[gameModel.getPlayers().length];
+        //for(int i = 0; i<gameModel.getPlayers().length; i++){
+        //    vectors[i] = new Vector2D(vX, vY);
+       //}
+
+        //gameModel.setPlayerVelocity(vectors);
+        //gameModel.startGame();
     }
 }

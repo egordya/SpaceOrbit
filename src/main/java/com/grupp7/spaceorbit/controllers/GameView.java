@@ -39,10 +39,6 @@ public class GameView extends AnchorPane implements Observer {
 
     String pathToCurrentLevel;
 
-    double pX, pY;
-    double rX, rY;
-
-
 
     public GameView(Mediator mediator) {
 
@@ -154,20 +150,6 @@ public class GameView extends AnchorPane implements Observer {
         }
     }
 
-
-    private void shoot(){
-        double vY  = (rY - pY);
-        double vX = (rX - pX);
-
-
-        Vector2D[] vectors = new Vector2D[gameModel.getPlayers().length];
-        for(int i = 0; i<gameModel.getPlayers().length; i++){
-            vectors[i] = new Vector2D(vX, vY);
-        }
-
-        gameModel.setPlayerVelocity(vectors);
-        gameModel.startGame();
-    }
 
 
 
