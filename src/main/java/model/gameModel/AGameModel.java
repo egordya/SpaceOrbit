@@ -11,6 +11,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public abstract class AGameModel {
+
+    String[] allNextLevelPaths;
     GravitationModel gravitationModel = new GravitationModel();
     CollisionModel collisionModel = new CollisionModel();
     CelestialObject[] players;
@@ -24,6 +26,10 @@ public abstract class AGameModel {
 
     public void addObserver(Observer observer){
         observers.add(observer);
+    }
+
+    public void setAllNextLevelPaths(String[] allNextLevelPaths) {
+        this.allNextLevelPaths = allNextLevelPaths;
     }
 
     public void startGame(){
@@ -60,6 +66,10 @@ public abstract class AGameModel {
 
     public Drawable[] getPlanets() {
         return planets;
+    }
+
+    public String[] getAllNextLevelPaths(){
+        return allNextLevelPaths;
     }
 
     //package private

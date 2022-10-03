@@ -3,14 +3,20 @@ package com.grupp7.spaceorbit.controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
+import model.menuModel.MenuModel;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public class MenuController extends AnchorPane{
+public class MenuView extends AnchorPane{
     Mediator mediator;
-    public MenuController(Mediator mediator) {
+    MenuModel model;
+    public MenuView(Mediator mediator, MenuModel model) {
 
         this.mediator = mediator;
+        this.model = model;
+
+        model.getAllLevels();
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/menu.fxml"));
         fxmlLoader.setRoot(this);
@@ -26,12 +32,19 @@ public class MenuController extends AnchorPane{
 
     @FXML
     public void testbutton(){
-        mediator.notify(this, MediatorCommand.STANDARD);
+        try {
+            mediator.notify(this, MediatorCommand.STANDARD);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
     @FXML
     public void quitgame(){System.exit(0);}
 
 
+    public String[] getRemainingLevels() {
+        return null;
+    }
 }
 
 
