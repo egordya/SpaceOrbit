@@ -152,13 +152,13 @@ public class GameModel{
         Collisionable[][] collided = collisionModel.checkForCollisions(allCelestialObjects);
         for(Collisionable[] x : collided){
             if (x[0].getType().equals("player") && x[1].getType().equals("target")) {
-                //notifyObservers(ObserverCommand.Win);
-                List<CelestialObject> lista =  Arrays.stream(players).toList();
-                lista.get(lista.indexOf(x[0])).setVelocityVector(new Vector2D(0,0));
-                lista.get(lista.indexOf(x[0])).setAffectedByGravity(false);
-
-                lista.get(lista.indexOf(x[1])).setVelocityVector(new Vector2D(0,0));
-                lista.get(lista.indexOf(x[1])).setAffectedByGravity(false);
+                notifyObservers(ObserverCommand.Win);
+//                List<CelestialObject> lista =  Arrays.stream(players).toList();
+//                lista.get(lista.indexOf(x[0])).setVelocityVector(new Vector2D(0,0));
+//                lista.get(lista.indexOf(x[0])).setAffectedByGravity(false);
+//
+//                lista.get(lista.indexOf(x[1])).setVelocityVector(new Vector2D(0,0));
+//                lista.get(lista.indexOf(x[1])).setAffectedByGravity(false);
             }
         }
     }

@@ -1,19 +1,17 @@
 package model.gameModel;
 
-import javafx.scene.control.Label;
-import model.collisionModel.CollisionModel;
-import model.collisionModel.Collisionable;
 import model.gravitationModel.GravitationModel;
-import model.gravitationModel.ObjectForGravitationModel;
 import model.modelObjects.CelestialObject;
 import utilitys.Vector2D;
 
+import javax.json.Json;
+import javax.json.JsonArray;
+import javax.json.JsonObject;
+import javax.json.JsonReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
-
-import javax.json.*;
 
 
 public class GameModelBuilder {
@@ -22,8 +20,8 @@ public class GameModelBuilder {
     public static GameModel getGameModel(String pathToJsonLevel) throws FileNotFoundException {
 
 
-        String jsonPath = "src/main/resources/json/levels/level2.json";
-        InputStream levelTest = new FileInputStream(jsonPath);
+        String jsonPath = "src/main/resources/json/levels/level1.json";
+        InputStream levelTest = new FileInputStream(pathToJsonLevel);
         JsonReader reader = Json.createReader(levelTest);
         JsonObject levelObject = reader.readObject();
         reader.close();

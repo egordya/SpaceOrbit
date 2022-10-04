@@ -1,6 +1,7 @@
 package model.modelObjects;
 
 import com.grupp7.spaceorbit.controllers.Drawable;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
 import model.collisionModel.Collisionable;
@@ -20,6 +21,7 @@ public class CelestialObject implements ObjectForGravitationModel, Collisionable
     private boolean isAffectedByGravity;
     private String name;
     private String type;
+    private Color color = Color.BLACK;
 
 
 
@@ -30,10 +32,13 @@ public class CelestialObject implements ObjectForGravitationModel, Collisionable
         this.mass = mass;
         this.radius = radius;
         this.planetHitbox.setRadius(this.radius);
+        this.planetHitbox.setFill(this.color);
         this.imagePath = imagePath;
         this.isAffectedByGravity = isAffectedByGravity;
         this.name = name;
         this.type = type;
+
+
 
         updateHitBoxPos();
     }

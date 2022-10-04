@@ -2,35 +2,35 @@
   "planets": [
     {
       "name": "planet1",
-      "mass": 10000,
-      "radius": 1,
-      "isAffectedByGravity": true,
-      "posX": 10000,
-      "posY": 1000,
-      "velX": 20,
-      "velY": 20,
+      "mass": 7000000000000000.0,
+      "radius": 20,
+      "isAffectedByGravity": false,
+      "posX": 250,
+      "posY": 200,
+      "velX": 0,
+      "velY": 0,
       "img_path": "/test/hest/best/yes-t"
     },
     {
       "name": "planet2",
-      "mass": 500,
-      "radius": 1,
-      "isAffectedByGravity": true,
-      "posX": 1000,
-      "posY": 1000,
-      "velX": 20,
-      "velY": 20,
+      "mass": 7000000000000000.0,
+      "radius": 30,
+      "isAffectedByGravity": false,
+      "posX": 150,
+      "posY": 200,
+      "velX": 0,
+      "velY": 0,
       "img_path": ""
     }
   ],
   "playerObject": [
     {
       "name": "playerObj",
-      "mass": 500,
-      "radius": 20,
+      "mass": 10,
+      "radius": 5,
       "isAffectedByGravity": true,
-      "posX": 50,
-      "posY": 50,
+      "posX": 400,
+      "posY": 300,
       "velX": 0,
       "velY": 0,
       "img_path": ""
@@ -39,8 +39,8 @@
   "target": [
   {
     "name": "target1",
-    "mass": null,
-    "radius": 64,
+    "mass": 20,
+    "radius": 10,
     "isAffectedByGravity": false,
     "posX": 100,
     "posY": 100,

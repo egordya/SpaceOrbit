@@ -4,7 +4,7 @@ import model.modelObjects.CelestialObject;
 import org.junit.jupiter.api.Test;
 import utilitys.Vector2D;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 

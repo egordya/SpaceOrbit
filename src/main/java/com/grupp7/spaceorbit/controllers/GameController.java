@@ -1,12 +1,8 @@
 package com.grupp7.spaceorbit.controllers;
 
-import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -27,8 +23,6 @@ public class GameController extends AnchorPane implements Observer {
     Pane renderSurface;
     @FXML
     HBox winBox;
-    @FXML
-    Pane anchor;
 
     Line[] lines;
 
@@ -36,7 +30,7 @@ public class GameController extends AnchorPane implements Observer {
     Mediator mediator;
     GameModel gameModel;
 
-    String pathToCurrentLevel;
+    String pathToCurrentLevel = "src/main/resources/json/levels/level1.json";
 
     double pX, pY;
     double rX, rY;
@@ -111,8 +105,10 @@ public class GameController extends AnchorPane implements Observer {
     @Override
     public void commandFromModel(ObserverCommand command) {
         if(command == ObserverCommand.Win){
-            //anchor.getChildren().add(winBox);
             gameModel.pauseGame();
+            winBox.setVisible(true);
+
+
         }
     }
 
@@ -137,8 +133,9 @@ public class GameController extends AnchorPane implements Observer {
         Drawable[] planets = gameModel.getPlanets();
         Drawable[] players = gameModel.getPlayers();
         Drawable[] targets = gameModel.getTargets();
-        anchor.getChildren().remove(winBox);
+
         renderSurface.getChildren().clear();
+
 
         for (Drawable p : planets){
             renderSurface.getChildren().add(p.getShape());
@@ -189,6 +186,11 @@ public class GameController extends AnchorPane implements Observer {
     }
 
 
+    @FXML
+    private void nextLevel() throws FileNotFoundException { pathToCurrentLevel = "src/main/resources/json/levels/level2.json";
+        loadGameModel(pathToCurrentLevel);
+        winBox.setVisible(false);
+    }
 
     @FXML
     private void pause(){
@@ -205,6 +207,7 @@ public class GameController extends AnchorPane implements Observer {
         gameModel.pauseGame();
         this.gameModel = GameModelBuilder.getGameModel(pathToCurrentLevel);
         this.gameModel.addObserver(this);
+        winBox.setVisible(false);
         init();
     }
 

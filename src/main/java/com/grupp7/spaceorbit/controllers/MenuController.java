@@ -8,6 +8,8 @@ import java.io.IOException;
 
 public class MenuController extends AnchorPane{
     Mediator mediator;
+
+
     public MenuController(Mediator mediator) {
 
         this.mediator = mediator;
@@ -15,6 +17,7 @@ public class MenuController extends AnchorPane{
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/menu.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
+
 
         try {
             fxmlLoader.load();
@@ -24,12 +27,17 @@ public class MenuController extends AnchorPane{
 
     }
 
+
     @FXML
     public void testbutton(){
         mediator.notify(this, MediatorCommand.STANDARD);
     }
     @FXML
     public void quitgame(){System.exit(0);}
+
+    @FXML
+    public void settings(){this.getChildren().clear();}
+
 
 
 }

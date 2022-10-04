@@ -7,19 +7,18 @@
 
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.HBox?>
-<fx:root fx:id="anchor" prefHeight="400.0" prefWidth="600.0" type="AnchorPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <HBox fx:id="winBox">
-         <Button layoutX="36.0" layoutY="14.0" mnemonicParsing="false" onAction="#restart" text="Restart" />
-         <Button layoutX="36.0" layoutY="14.0" mnemonicParsing="false" text="Next Level" />
-         <Button layoutX="36.0" layoutY="14.0" mnemonicParsing="false" onAction="#backToMainMenu" text="main menu test" />
-      </HBox>
+<?import javafx.scene.layout.StackPane?>
+<fx:root fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" type="AnchorPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
       <Pane fx:id="renderSurface" layoutX="10.0" layoutY="86.0" prefHeight="277.0" prefWidth="580.0" />
-      <Button layoutX="36.0" layoutY="14.0" mnemonicParsing="false" onAction="#pause" text="Pause" />
+            <HBox fx:id="winBox" layoutX="157" layoutY="200" spacing="20" visible="false">
+               <Button layoutX="36.0" layoutY="14.0" mnemonicParsing="false" onAction="#restart" text="Restart" />
+               <Button layoutX="36.0" layoutY="14.0" mnemonicParsing="false" onAction="#nextLevel" text="Next level" />
+               <Button layoutX="36.0" layoutY="14.0" mnemonicParsing="false" onAction="#backToMainMenu" text="Back to main" />
+            </HBox>
+      <Button alignment="TOP_CENTER" layoutX="36.0" layoutY="14.0" mnemonicParsing="false" onAction="#pause" text="Pause" />
       <Button layoutX="91.0" layoutY="14.0" mnemonicParsing="false" onAction="#resume" text="Resume" />
       <Button layoutX="154.0" layoutY="14.0" mnemonicParsing="false" onAction="#restart" text="Restart" />
       <Button layoutX="491.0" layoutY="14.0" mnemonicParsing="false" onAction="#backToMainMenu" text="main menu test" />
-   </children>
    <stylesheets>
       <URL value="@game.css" />
    </stylesheets>
