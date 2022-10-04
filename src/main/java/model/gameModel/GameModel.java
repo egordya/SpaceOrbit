@@ -37,35 +37,6 @@ public class GameModel{
         }
     }
 
-
-    //method
-    //    start
-    //    setplayerVelociraptor
-    //    getDrawble
-    //      planets
-    //      targets
-    //      players
-    //    gameEnded
-    //    gamePause
-
-
-
-
-    //TODO
-    // - Rest of the code goes here
-    // - Timer
-    // - Regler:
-        // TODO - Man vinner när player krockar med target
-        //  - man förlorar om player kommer 1000 pixlar utanför skärmen
-        //  - man förlorar om player krockar i planet
-        //      Om man förlorar startas leveln om.
-    //(scoringsystem) tid och stjärnor
-
-
-
-
-
-
     public void addObserver(Observer observer){
         observers.add(observer);
     }
