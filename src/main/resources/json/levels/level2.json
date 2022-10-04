@@ -23,7 +23,7 @@
       "img_path": "/planet.gif"
     },
     {
-      "name": "planet4",
+      "name": "planet3",
       "mass": 7000000000000000.0,
       "radius": 6,
       "isAffectedByGravity": false,
@@ -34,7 +34,7 @@
       "img_path": "/planet.gif"
     },
     {
-      "name": "planet3",
+      "name": "planet4",
       "mass": 7000000000000000.0,
       "radius": 6,
       "isAffectedByGravity": false,

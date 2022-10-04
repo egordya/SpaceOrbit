@@ -33,7 +33,7 @@ public class GameController extends AnchorPane implements Observer {
     Mediator mediator;
     GameModel gameModel;
 
-    String pathToCurrentLevel;
+    String pathToCurrentLevel = "src/main/resources/json/levels/level2.json"; //Detta är tillfälligt
 
     double pX, pY;
     double rX, rY;

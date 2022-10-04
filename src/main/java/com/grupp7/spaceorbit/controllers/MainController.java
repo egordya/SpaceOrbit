@@ -34,7 +34,7 @@ public class MainController implements Initializable, Mediator{
             theStackPane.getChildren().clear();
             theStackPane.getChildren().add(gameController);
             try {
-                gameController.loadGameModel("afawfghjesgbhlesglbh");
+                gameController.loadGameModel("src/main/resources/json/levels/level2.json");
             } catch (FileNotFoundException e) {
                 throw new RuntimeException(e);
             }
