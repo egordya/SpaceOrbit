@@ -7,13 +7,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.TextField;
 
 import javax.json.*;
+//import org.json.simple.JSONobject;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Writer;
 
 
 public class CustomLevelController extends AnchorPane {
@@ -51,18 +54,34 @@ public class CustomLevelController extends AnchorPane {
     @FXML
     private ChoiceBox<String> typeChoiceBox;
 
-    Mediator mediator;
-    ObservableList<String> finalTestFile = FXCollections.observableArrayList();
-    JsonObject finalPlanetObject = Json.createObjectBuilder()
-            .add("type", "Planet").build();
+    @FXML
+    private TextField levelNameTextField;
 
+    @FXML
+    private AnchorPane levelOverviewAnchorPane;
+
+    @FXML
+    private Label levelNameLabel;
+
+    String levelName;
+    Mediator mediator;
+    Writer writer;
+
+    ObservableList<String> finalTestFile = FXCollections.observableArrayList();
     ObservableList<String> finalFile = FXCollections.observableArrayList();
+    ObservableList<String> planetList = FXCollections.observableArrayList();
+    ObservableList<String> playerList = FXCollections.observableArrayList();
+    ObservableList<String> targetList = FXCollections.observableArrayList();
+    JsonArray planetListt = Json.createArrayBuilder().build();
+    JsonArray targetListt = Json.createArrayBuilder().build();
+    JsonArray playerListt = Json.createArrayBuilder().build();
+    JsonObject planetObject = Json.createObjectBuilder().build();
+    JsonArrayBuilder someBuilder = Json.createArrayBuilder();
 
 
 
     public CustomLevelController(Mediator mediator) {
         this.mediator = mediator;
-        finalTestFile.add(finalPlanetObject.toString());
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/customlevel.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
@@ -75,7 +94,7 @@ public class CustomLevelController extends AnchorPane {
     }
 
     @FXML
-    public ObservableList<String> submitButton() throws IOException {
+    public JsonObject submitButton() throws IOException {
         String name = nameInput.getText();
         int mass = Integer.parseInt(massInput.getText());
         int radius = Integer.parseInt(radiusInput.getText());
@@ -84,38 +103,70 @@ public class CustomLevelController extends AnchorPane {
         String imagePath = imageComboBoxInput.getValue();
         String type = typeChoiceBox.getValue();
 
-        JsonObject json = Json.createObjectBuilder()
-                .add("Type", type).build();
+        JsonObject valuetest = Json.createObjectBuilder()
+                    .add("type",type)
+                    .add("name", name)
+                    .add("mass", mass)
+                    .add("startPosX", posX)
+                    .add("startPosY", posY)
+                    .add("imagePath", imagePath)
+                    .add("radius", radius)
+                    .build();
 
-        JsonBuilderFactory factory = Json.createBuilderFactory(finalPlanetObject);
+        someBuilder.add(valuetest);
 
-        JsonArray value = factory.createArrayBuilder()
-                .add(factory.createObjectBuilder()
-                        .add("name", name)
-                        .add("mass", mass)
-                        .add("startPosX", posX)
-                        .add("startPosY", posY)
-                        .add("imagePath", imagePath)
-                        .add("radius", radius))
-                .build();
+      /*  System.out.println(valuetest.get("type").toString());
+            if(type.equals("Planet")){
+              //  planetObject.put("planet", valuetest);
+                //System.out.println(planetObject);
+            }
+            if(type.equals("Target")){
+                targetList.add(valuetest.toString());
 
-
-            finalTestFile.add(value.toString());
-
-        System.out.println("final Planet text: " + finalPlanetObject);
-        System.out.println("Final file to be written to json file: " + finalTestFile.toString());
-        return finalTestFile;
+            }
+            if(type.equals("PlayerObject")){
+            playerList.add(valuetest.toString());
+        }*/
+            return valuetest;
     }
 
     @FXML
     public void submitButtonTwo() throws IOException {
-        //Kanske loopa igenom varje array för att lägga till i en ny array?
-        finalFile.add(finalPlanetObject.toString() + finalTestFile.toString());
-        FileWriter fileWriter = new FileWriter("src/main/resources/json/levels/testingpurpose.json");
-        fileWriter.write(String.valueOf(finalFile));
-        fileWriter.flush();
+        JsonArray jArray = someBuilder.build();
+        JsonObject jsonFile = Json.createObjectBuilder()
+                .add("planets", planetListt)
+                .add("targets", targetListt)
+                .build();
+
+        FileWriter fileWriter = new FileWriter("src/main/resources/json/levels/" + levelName + ".json");
+        JsonWriter jWrite = Json.createWriter(fileWriter);
+        jWrite.writeArray(jArray);
+        jWrite.close();
+
+/*
+        jGen.writeStartArray()
+                .write(planetList.toString())
+                .writeEnd()
+                .writeStartArray()
+                .write(targetList.toString())
+                .writeEnd();
+
+                jGen.close();
+        System.out.println(jGen.toString());*/
+
     }
 
+    @FXML
+    public void nameNewLevel() throws IOException {
+        levelName = levelNameTextField.getText();
+        levelNameLabel.setText(levelName);
+        nameCustomLevelAnchorPane.toBack();
+    }
+
+    @FXML
+    public void addObject() throws IOException{
+        levelOverviewAnchorPane.toBack();
+    }
 
     @Override
     public Node getStyleableNode() {
