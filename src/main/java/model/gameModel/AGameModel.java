@@ -13,25 +13,23 @@ import java.util.TimerTask;
 
 public abstract class AGameModel {
 
-    String[] allNextLevelPaths;
     GravitationModel gravitationModel = new GravitationModel();
     CollisionModel collisionModel = new CollisionModel();
     CelestialObject[] players;
     CelestialObject[] targets;
     CelestialObject[] planets;
+
+    ArrowObject[] playerArrows = new ArrowObject[0];
     ArrayList<Observer> observers = new ArrayList<>();
     Timer tr;
     final long timePeriod = 20;
 
+    boolean showArrows = true;
     boolean isRunning = false;
     boolean isPaused = false;
 
     public void addObserver(Observer observer){
         observers.add(observer);
-    }
-
-    public void setAllNextLevelPaths(String[] allNextLevelPaths) {
-        this.allNextLevelPaths = allNextLevelPaths;
     }
 
     public void startGame(){
@@ -63,6 +61,19 @@ public abstract class AGameModel {
         //fixa för fler spelare senare
     }
 
+    public void setPlayersArrow(Vector2D delta){
+        ArrayList<ArrowObject> arrows = new ArrayList<>();
+        for (int i = 0; i<players.length; i++){
+            arrows.add(new ArrowObject(players[i].getPos(), players[i].getPos().add(delta)));
+        }
+        playerArrows = arrows.toArray(new ArrowObject[0]);
+        notifyObservers(ObserverCommand.Update);
+    }
+
+    public void SetShowPlayerArrows(boolean show){
+        showArrows = show;
+        notifyObservers(ObserverCommand.Update);
+    }
 
     public Drawable[] getPlayers() {
         return players;
@@ -76,12 +87,12 @@ public abstract class AGameModel {
         return planets;
     }
 
-    public Drawable gettestArrow(){
-        return new ArrowObject(375.0, 300.0, 100.0, 100.0);
+    public Drawable[] getPlayerArrows(){
+        return playerArrows;
     }
 
-    public String[] getAllNextLevelPaths(){
-        return allNextLevelPaths;
+    public boolean getShowPlayerArrows(){
+        return showArrows;
     }
 
     //package private

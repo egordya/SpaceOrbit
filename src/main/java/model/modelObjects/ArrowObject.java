@@ -4,6 +4,7 @@ import com.grupp7.spaceorbit.controllers.Drawable;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Polyline;
 import javafx.scene.shape.Shape;
+import utilitys.Vector2D;
 
 public class ArrowObject implements Drawable {
 
@@ -11,38 +12,21 @@ public class ArrowObject implements Drawable {
     double xPos;
     double yPos;
 
-    public ArrowObject(double startX, double startY, double endX, double endY) {
-        xPos = startX;
-        yPos = startY;
+    public ArrowObject(Vector2D startPos, Vector2D endPos) {
 
 
-        double x1 = startX;
-        double y1 = startY;
+        Vector2D arrowVector = endPos.sub(startPos).getUnitVector();
 
-        int h = 10;
-        int d = 10;
+        double angle = 0.5; // 1 = 45 degrees
+        double length = 10;
 
-        int dx = (int) (endX - x1), dy = (int) (endY - y1);
-        double D = Math.sqrt(dx*dx + dy*dy);
-        double xm = D - d, xn = xm, ym = h, yn = -h, x;
-        double sin = dy / D, cos = dx / D;
+        Vector2D orthogonal1 = new Vector2D(arrowVector.getY() * -1, arrowVector.getX()).scalarMultiplication(angle);
+        Vector2D orthogonal2 = new Vector2D(arrowVector.getY(), arrowVector.getX() * -1).scalarMultiplication(angle);
 
-        x = xm*cos - ym*sin + x1;
-        ym = xm*sin + ym*cos + y1;
-        xm = x;
+        Vector2D arrowHeadOneEndPos = arrowVector.scalarMultiplication(-1).add(orthogonal1).scalarMultiplication(length).add(endPos);
+        Vector2D arrowHeadTwoEndPos = arrowVector.scalarMultiplication(-1).add(orthogonal2).scalarMultiplication(length).add(endPos);
 
-        x = xn*cos - yn*sin + x1;
-        yn = xn*sin + yn*cos + y1;
-        xn = x;
-
-        arrow.getPoints().addAll(startX, startY, endX, endY, ym, xm, endX, endY, yn, xn);
-
-
-
-
-
-
-
+        arrow.getPoints().addAll(startPos.getX(), startPos.getY(), endPos.getX(), endPos.getY(), arrowHeadOneEndPos.getX(), arrowHeadOneEndPos.getY(), endPos.getX(), endPos.getY(), arrowHeadTwoEndPos.getX(), arrowHeadTwoEndPos.getY());
 
     }
 

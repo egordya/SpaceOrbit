@@ -26,16 +26,11 @@ public class GameView extends AnchorPane implements Observer {
     @FXML
     Pane anchor;
 
-    Line[] lines;
-
-
     Mediator mediator;
     GameModel gameModel;
-
     GameController gameController;
-
     String pathToCurrentLevel;
-
+    String[] allNextLevelPaths;
 
     public GameView(Mediator mediator) {
 
@@ -44,14 +39,30 @@ public class GameView extends AnchorPane implements Observer {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/game.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
-
-
         try {
             fxmlLoader.load();
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
 
+    }
+
+    public void loadGameModel(String jsonPath, String[] allNextLevelPaths) throws FileNotFoundException {
+        pathToCurrentLevel = jsonPath;
+
+        this.gameModel = GameModelBuilder.getGameModel(jsonPath);
+        this.gameModel.addObserver(this);
+        this.allNextLevelPaths = allNextLevelPaths;
+
+        this.gameController = new GameController(gameModel);
+
+        renderSurface.setOnMousePressed(gameController);
+        renderSurface.setOnMouseReleased(gameController);
+        renderSurface.setOnMouseDragged(gameController);
+
+        showObjects();
+
+        // för test, ta bort när klart
     }
 
     @Override
@@ -63,49 +74,23 @@ public class GameView extends AnchorPane implements Observer {
 
             gameModel.togglePauseGame();
             System.out.println("win");
-        } else if (command == ObserverCommand.Update) {
+        }
+        else if (command == ObserverCommand.Update) {
             Platform.runLater(() -> {
                 showObjects();
             });
         }
-    }
+        else if(command == ObserverCommand.Restart){
 
-
-    @FXML
-    void nextLevel() throws FileNotFoundException {
-        String[] paths = this.gameModel.getAllNextLevelPaths();
-        List<String> pathsList = Arrays.stream(paths).toList();
-
-        String firstPath = pathsList.get(0);
-        pathsList.remove(firstPath);
-
-        this.loadGameModel(firstPath, pathsList.toArray(new String[0]));
-
-    }
-
-
-    public void loadGameModel(String jsonPath, String[] allNextLevelPaths) throws FileNotFoundException {
-        pathToCurrentLevel = jsonPath;
-
-        this.gameModel = GameModelBuilder.getGameModel(jsonPath);
-        this.gameModel.addObserver(this);
-        this.gameModel.setAllNextLevelPaths(allNextLevelPaths);
-
-        this.gameController = new GameController(gameModel);
-
-        renderSurface.setOnMousePressed(gameController);
-        renderSurface.setOnMouseReleased(gameController);
-        renderSurface.setOnMouseDragged(gameController);
-
-        showObjects();
-
-        lines = new Line[gameModel.getPlayers().length];
-        for(int i = 0; i<gameModel.getPlayers().length; i++){
-            lines[i] = new Line();
+                Platform.runLater(() -> {
+                    try {
+                        restart();
+                    } catch (FileNotFoundException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
         }
-        // för test, ta bort när klart
     }
-
 
     private void showObjects(){
         Drawable[] planets = gameModel.getPlanets();
@@ -126,27 +111,13 @@ public class GameView extends AnchorPane implements Observer {
             renderSurface.getChildren().add(p.getGeometry());
         }
 
-        renderSurface.getChildren().add(gameModel.gettestArrow().getGeometry());
-    }
-
-    private void drawArrow(double[] setX, double[] setY) {
-
-        for(Line l : lines){
-            renderSurface.getChildren().remove(l);
-
-            l.setStrokeWidth(1);
+        if(gameModel.getShowPlayerArrows()){
+            Drawable[] arrows = gameModel.getPlayerArrows();
+            for (Drawable p : arrows){
+                renderSurface.getChildren().add(p.getGeometry());
+            }
         }
 
-        for(int i = 0; i<lines.length; i++){
-            lines[i].setStartX(gameModel.getPlayers()[i].getXPos());
-            lines[i].setStartY(gameModel.getPlayers()[i].getYPos());
-            lines[i].setEndX(setX[i]);
-            lines[i].setEndY(setY[i]);
-        }
-
-        for(Line l : lines){
-            renderSurface.getChildren().add(l);
-        }
     }
 
 
@@ -167,7 +138,19 @@ public class GameView extends AnchorPane implements Observer {
         gameModel.togglePauseGame();
         this.gameModel = GameModelBuilder.getGameModel(pathToCurrentLevel);
         this.gameModel.addObserver(this);
+        this.gameController.setGameModel(gameModel);
         showObjects();
+    }
+
+    @FXML
+    private void nextLevel() throws FileNotFoundException {
+        List<String> pathsList = Arrays.stream(this.allNextLevelPaths).toList();
+
+        String firstPath = pathsList.get(0);
+        pathsList.remove(firstPath);
+
+        this.loadGameModel(firstPath, pathsList.toArray(new String[0]));
+
     }
 
     @FXML
@@ -176,5 +159,6 @@ public class GameView extends AnchorPane implements Observer {
         this.gameModel = null;
         mediator.notify(this, MediatorCommand.STANDARD);
     }
+
 
 }
