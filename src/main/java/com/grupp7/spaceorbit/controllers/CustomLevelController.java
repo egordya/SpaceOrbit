@@ -1,19 +1,16 @@
 package com.grupp7.spaceorbit.controllers;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.control.TextField;
 
 import javax.json.*;
-//import org.json.simple.JSONobject;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
@@ -67,20 +64,12 @@ public class CustomLevelController extends AnchorPane {
     Mediator mediator;
     Writer writer;
 
-    ObservableList<String> finalTestFile = FXCollections.observableArrayList();
-    ObservableList<String> finalFile = FXCollections.observableArrayList();
-    ObservableList<String> planetList = FXCollections.observableArrayList();
-    ObservableList<String> playerList = FXCollections.observableArrayList();
-    ObservableList<String> targetList = FXCollections.observableArrayList();
-    JsonArray planetListt = Json.createArrayBuilder().build();
-    JsonArray targetListt = Json.createArrayBuilder().build();
-    JsonArray playerListt = Json.createArrayBuilder().build();
-    JsonObject planetObject = Json.createObjectBuilder().build();
-    JsonArrayBuilder someBuilder = Json.createArrayBuilder();
-
-
+    JsonArrayBuilder planetArrayBuilder = Json.createArrayBuilder();
+    JsonArrayBuilder targetArrayBuilder = Json.createArrayBuilder();
+    JsonArrayBuilder playerArrayBuilder = Json.createArrayBuilder();
 
     public CustomLevelController(Mediator mediator) {
+
         this.mediator = mediator;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/customlevel.fxml"));
         fxmlLoader.setRoot(this);
@@ -94,7 +83,8 @@ public class CustomLevelController extends AnchorPane {
     }
 
     @FXML
-    public JsonObject submitButton() throws IOException {
+    public void submitButton() throws IOException {
+
         String name = nameInput.getText();
         int mass = Integer.parseInt(massInput.getText());
         int radius = Integer.parseInt(radiusInput.getText());
@@ -102,6 +92,7 @@ public class CustomLevelController extends AnchorPane {
         double posY = Double.parseDouble(startYInput.getText());
         String imagePath = imageComboBoxInput.getValue();
         String type = typeChoiceBox.getValue();
+        imageComboBoxInput.getSelectionModel().selectFirst();
 
         JsonObject valuetest = Json.createObjectBuilder()
                     .add("type",type)
@@ -113,46 +104,34 @@ public class CustomLevelController extends AnchorPane {
                     .add("radius", radius)
                     .build();
 
-        someBuilder.add(valuetest);
+        String type1 = valuetest.getString("type");
 
-      /*  System.out.println(valuetest.get("type").toString());
-            if(type.equals("Planet")){
-              //  planetObject.put("planet", valuetest);
-                //System.out.println(planetObject);
-            }
-            if(type.equals("Target")){
-                targetList.add(valuetest.toString());
-
-            }
-            if(type.equals("PlayerObject")){
-            playerList.add(valuetest.toString());
-        }*/
-            return valuetest;
+        if(type1.equals("Planet")){
+            planetArrayBuilder.add(valuetest);
+        }else if(type1.equals("Target")){
+            targetArrayBuilder.add(valuetest);
+        }else{
+            playerArrayBuilder.add(valuetest);
+        }
     }
 
     @FXML
     public void submitButtonTwo() throws IOException {
-        JsonArray jArray = someBuilder.build();
+
+        JsonArray planetArray = planetArrayBuilder.build();
+        JsonArray targetArray = targetArrayBuilder.build();
+        JsonArray playerArray = playerArrayBuilder.build();
+
         JsonObject jsonFile = Json.createObjectBuilder()
-                .add("planets", planetListt)
-                .add("targets", targetListt)
+                .add("planets", planetArray)
+                .add("targets", targetArray)
+                .add("players", playerArray)
                 .build();
 
         FileWriter fileWriter = new FileWriter("src/main/resources/json/levels/" + levelName + ".json");
         JsonWriter jWrite = Json.createWriter(fileWriter);
-        jWrite.writeArray(jArray);
+        jWrite.writeObject(jsonFile);
         jWrite.close();
-
-/*
-        jGen.writeStartArray()
-                .write(planetList.toString())
-                .writeEnd()
-                .writeStartArray()
-                .write(targetList.toString())
-                .writeEnd();
-                jGen.close();
-        System.out.println(jGen.toString());*/
-
     }
 
     @FXML
