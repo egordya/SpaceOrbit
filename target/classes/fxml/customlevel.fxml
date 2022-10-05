@@ -8,7 +8,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -17,7 +16,7 @@
    <children>
       <AnchorPane fx:id="addObjectCustomLevelAnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: black;">
          <children>
-            <Button layoutX="38.0" layoutY="346.0" mnemonicParsing="false" text="Reset" />
+            <Button layoutX="276.0" layoutY="346.0" mnemonicParsing="false" text="Reset" />
             <TextField fx:id="nameInput" layoutX="220.0" layoutY="123.0" promptText="Object Name" />
             <Text fill="WHITE" layoutX="168.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:" />
             <Text fill="WHITE" layoutX="33.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Radius:" />
@@ -50,8 +49,8 @@
                   </FXCollections>
                </items>
             </ChoiceBox>
-            <ImageView fx:id="planetPreview" fitHeight="80.0" fitWidth="105.0" layoutX="247.0" layoutY="306.0" pickOnBounds="true" preserveRatio="true" />
             <Button layoutX="468.0" layoutY="312.0" mnemonicParsing="false" onAction="#submitButton" text="Add Object" />
+            <Button fx:id="backToList" layoutX="30.0" layoutY="346.0" mnemonicParsing="false" text="Back" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="levelOverviewAnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: black;">
@@ -77,7 +76,7 @@
                   <Font size="21.0" />
                </font>
             </Label>
-            <Button layoutX="257.0" layoutY="344.0" mnemonicParsing="false" text="Main Menu" />
+            <Button fx:id="toMainMenu" layoutX="257.0" layoutY="344.0" mnemonicParsing="false" text="Main Menu" />
          </children>
       </AnchorPane>
    </children>

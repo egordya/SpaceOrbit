@@ -150,7 +150,6 @@ public class CustomLevelController extends AnchorPane {
                 .writeStartArray()
                 .write(targetList.toString())
                 .writeEnd();
-
                 jGen.close();
         System.out.println(jGen.toString());*/
 
