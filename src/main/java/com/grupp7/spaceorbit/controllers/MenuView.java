@@ -68,10 +68,11 @@ public class MenuView extends AnchorPane{
 
     public String[] getRemainingLevels() {return null;}
 
-    public String getCurrentLevel(ActionEvent e){
-        Button bp = (Button) e.getTarget();
-        String path = "src/main/resources/json/levels/" + bp.getText() + "json";
-        return path;
+    public String getCurrentLevel(){
+        //Button bp = (Button) e.getTarget();
+        //String path = "src/main/resources/json/levels/" + bp.getText() + "json";
+        //return path;
+        return null;
     }
 
 }
