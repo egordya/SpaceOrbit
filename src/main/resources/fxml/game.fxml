@@ -11,7 +11,7 @@
    <children>
       <HBox fx:id="winBox">
          <Button layoutX="36.0" layoutY="14.0" mnemonicParsing="false" onAction="#restart" text="Restart" />
-         <Button layoutX="36.0" layoutY="14.0" mnemonicParsing="false" text="Next Level" />
+         <Button layoutX="36.0" layoutY="14.0" mnemonicParsing="false" onAction="#nextLevel" text="Next Level"/>
          <Button layoutX="36.0" layoutY="14.0" mnemonicParsing="false" onAction="#backToMainMenu" text="main menu test" />
       </HBox>
       <Pane fx:id="renderSurface" layoutX="10.0" layoutY="86.0" prefHeight="277.0" prefWidth="580.0" />
