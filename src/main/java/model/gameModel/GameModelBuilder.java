@@ -53,7 +53,7 @@ public class GameModelBuilder {
         double posY = Double.parseDouble(jsonObject.get("posY").toString());
         double velX = Double.parseDouble(jsonObject.get("velX").toString());
         double velY = Double.parseDouble(jsonObject.get("velY").toString());
-        String img_path = jsonObject.get("img_path").toString();
+        String img_path = jsonObject.get("img_path").toString().replace("\"", "");
 
         Vector2D positionVec = new Vector2D(posX, posY);
         Vector2D velocityVec = new Vector2D(velX, velY);
