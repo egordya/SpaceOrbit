@@ -70,16 +70,16 @@
     }
   ],
   "target": [
-  {
-    "name": "target1",
-    "mass": 786000000000000.0,
-    "radius": 15,
-    "isAffectedByGravity": false,
-    "posX": 275,
-    "posY": 20,
-    "velX": 0,
-    "velY": 0,
-    "img_path": ""
-  }
-]
+    {
+      "name": "target1",
+      "mass": 786000000000000.0,
+      "radius": 15,
+      "isAffectedByGravity": false,
+      "posX": 275,
+      "posY": 20,
+      "velX": 0,
+      "velY": 0,
+      "img_path": ""
+    }
+  ]
 }

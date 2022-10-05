@@ -17,7 +17,7 @@ public class GameModelBuilder {
 
 
         String jsonPath = "src/main/resources/json/levels/level2.json";
-        InputStream levelTest = new FileInputStream(jsonPath);
+        InputStream levelTest = new FileInputStream(pathToJsonLevel);
         JsonReader reader = Json.createReader(levelTest);
         JsonObject levelObject = reader.readObject();
         reader.close();

@@ -22,7 +22,6 @@ public class CelestialObject implements ObjectForGravitationModel, Collisionable
     private String type;
 
 
-
     public CelestialObject(Vector2D position, Vector2D velocityVector, double mass, double radius, String imagePath,
                            boolean isAffectedByGravity, String name, String type) {
         this.position = position;
@@ -112,7 +111,7 @@ public class CelestialObject implements ObjectForGravitationModel, Collisionable
     }
 
     @Override
-    public Shape getGeometry() {
+    public Circle getGeometry() {   //Här är det en dålig ändring JIPPIEE!!!
         return Geometry;
     }
 
