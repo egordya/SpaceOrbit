@@ -14,7 +14,6 @@ public class MenuModel {
         File folder = new File(pathToLevels);
         File[] listOfFiles = folder.listFiles();
 
-
         ArrayList<String> paths = new ArrayList<>();
 
         for (File file : listOfFiles) {

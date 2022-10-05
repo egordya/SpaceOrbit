@@ -3,6 +3,7 @@ package com.grupp7.spaceorbit.controllers;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.shape.Circle;
 import model.gameModel.GameModel;
 
 public class GameController implements EventHandler<MouseEvent> {
@@ -31,7 +32,6 @@ public class GameController implements EventHandler<MouseEvent> {
         else{
             throw new IllegalArgumentException("EventType not implemented");
         }
-
     }
 
 

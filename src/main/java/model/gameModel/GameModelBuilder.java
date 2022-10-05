@@ -13,7 +13,6 @@ import javax.json.*;
 
 public class GameModelBuilder {
 
-
     public static GameModel getGameModel(String pathToJsonLevel) throws FileNotFoundException {
 
 
