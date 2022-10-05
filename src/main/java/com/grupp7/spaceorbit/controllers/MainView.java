@@ -23,7 +23,7 @@ public class MainView implements Initializable, Mediator{
     public void initialize(URL url, ResourceBundle resourceBundle) {
         menuView = new MenuView(this, new MenuModel());
         gameView = new GameView(this);
-        
+
         theStackPane.getChildren().add(gameView);
         theStackPane.getChildren().add(menuView);
 

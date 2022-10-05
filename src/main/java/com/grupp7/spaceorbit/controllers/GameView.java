@@ -3,9 +3,11 @@ package com.grupp7.spaceorbit.controllers;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Line;
 import model.gameModel.GameModel;
 import model.gameModel.GameModelBuilder;
@@ -31,6 +33,8 @@ public class GameView extends AnchorPane implements Observer {
     GameController gameController;
     String pathToCurrentLevel;
     String[] allNextLevelPaths;
+
+    Image test = new Image(getClass().getResource("/img/testhole3.gif").toString());
 
     public GameView(Mediator mediator) {
 
@@ -105,8 +109,10 @@ public class GameView extends AnchorPane implements Observer {
             renderSurface.getChildren().add(p.getGeometry());
         }
 
+        // man måste cachea bilderna / gif
         for (Drawable p : targets){
             renderSurface.getChildren().add(p.getGeometry());
+            p.getGeometry().setFill(new ImagePattern(test));
         }
 
         if(gameModel.getShowPlayerArrows()){
@@ -134,10 +140,7 @@ public class GameView extends AnchorPane implements Observer {
     @FXML
     private void restart() throws FileNotFoundException {
         gameModel.togglePauseGame();
-        this.gameModel = GameModelBuilder.getGameModel(pathToCurrentLevel);
-        this.gameModel.addObserver(this);
-        this.gameController.setGameModel(gameModel);
-        showObjects();
+        loadGameModel(pathToCurrentLevel, allNextLevelPaths);
     }
 
     @FXML

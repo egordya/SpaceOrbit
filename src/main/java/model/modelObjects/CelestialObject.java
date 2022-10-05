@@ -41,9 +41,6 @@ public class CelestialObject implements ObjectForGravitationModel, Collisionable
         updateHitBoxPos();
 
 
-        Image test = new Image(getClass().getResource(imagePath).toString());
-        Geometry.setFill(new ImagePattern(test));
-
 
 
     }
