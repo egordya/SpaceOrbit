@@ -3,6 +3,7 @@ package model.gameModel;
 import com.grupp7.spaceorbit.controllers.Drawable;
 import model.collisionModel.CollisionModel;
 import model.gravitationModel.GravitationModel;
+import model.modelObjects.ArrowObject;
 import model.modelObjects.CelestialObject;
 import utilitys.Vector2D;
 
@@ -23,6 +24,7 @@ public abstract class AGameModel {
     final long timePeriod = 20;
 
     boolean isRunning = false;
+    boolean isPaused = false;
 
     public void addObserver(Observer observer){
         observers.add(observer);
@@ -33,28 +35,34 @@ public abstract class AGameModel {
     }
 
     public void startGame(){
-        if (!isRunning) {
+        if (!isRunning && !isPaused) {
             this.tr = new Timer();
             this.tr.schedule(getTimerTask(), 0, timePeriod);
             isRunning = true;
         }
     }
 
-    public void pauseGame(){
-        if(isRunning) {
+    public void togglePauseGame(){
+        if(isRunning && !isPaused) {
             tr.cancel();
             isRunning = false;
+            isPaused = true;
+        }
+        else if(!isRunning && isPaused) {
+            isPaused = false;
+            startGame();
         }
     }
 
     public void setPlayerVelocity(Vector2D[] velocitys){
-        if(!isRunning) {
+        if(!isRunning && !isPaused) {
             for (int i = 0; i < players.length; i++) {
                 this.players[i].setVelocityVector(velocitys[i]);
             }
         }
         //fixa för fler spelare senare
     }
+
 
     public Drawable[] getPlayers() {
         return players;
@@ -66,6 +74,10 @@ public abstract class AGameModel {
 
     public Drawable[] getPlanets() {
         return planets;
+    }
+
+    public Drawable gettestArrow(){
+        return new ArrowObject(375.0, 300.0, 100.0, 100.0);
     }
 
     public String[] getAllNextLevelPaths(){

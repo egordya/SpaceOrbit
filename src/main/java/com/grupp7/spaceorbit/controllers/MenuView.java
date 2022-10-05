@@ -1,19 +1,26 @@
 package com.grupp7.spaceorbit.controllers;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import model.menuModel.MenuModel;
+import javafx.event.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Arrays;
 
 public class MenuView extends AnchorPane{
     Mediator mediator;
     MenuModel model;
+
+    @FXML
+    FlowPane lvlSelectorPane;
 
     public MenuView(Mediator mediator, MenuModel model) {
 
@@ -45,11 +52,28 @@ public class MenuView extends AnchorPane{
     @FXML
     public void quitgame(){System.exit(0);}
 
+    @FXML
+    public void lvlSelector() {
+        this.getChildren().clear();
+
+        this.getChildren().add(lvlSelectorPane);
+        File[] lvlfolder = new File("src/main/resources/json/levels").listFiles();
+
+        for (File file : lvlfolder) {
+            if (file.isFile()) {
+                lvlSelectorPane.getChildren().add(new Button((file.getName().replaceFirst("[.][^.]+$", ""))));}}}
 
 
-    public String[] getRemainingLevels() {
-        return null;
+
+
+    public String[] getRemainingLevels() {return null;}
+
+    public String getCurrentLevel(ActionEvent e){
+        Button bp = (Button) e.getTarget();
+        String path = "src/main/resources/json/levels/" + bp.getText() + "json";
+        return path;
     }
+
 }
 
 

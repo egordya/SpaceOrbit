@@ -1,10 +1,8 @@
 package com.grupp7.spaceorbit.controllers;
 
 import javafx.application.Platform;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -13,7 +11,6 @@ import model.gameModel.GameModel;
 import model.gameModel.GameModelBuilder;
 import model.gameModel.Observer;
 import model.gameModel.ObserverCommand;
-import utilitys.Vector2D;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -64,7 +61,7 @@ public class GameView extends AnchorPane implements Observer {
                 anchor.getChildren().add(winBox);
             });
 
-            gameModel.pauseGame();
+            gameModel.togglePauseGame();
             System.out.println("win");
         } else if (command == ObserverCommand.Update) {
             Platform.runLater(() -> {
@@ -128,6 +125,8 @@ public class GameView extends AnchorPane implements Observer {
         for (Drawable p : targets){
             renderSurface.getChildren().add(p.getGeometry());
         }
+
+        renderSurface.getChildren().add(gameModel.gettestArrow().getGeometry());
     }
 
     private void drawArrow(double[] setX, double[] setY) {
@@ -155,7 +154,7 @@ public class GameView extends AnchorPane implements Observer {
 
     @FXML
     private void pause(){
-        gameModel.pauseGame();
+        gameModel.togglePauseGame();
     }
 
     @FXML
@@ -165,7 +164,7 @@ public class GameView extends AnchorPane implements Observer {
 
     @FXML
     private void restart() throws FileNotFoundException {
-        gameModel.pauseGame();
+        gameModel.togglePauseGame();
         this.gameModel = GameModelBuilder.getGameModel(pathToCurrentLevel);
         this.gameModel.addObserver(this);
         showObjects();
@@ -173,7 +172,7 @@ public class GameView extends AnchorPane implements Observer {
 
     @FXML
     private void backToMainMenu() throws FileNotFoundException {
-        gameModel.pauseGame();
+        gameModel.togglePauseGame();
         this.gameModel = null;
         mediator.notify(this, MediatorCommand.STANDARD);
     }

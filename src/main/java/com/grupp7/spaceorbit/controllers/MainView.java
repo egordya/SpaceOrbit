@@ -35,6 +35,7 @@ public class MainView implements Initializable, Mediator{
             theStackPane.getChildren().clear();
             theStackPane.getChildren().add(gameView);
 
+
             //String[] levelPaths = menuView.getRemainingLevels();
             //List<String> levelPathsList = Arrays.stream(levelPaths).toList();
 
@@ -42,7 +43,7 @@ public class MainView implements Initializable, Mediator{
             //levelPathsList.remove(firstLevelPath);
             //String[] levelPathsArray = levelPathsList.toArray(new String[0]);
 
-            gameView.loadGameModel("firstLevelPath", null);
+            gameView.loadGameModel(menuView.getCurrentLevel(), null);
         }
 
         else if (pointer == gameView) {
