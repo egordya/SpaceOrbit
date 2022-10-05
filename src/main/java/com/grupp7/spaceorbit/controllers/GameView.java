@@ -61,8 +61,6 @@ public class GameView extends AnchorPane implements Observer {
         renderSurface.setOnMouseDragged(gameController);
 
         showObjects();
-
-        // för test, ta bort när klart
     }
 
     @Override
@@ -82,13 +80,13 @@ public class GameView extends AnchorPane implements Observer {
         }
         else if(command == ObserverCommand.Restart){
 
-                Platform.runLater(() -> {
-                    try {
-                        restart();
-                    } catch (FileNotFoundException e) {
-                        throw new RuntimeException(e);
-                    }
-                });
+            Platform.runLater(() -> {
+                try {
+                    restart();
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
+            });
         }
     }
 
