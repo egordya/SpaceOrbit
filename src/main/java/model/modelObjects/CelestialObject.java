@@ -1,7 +1,10 @@
 package model.modelObjects;
 
 import com.grupp7.spaceorbit.controllers.Drawable;
+import javafx.application.Platform;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
 import model.collisionModel.Collisionable;
@@ -35,14 +38,22 @@ public class CelestialObject implements ObjectForGravitationModel, Collisionable
         this.name = name;
         this.type = type;
 
-      
         updateHitBoxPos();
+
+
+        Image test = new Image(getClass().getResource(imagePath).toString());
+        Geometry.setFill(new ImagePattern(test));
+
+
+
     }
 
 
     public void updateHitBoxPos(){
+
         this.Geometry.setCenterX(this.getPos().getX());
         this.Geometry.setCenterY(this.getPos().getY());
+
     }
 
 

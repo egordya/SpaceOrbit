@@ -2,6 +2,7 @@ package com.grupp7.spaceorbit.controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.StackPane;
 import model.menuModel.MenuModel;
 
@@ -22,9 +23,10 @@ public class MainView implements Initializable, Mediator{
     public void initialize(URL url, ResourceBundle resourceBundle) {
         menuView = new MenuView(this, new MenuModel());
         gameView = new GameView(this);
-
+        
         theStackPane.getChildren().add(gameView);
         theStackPane.getChildren().add(menuView);
+
 
     }
 
