@@ -37,17 +37,17 @@
       "name": "planet4",
       "mass": 7000000000000000.0,
       "radius": 6,
-      "isAffectedByGravity": false,
+      "isAffectedByGravity": true,
       "posX": 200,
       "posY": 200,
-      "velX": 0,
-      "velY": 0,
+      "velX": 10,
+      "velY": 20,
       "img_path": "/tothemoon.gif"
     }
   ],
   "playerObject": [
     {
-      "name": "playerObj",
+      "name": "playerObj1",
       "mass": 4,
       "radius": 3,
       "isAffectedByGravity": true,
@@ -58,7 +58,7 @@
       "img_path": ""
     },
     {
-      "name": "playerObj",
+      "name": "playerObj2",
       "mass": 4,
       "radius": 3,
       "isAffectedByGravity": true,
