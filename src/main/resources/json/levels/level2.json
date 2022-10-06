@@ -9,7 +9,7 @@
       "posY": 200,
       "velX": 0,
       "velY": 0,
-      "img_path": "/test/hest/best/yes-t.png"
+      "img_path": "/img/kanye.jpg"
     },
     {
       "name": "planet2",
@@ -20,18 +20,7 @@
       "posY": 100,
       "velX": 0,
       "velY": 0,
-      "img_path": "/planet.gif"
-    },
-    {
-      "name": "planet4",
-      "mass": 7000000000000000.0,
-      "radius": 6,
-      "isAffectedByGravity": false,
-      "posX": 200,
-      "posY": 100,
-      "velX": 0,
-      "velY": 0,
-      "img_path": "/planet.gif"
+      "img_path": "/img/kanye.jpg"
     },
     {
       "name": "planet3",
@@ -39,47 +28,58 @@
       "radius": 6,
       "isAffectedByGravity": false,
       "posX": 200,
+      "posY": 100,
+      "velX": 0,
+      "velY": 0,
+      "img_path": "/img/kanye.jpg"
+    },
+    {
+      "name": "planet4",
+      "mass": 7000000000000000.0,
+      "radius": 6,
+      "isAffectedByGravity": false,
+      "posX": 200,
       "posY": 200,
       "velX": 0,
       "velY": 0,
-      "img_path": "/tothemoon.gif"
+      "img_path": "/img/kanye.jpg"
     }
   ],
   "playerObject": [
     {
       "name": "playerObj",
       "mass": 4,
-      "radius": 3,
+      "radius": 10,
       "isAffectedByGravity": true,
       "posX": 375,
       "posY": 300,
       "velX": -9,
       "velY": -23.5,
-      "img_path": ""
+      "img_path": "/img/kanye.jpg"
     },
     {
       "name": "playerObj",
       "mass": 4,
-      "radius": 3,
+      "radius": 10,
       "isAffectedByGravity": true,
       "posX": 175,
       "posY": 300,
       "velX": -9,
       "velY": -23.5,
-      "img_path": ""
+      "img_path": "/img/kanye.jpg"
     }
   ],
   "target": [
   {
     "name": "target1",
     "mass": 786000000000000.0,
-    "radius": 15,
+    "radius": 25,
     "isAffectedByGravity": false,
     "posX": 275,
     "posY": 20,
     "velX": 0,
     "velY": 0,
-    "img_path": ""
+    "img_path": "/img/kanye.jpg"
   }
 ]
 }

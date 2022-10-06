@@ -13,12 +13,11 @@ import javax.json.*;
 
 public class GameModelBuilder {
 
-
     public static GameModel getGameModel(String pathToJsonLevel) throws FileNotFoundException {
 
 
         String jsonPath = "src/main/resources/json/levels/level2.json";
-        InputStream levelTest = new FileInputStream(jsonPath);
+        InputStream levelTest = new FileInputStream(pathToJsonLevel);
         JsonReader reader = Json.createReader(levelTest);
         JsonObject levelObject = reader.readObject();
         reader.close();
@@ -54,7 +53,7 @@ public class GameModelBuilder {
         double posY = Double.parseDouble(jsonObject.get("posY").toString());
         double velX = Double.parseDouble(jsonObject.get("velX").toString());
         double velY = Double.parseDouble(jsonObject.get("velY").toString());
-        String img_path = jsonObject.get("img_path").toString();
+        String img_path = jsonObject.get("img_path").toString().replace("\"", "");
 
         Vector2D positionVec = new Vector2D(posX, posY);
         Vector2D velocityVec = new Vector2D(velX, velY);

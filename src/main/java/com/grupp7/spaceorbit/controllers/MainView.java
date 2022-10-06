@@ -2,6 +2,7 @@ package com.grupp7.spaceorbit.controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.StackPane;
 import model.menuModel.MenuModel;
 
@@ -26,6 +27,7 @@ public class MainView implements Initializable, Mediator{
         theStackPane.getChildren().add(gameView);
         theStackPane.getChildren().add(menuView);
 
+
     }
 
 
@@ -35,6 +37,7 @@ public class MainView implements Initializable, Mediator{
             theStackPane.getChildren().clear();
             theStackPane.getChildren().add(gameView);
 
+
             //String[] levelPaths = menuView.getRemainingLevels();
             //List<String> levelPathsList = Arrays.stream(levelPaths).toList();
 
@@ -42,7 +45,8 @@ public class MainView implements Initializable, Mediator{
             //levelPathsList.remove(firstLevelPath);
             //String[] levelPathsArray = levelPathsList.toArray(new String[0]);
 
-            gameView.loadGameModel("firstLevelPath", null);
+            //gameView.loadGameModel(menuView.getCurrentLevel(), null);
+            gameView.loadGameModel("src/main/resources/json/levels/level2.json", null);
         }
 
         else if (pointer == gameView) {

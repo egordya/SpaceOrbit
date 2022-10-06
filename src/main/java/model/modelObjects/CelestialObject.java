@@ -1,6 +1,10 @@
 package model.modelObjects;
 
 import com.grupp7.spaceorbit.controllers.Drawable;
+import javafx.application.Platform;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
 import model.collisionModel.Collisionable;
@@ -22,7 +26,6 @@ public class CelestialObject implements ObjectForGravitationModel, Collisionable
     private String type;
 
 
-
     public CelestialObject(Vector2D position, Vector2D velocityVector, double mass, double radius, String imagePath,
                            boolean isAffectedByGravity, String name, String type) {
         this.position = position;
@@ -36,12 +39,19 @@ public class CelestialObject implements ObjectForGravitationModel, Collisionable
         this.type = type;
 
         updateHitBoxPos();
+
+
+
+
     }
 
 
     public void updateHitBoxPos(){
-        this.Geometry.setCenterX(this.getPos().getX());
-        this.Geometry.setCenterY(this.getPos().getY());
+        Platform.runLater(() -> {
+            this.Geometry.setCenterX(this.getPos().getX());
+            this.Geometry.setCenterY(this.getPos().getY());
+        });
+
     }
 
 
@@ -112,7 +122,7 @@ public class CelestialObject implements ObjectForGravitationModel, Collisionable
     }
 
     @Override
-    public Shape getGeometry() {
+    public Circle getGeometry() {   //Här är det en dålig ändring JIPPIEE!!!
         return Geometry;
     }
 

@@ -3,6 +3,7 @@ package model.gameModel;
 import com.grupp7.spaceorbit.controllers.Drawable;
 import model.collisionModel.CollisionModel;
 import model.gravitationModel.GravitationModel;
+import model.modelObjects.ArrowObject;
 import model.modelObjects.CelestialObject;
 import utilitys.Vector2D;
 
@@ -12,48 +13,66 @@ import java.util.TimerTask;
 
 public abstract class AGameModel {
 
-    String[] allNextLevelPaths;
     GravitationModel gravitationModel = new GravitationModel();
     CollisionModel collisionModel = new CollisionModel();
     CelestialObject[] players;
     CelestialObject[] targets;
     CelestialObject[] planets;
+
+    ArrowObject[] playerArrows = new ArrowObject[0];
     ArrayList<Observer> observers = new ArrayList<>();
     Timer tr;
-    final long timePeriod = 20;
+    final long timePeriod = 1;
 
+    boolean showArrows = true;
     boolean isRunning = false;
+    boolean isPaused = false;
 
     public void addObserver(Observer observer){
         observers.add(observer);
     }
 
-    public void setAllNextLevelPaths(String[] allNextLevelPaths) {
-        this.allNextLevelPaths = allNextLevelPaths;
-    }
-
     public void startGame(){
-        if (!isRunning) {
+        if (!isRunning && !isPaused) {
             this.tr = new Timer();
             this.tr.schedule(getTimerTask(), 0, timePeriod);
             isRunning = true;
         }
     }
 
-    public void pauseGame(){
-        if(isRunning) {
+    public void togglePauseGame(){
+        if(isRunning && !isPaused) {
             tr.cancel();
             isRunning = false;
+            isPaused = true;
+        }
+        else if(!isRunning && isPaused) {
+            isPaused = false;
+            startGame();
         }
     }
 
     public void setPlayerVelocity(Vector2D[] velocitys){
-        if(!isRunning) {
+        if(!isRunning && !isPaused) {
             for (int i = 0; i < players.length; i++) {
                 this.players[i].setVelocityVector(velocitys[i]);
             }
         }
         //fixa för fler spelare senare
+    }
+
+    public void setPlayersArrow(Vector2D delta){
+        ArrayList<ArrowObject> arrows = new ArrayList<>();
+        for (int i = 0; i<players.length; i++){
+            arrows.add(new ArrowObject(players[i].getPos(), players[i].getPos().add(delta)));
+        }
+        playerArrows = arrows.toArray(new ArrowObject[0]);
+        notifyObservers(ObserverCommand.Update);
+    }
+
+    public void SetShowPlayerArrows(boolean show){
+        showArrows = show;
+        notifyObservers(ObserverCommand.Update);
     }
 
     public Drawable[] getPlayers() {
@@ -68,8 +87,12 @@ public abstract class AGameModel {
         return planets;
     }
 
-    public String[] getAllNextLevelPaths(){
-        return allNextLevelPaths;
+    public Drawable[] getPlayerArrows(){
+        return playerArrows;
+    }
+
+    public boolean getShowPlayerArrows(){
+        return showArrows;
     }
 
     //package private

@@ -3,13 +3,21 @@ package com.grupp7.spaceorbit.controllers;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.shape.Line;
 import model.gameModel.GameModel;
+import utilitys.Vector2D;
 
 public class GameController implements EventHandler<MouseEvent> {
 
     private GameModel model;
 
+    private Vector2D pressedPos = new Vector2D(0,0);
+
     public GameController(GameModel model) {
+        this.model = model;
+    }
+
+    public void setGameModel(GameModel model){
         this.model = model;
     }
 
@@ -31,42 +39,33 @@ public class GameController implements EventHandler<MouseEvent> {
         else{
             throw new IllegalArgumentException("EventType not implemented");
         }
-
     }
 
 
     private void handleMousePressed(MouseEvent mouseEvent){
-    //    rX = e.getX();
-    //    rY = e.getY();
+        pressedPos = new Vector2D(mouseEvent.getX(), mouseEvent.getY());
     }
 
     private void handleMouseReleased(MouseEvent mouseEvent){
-        //double deltaX = e.getX() - pX;
-        //double deltaY = e.getY() - pY;
-        //shoot();
+        Vector2D releasedPos = new Vector2D(mouseEvent.getX(), mouseEvent.getY());
+
+        Vector2D[] vectors = new Vector2D[model.getPlayers().length];
+        for(int i = 0; i<model.getPlayers().length; i++){
+            vectors[i] = releasedPos.sub(pressedPos);
+        }
+
+        model.SetShowPlayerArrows(false);
+        model.setPlayerVelocity(vectors);
+        model.startGame();
+
     }
 
     private void handleMouseDragged(MouseEvent mouseEvent){
-        //double[] setX = new double[gameModel.getPlayers().length];
-        //double[] setY = new double[gameModel.getPlayers().length];
-        //int i = 0;
-        //for(Drawable x : gameModel.getPlayers()) {
-        //    setX[i] = x.getXPos() + deltaX;
-        //   setY[i] = x.getYPos() + deltaY;
-        //    i++;
+        Vector2D draggedPos = new Vector2D(mouseEvent.getX(), mouseEvent.getY());
+        Vector2D delta = draggedPos.sub(pressedPos);
+        model.setPlayersArrow(delta);
+
     }
 
-    private void shoot(){
-        //double vY  = (rY - pY);
-        //double vX = (rX - pX);
 
-
-        //Vector2D[] vectors = new Vector2D[gameModel.getPlayers().length];
-        //for(int i = 0; i<gameModel.getPlayers().length; i++){
-        //    vectors[i] = new Vector2D(vX, vY);
-       //}
-
-        //gameModel.setPlayerVelocity(vectors);
-        //gameModel.startGame();
-    }
 }

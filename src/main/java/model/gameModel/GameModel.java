@@ -50,10 +50,10 @@ public class GameModel extends AGameModel{
     void gameStep(double time){
         simulationStep(time);
         handleCollisions();
-        handleWinLose();
+        handleWin();
     }
 
-    private void handleWinLose() {
+    private void handleWin() {
         if (players.length == 0){
             notifyObservers(ObserverCommand.Win);
         }
@@ -78,6 +78,9 @@ public class GameModel extends AGameModel{
             players.remove(players.get(players.indexOf(x.getFirstCollided())));
             this.players = players.toArray(new CelestialObject[0]);
             notifyObservers(ObserverCommand.Update);
+        }
+        else if(x.getFirstCollided().getType().equals("player") && x.getSecondCollided().getType().equals("planet")){
+            notifyObservers(ObserverCommand.Restart);
         }
     }
 
