@@ -21,7 +21,6 @@ import java.util.TimerTask;
 public class HelloApplication extends Application {
 
     double day = 0.0;
-
     private Stage stage;
 
     @Override
@@ -35,7 +34,6 @@ public class HelloApplication extends Application {
 
     public void startGameMain(){
         CelestialObject[] planteter = {
-
                 new CelestialObject(new Vector2D(10000000000000.0 * 3, 28558.9 * Math.pow(10,6) * Math.pow(10,3) * 3), new Vector2D(-21.5 * Math.pow(10,3), -60.0 * Math.pow(10,3)), 1.989 * Math.pow(10,30) * 10, 2),
                 new CelestialObject(new Vector2D(0, 0), new Vector2D(0, 0), 1.989 * Math.pow(10,30), 2),
                 new CelestialObject(new Vector2D(0, 69.8 * Math.pow(10,6) * Math.pow(10,3)), new Vector2D(38.86 * Math.pow(10,3), 0), 0.330 * Math.pow(10,24), 2),
