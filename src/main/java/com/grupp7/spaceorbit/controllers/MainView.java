@@ -16,12 +16,15 @@ public class MainView implements Initializable, Mediator{
 
     MenuView menuView;
     GameView gameView;
+    CustomLevelController customLevelController;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         menuView = new MenuView(this, new MenuModel());
         gameView = new GameView(this);
+        customLevelController = new CustomLevelController(this);
+
 
         theStackPane.getChildren().add(gameView);
         theStackPane.getChildren().add(menuView);
@@ -46,6 +49,11 @@ public class MainView implements Initializable, Mediator{
 
             //gameView.loadGameModel(menuView.getCurrentLevel(), null);
             gameView.loadGameModel("src/main/resources/json/levels/level2.json", null);
+        }
+
+        if((pointer == menuView) && (command == MediatorCommand.BUILDLVL)){
+            theStackPane.getChildren().clear();
+            theStackPane.getChildren().add(customLevelController);
         }
 
         else if (pointer == gameView) {
