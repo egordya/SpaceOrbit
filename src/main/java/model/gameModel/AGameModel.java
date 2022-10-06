@@ -22,7 +22,7 @@ public abstract class AGameModel {
     ArrowObject[] playerArrows = new ArrowObject[0];
     ArrayList<Observer> observers = new ArrayList<>();
     Timer tr;
-    final long timePeriod = 1;
+    final long timePeriod = 10;
 
     boolean showArrows = true;
     boolean isRunning = false;
