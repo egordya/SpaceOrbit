@@ -1,29 +1,13 @@
 package com.grupp7.spaceorbit;
 
 import javafx.application.Application;
-
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-
 import javafx.stage.Stage;
-
 import javafx.stage.WindowEvent;
-import model.gameModel.GameModel;
-import model.gameModel.GameModelBuilder;
-import model.gravitationModel.GravitationModel;
-import model.modelObjects.CelestialObject;
-import model.gravitationModel.ObjectForGravitationModel;
-import utilitys.Vector2D;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class HelloApplication extends Application {
 
@@ -47,10 +31,6 @@ public class HelloApplication extends Application {
         });
 
         stage.show();
-
-
-
-
 
     }
 
