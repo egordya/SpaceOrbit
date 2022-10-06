@@ -7,6 +7,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Line;
 import model.gameModel.GameModel;
@@ -35,6 +36,8 @@ public class GameView extends AnchorPane implements Observer {
     String[] allNextLevelPaths;
 
     Image test = new Image(getClass().getResource("/img/testhole3.gif").toString());
+    Image test2 = new Image(getClass().getResource("/img/kanye.jpg").toString());
+    Image test3 = new Image(getClass().getResource("/img/testtst2.gif").toString());
 
     public GameView(Mediator mediator) {
 
@@ -102,11 +105,14 @@ public class GameView extends AnchorPane implements Observer {
         renderSurface.getChildren().clear();
 
         for (Drawable p : planets){
+            p.getGeometry().setFill(new ImagePattern(test3));
             renderSurface.getChildren().add(p.getGeometry());
         }
 
         for (Drawable p : players){
+            p.getGeometry().setFill(new ImagePattern(test2));
             renderSurface.getChildren().add(p.getGeometry());
+
         }
 
         // man måste cachea bilderna / gif
@@ -118,6 +124,7 @@ public class GameView extends AnchorPane implements Observer {
         if(gameModel.getShowPlayerArrows()){
             Drawable[] arrows = gameModel.getPlayerArrows();
             for (Drawable p : arrows){
+                p.getGeometry().setStroke(Color.WHITE);
                 renderSurface.getChildren().add(p.getGeometry());
             }
         }

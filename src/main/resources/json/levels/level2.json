@@ -49,7 +49,7 @@
     {
       "name": "playerObj",
       "mass": 4,
-      "radius": 5,
+      "radius": 10,
       "isAffectedByGravity": true,
       "posX": 375,
       "posY": 300,
@@ -60,7 +60,7 @@
     {
       "name": "playerObj",
       "mass": 4,
-      "radius": 5,
+      "radius": 10,
       "isAffectedByGravity": true,
       "posX": 175,
       "posY": 300,
