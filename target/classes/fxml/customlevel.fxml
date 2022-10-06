@@ -24,14 +24,7 @@
             <Text fill="WHITE" layoutX="31.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Static: " />
             <TextField fx:id="massInput" layoutX="168.0" layoutY="209.0" prefHeight="26.0" prefWidth="77.0" promptText="9999" text="99999" />
             <Text fill="WHITE" layoutX="33.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mass:" />
-            <ComboBox fx:id="staticComboBoxInput" layoutX="168.0" layoutY="247.0" prefHeight="26.0" prefWidth="77.0" promptText="False" >
-            <items>
-               <FXCollections fx:factory="observableArrayList">
-                  <String fx:value="false" />
-                  <String fx:value="true" />
-               </FXCollections>
-            </items>
-            </ComboBox>
+            <ComboBox fx:id="staticComboBoxInput" layoutX="168.0" layoutY="247.0" prefHeight="26.0" prefWidth="77.0" promptText="False" />
             <Button layoutX="468.0" layoutY="346.0" mnemonicParsing="false" onAction="#submitButtonTwo" text="Done" />
             <Text fill="WHITE" layoutX="333.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start Position" />
             <TextField fx:id="startXInput" layoutX="468.0" layoutY="173.0" prefHeight="26.0" prefWidth="77.0" promptText="X" text="0" />
@@ -41,14 +34,9 @@
             <ComboBox fx:id="imageComboBoxInput" layoutX="468.0" layoutY="247.0" prefHeight="26.0" prefWidth="77.0" promptText="Add">
             <items>
                <FXCollections fx:factory="observableArrayList">
-                  <String fx:value="---Planets---" />
-                  <String fx:value="Dark Green" />
-                  <String fx:value="Light Green" />
-                  <String fx:value="Cloudy Blue" />
-                  <String fx:value="Hazy Clouds" />
+                  <String fx:value="Green Planet" />
+                  <String fx:value="Blue Planet" />
                   <String fx:value="PlaKanyet West" />
-                  <String fx:value="---Player Objects---" />
-                  <String fx:value="Black and White" />
                </FXCollections>
             </items>
             </ComboBox>
