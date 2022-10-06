@@ -46,6 +46,7 @@
                   <FXCollections fx:factory="observableArrayList">
                      <String fx:value="Planet" />
                      <String fx:value="Target" />
+                     <String fx:value="Player" />
                   </FXCollections>
                </items>
             </ChoiceBox>

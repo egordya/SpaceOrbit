@@ -93,31 +93,37 @@ public class CustomLevelController extends AnchorPane {
         String imagePath = imageComboBoxInput.getValue();
         String type = typeChoiceBox.getValue();
         imageComboBoxInput.getSelectionModel().selectFirst();
+        boolean isFixed = staticComboBoxInput.getValue();
 
-        JsonObject valuetest = Json.createObjectBuilder()
+        switch (imagePath) {
+            case "Green Planet" -> imagePath = "src/main/resources/img/planet_green.gif";
+            case "Blue Planet" -> imagePath = "src/main/resources/img/planet_blue.gif";
+            case "PlaKanyet West" -> imagePath = "src/main/resources/img/kanye.jpg";
+        }
+
+        JsonObject jsonLevelObject = Json.createObjectBuilder()
                     .add("type",type)
                     .add("name", name)
                     .add("mass", mass)
                     .add("startPosX", posX)
                     .add("startPosY", posY)
                     .add("imagePath", imagePath)
+                    .add("fixedPosition", isFixed)
                     .add("radius", radius)
                     .build();
 
-        String type1 = valuetest.getString("type");
-
-        if(type1.equals("Planet")){
-            planetArrayBuilder.add(valuetest);
-        }else if(type1.equals("Target")){
-            targetArrayBuilder.add(valuetest);
+        String typeString = jsonLevelObject.getString("type");
+        if(typeString.equals("Planet")){
+            planetArrayBuilder.add(jsonLevelObject);
+        }else if(typeString.equals("Target")){
+            targetArrayBuilder.add(jsonLevelObject);
         }else{
-            playerArrayBuilder.add(valuetest);
+            playerArrayBuilder.add(jsonLevelObject);
         }
     }
 
     @FXML
     public void submitButtonTwo() throws IOException {
-
         JsonArray planetArray = planetArrayBuilder.build();
         JsonArray targetArray = targetArrayBuilder.build();
         JsonArray playerArray = playerArrayBuilder.build();
@@ -132,6 +138,7 @@ public class CustomLevelController extends AnchorPane {
         JsonWriter jWrite = Json.createWriter(fileWriter);
         jWrite.writeObject(jsonFile);
         jWrite.close();
+
     }
 
     @FXML

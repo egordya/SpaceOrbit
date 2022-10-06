@@ -1,32 +1,20 @@
 package com.grupp7.spaceorbit;
 
 import javafx.application.Application;
-
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
-
 import javafx.stage.Stage;
-
 import model.gravitationModel.GravitationModel;
-import model.modelObjects.CelestialObject;
 import model.gravitationModel.ObjectForGravitationModel;
+import model.modelObjects.CelestialObject;
 import utilitys.Vector2D;
 
-import javax.json.Json;
-import javax.json.JsonObject;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
 
