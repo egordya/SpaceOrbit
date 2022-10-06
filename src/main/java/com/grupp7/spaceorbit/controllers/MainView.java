@@ -2,7 +2,6 @@ package com.grupp7.spaceorbit.controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.StackPane;
 import model.menuModel.MenuModel;
 

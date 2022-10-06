@@ -52,6 +52,13 @@ public class MenuView extends AnchorPane{
     @FXML
     public void quitgame(){System.exit(0);}
 
+
+    @FXML
+    public void buildNewLevel() throws FileNotFoundException {
+        mediator.notify(this, MediatorCommand.BUILDLVL);
+    }
+
+
     @FXML
     public void lvlSelector() {
         this.getChildren().clear();
