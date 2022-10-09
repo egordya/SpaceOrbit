@@ -47,7 +47,7 @@ public class GameModel extends AGameModel{
     }
 
     @Override
-    void gameStep(double time){
+    public void gameStep(double time){
         simulationStep(time);
         handleCollisions();
         handleWin();

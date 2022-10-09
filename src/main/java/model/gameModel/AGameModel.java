@@ -21,8 +21,7 @@ public abstract class AGameModel {
 
     ArrowObject[] playerArrows = new ArrowObject[0];
     ArrayList<Observer> observers = new ArrayList<>();
-    Timer tr;
-    final long timePeriod = 10;
+
 
     boolean showArrows = true;
     boolean isRunning = false;
@@ -32,33 +31,10 @@ public abstract class AGameModel {
         observers.add(observer);
     }
 
-    public void startGame(){
-        if (!isRunning && !isPaused) {
-            this.tr = new Timer();
-            this.tr.schedule(getTimerTask(), 0, timePeriod);
-            isRunning = true;
-        }
-    }
-
-    public void togglePauseGame(){
-        if(isRunning && !isPaused) {
-            tr.cancel();
-            isRunning = false;
-            isPaused = true;
-        }
-        else if(!isRunning && isPaused) {
-            isPaused = false;
-            startGame();
-        }
-    }
-
     public void setPlayerVelocity(Vector2D[] velocitys){
-        if(!isRunning && !isPaused) {
-            for (int i = 0; i < players.length; i++) {
-                this.players[i].setVelocityVector(velocitys[i]);
-            }
+        for (int i = 0; i < players.length; i++) {
+            this.players[i].setVelocityVector(velocitys[i]);
         }
-        //fixa för fler spelare senare
     }
 
     public void setPlayersArrow(Vector2D delta){
@@ -114,16 +90,8 @@ public abstract class AGameModel {
         }
     }
 
-    private TimerTask getTimerTask(){
-        return new TimerTask(){
-            @Override
-            public void run(){
-                gameStep(timePeriod * Math.pow(10, -3));
-            }
-        };
-    }
 
-    abstract void gameStep(double time);
+    abstract public void gameStep(double time);
 
 
 }

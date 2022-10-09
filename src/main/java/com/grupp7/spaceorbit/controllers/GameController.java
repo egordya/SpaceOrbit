@@ -7,11 +7,19 @@ import javafx.scene.shape.Line;
 import model.gameModel.GameModel;
 import utilitys.Vector2D;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class GameController implements EventHandler<MouseEvent> {
 
     private GameModel model;
 
     private Vector2D pressedPos = new Vector2D(0,0);
+
+    final long timePeriod = 15;
+    private Timer tr;
+    private boolean isRunning;
+    private boolean isPaused;
 
     public GameController(GameModel model) {
         this.model = model;
@@ -42,10 +50,30 @@ public class GameController implements EventHandler<MouseEvent> {
     }
 
     public void startGame(){
-
+        if (!isRunning && !isPaused) {
+            this.tr = new Timer();
+            this.tr.schedule(getTimerTask(), 0, timePeriod);
+            isRunning = true;
+        }
     }
 
+    public void togglePauseGame(){
+        if(isRunning && !isPaused) {
+            tr.cancel();
+            isRunning = false;
+            isPaused = true;
+        }
+        else if(!isRunning && isPaused) {
+            isPaused = false;
+            startGame();
+        }
+    }
 
+    public void setPlayerVelocity(Vector2D[] vectors){
+        if(!isRunning && !isPaused) {
+            model.setPlayerVelocity(vectors);
+        }
+    }
 
 
     private void handleMousePressed(MouseEvent mouseEvent){
@@ -61,8 +89,8 @@ public class GameController implements EventHandler<MouseEvent> {
         }
 
         model.SetShowPlayerArrows(false);
-        model.setPlayerVelocity(vectors);
-        model.startGame();
+        setPlayerVelocity(vectors);
+        startGame();
 
     }
 
@@ -71,6 +99,15 @@ public class GameController implements EventHandler<MouseEvent> {
         Vector2D delta = draggedPos.sub(pressedPos);
         model.setPlayersArrow(delta);
 
+    }
+
+    private TimerTask getTimerTask(){
+        return new TimerTask(){
+            @Override
+            public void run(){
+                model.gameStep(timePeriod * Math.pow(10, -3));
+            }
+        };
     }
 
 

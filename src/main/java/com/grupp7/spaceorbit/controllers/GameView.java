@@ -77,7 +77,7 @@ public class GameView extends AnchorPane implements Observer {
                 anchor.getChildren().add(winBox);
             });
 
-            gameModel.togglePauseGame();
+            gameController.togglePauseGame();
             System.out.println("win");
         }
         else if (command == ObserverCommand.Update) {
@@ -133,17 +133,17 @@ public class GameView extends AnchorPane implements Observer {
 
     @FXML
     private void pause(){
-        gameModel.togglePauseGame();
+        gameController.togglePauseGame();
     }
 
     @FXML
     private void resume(){
-        gameModel.startGame();
+        gameController.startGame();
     }
 
     @FXML
     private void restart() throws FileNotFoundException {
-        gameModel.togglePauseGame();
+        gameController.togglePauseGame();
         loadGameModel(pathToCurrentLevel, allNextLevelPaths);
     }
 
@@ -160,7 +160,7 @@ public class GameView extends AnchorPane implements Observer {
 
     @FXML
     private void backToMainMenu() throws FileNotFoundException {
-        gameModel.togglePauseGame();
+        gameController.togglePauseGame();
         this.gameModel = null;
         mediator.notify(this, MediatorCommand.STANDARD);
     }
