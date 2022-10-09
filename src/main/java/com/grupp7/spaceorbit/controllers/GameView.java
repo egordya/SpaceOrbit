@@ -18,6 +18,7 @@ import utilitys.ImageCache;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -101,14 +102,16 @@ public class GameView extends AnchorPane implements Observer {
     }
 
     private void showObjects(){
-        Drawable[] planets = gameModel.getPlanets();
-        Drawable[] players = gameModel.getPlayers();
-        Drawable[] targets = gameModel.getTargets();
+
+        ArrayList<Drawable> DrawableList = new ArrayList<>();
+        DrawableList.addAll(Arrays.stream(gameModel.getPlanets()).toList());
+        DrawableList.addAll(Arrays.stream(gameModel.getPlayers()).toList());
+        DrawableList.addAll(Arrays.stream(gameModel.getTargets()).toList());
+
         anchor.getChildren().remove(winBox);
         renderSurface.getChildren().clear();
 
-        for (Drawable p : planets){
-
+        for (Drawable p : DrawableList){
 
             String path = getClass().getResource(p.getImagePath()).toString();
             imageCache.loadImage(path);
@@ -118,28 +121,6 @@ public class GameView extends AnchorPane implements Observer {
             renderSurface.getChildren().add(p.getGeometry());
         }
 
-        for (Drawable p : players){
-
-            String path = getClass().getResource(p.getImagePath()).toString();
-            imageCache.loadImage(path);
-            Image image = imageCache.getImage(path);
-
-            p.getGeometry().setFill(new ImagePattern(image));
-            renderSurface.getChildren().add(p.getGeometry());
-
-        }
-
-        // man måste cachea bilderna / gif
-        for (Drawable p : targets){
-
-            String path = getClass().getResource(p.getImagePath()).toString();
-            imageCache.loadImage(path);
-            Image image = imageCache.getImage(path);
-
-            p.getGeometry().setFill(new ImagePattern(image));
-            renderSurface.getChildren().add(p.getGeometry());
-
-        }
 
         if(gameModel.getShowPlayerArrows()){
             Drawable[] arrows = gameModel.getPlayerArrows();
