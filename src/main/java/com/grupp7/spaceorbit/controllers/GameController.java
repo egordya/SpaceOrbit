@@ -41,6 +41,12 @@ public class GameController implements EventHandler<MouseEvent> {
         }
     }
 
+    public void startGame(){
+
+    }
+
+
+
 
     private void handleMousePressed(MouseEvent mouseEvent){
         pressedPos = new Vector2D(mouseEvent.getX(), mouseEvent.getY());
