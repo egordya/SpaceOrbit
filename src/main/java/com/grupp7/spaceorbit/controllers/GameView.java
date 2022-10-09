@@ -56,10 +56,10 @@ public class GameView extends AnchorPane implements Observer {
 
     public void loadGameModel(String jsonPath, String[] allNextLevelPaths) throws FileNotFoundException {
         pathToCurrentLevel = jsonPath;
+        this.allNextLevelPaths = allNextLevelPaths;
 
         this.gameModel = GameModelBuilder.getGameModel(jsonPath);
         this.gameModel.addObserver(this);
-        this.allNextLevelPaths = allNextLevelPaths;
 
         this.gameController = new GameController(gameModel);
 
