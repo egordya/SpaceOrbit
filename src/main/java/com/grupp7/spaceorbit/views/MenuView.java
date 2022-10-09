@@ -1,19 +1,15 @@
-package com.grupp7.spaceorbit.controllers;
+package com.grupp7.spaceorbit.views;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import model.menuModel.MenuModel;
-import javafx.event.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Arrays;
 
 public class MenuView extends AnchorPane{
     Mediator mediator;

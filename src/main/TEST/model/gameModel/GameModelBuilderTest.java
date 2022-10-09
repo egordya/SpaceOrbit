@@ -1,10 +1,8 @@
 package model.gameModel;
 
-import com.grupp7.spaceorbit.controllers.Drawable;
 import model.modelObjects.CelestialObject;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import model.gameModel.GameModelBuilder;
 
 import java.io.FileNotFoundException;
 

@@ -1,4 +1,4 @@
-package com.grupp7.spaceorbit.controllers;
+package com.grupp7.spaceorbit.views;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,14 +16,14 @@ public class MainView implements Initializable, Mediator{
 
     MenuView menuView;
     GameView gameView;
-    CustomLevelController customLevelController;
+    CustomLevelView customLevelView;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         menuView = new MenuView(this, new MenuModel());
         gameView = new GameView(this);
-        customLevelController = new CustomLevelController(this);
+        customLevelView = new CustomLevelView(this);
 
 
         theStackPane.getChildren().add(gameView);
@@ -53,7 +53,7 @@ public class MainView implements Initializable, Mediator{
 
         if((pointer == menuView) && (command == MediatorCommand.BUILDLVL)){
             theStackPane.getChildren().clear();
-            theStackPane.getChildren().add(customLevelController);
+            theStackPane.getChildren().add(customLevelView);
         }
 
         else if (pointer == gameView) {

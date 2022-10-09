@@ -1,6 +1,6 @@
 package model.gameModel;
 
-import com.grupp7.spaceorbit.controllers.Drawable;
+import com.grupp7.spaceorbit.views.Drawable;
 import model.collisionModel.CollisionModel;
 import model.gravitationModel.GravitationModel;
 import model.modelObjects.ArrowObject;
@@ -8,8 +8,6 @@ import model.modelObjects.CelestialObject;
 import utilitys.Vector2D;
 
 import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public abstract class AGameModel {
 
