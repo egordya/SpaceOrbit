@@ -14,6 +14,7 @@ import model.gameModel.GameModel;
 import model.gameModel.GameModelBuilder;
 import model.gameModel.Observer;
 import model.gameModel.ObserverCommand;
+import utilitys.ImageCache;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -34,6 +35,8 @@ public class GameView extends AnchorPane implements Observer {
     GameController gameController;
     String pathToCurrentLevel;
     String[] allNextLevelPaths;
+
+    ImageCache imageCache = new ImageCache();
 
     Image test = new Image(getClass().getResource("/img/testhole3.gif").toString());
     Image test2 = new Image(getClass().getResource("/img/kanye.jpg").toString());
@@ -105,20 +108,37 @@ public class GameView extends AnchorPane implements Observer {
         renderSurface.getChildren().clear();
 
         for (Drawable p : planets){
-            p.getGeometry().setFill(new ImagePattern(test3));
+
+
+            String path = getClass().getResource(p.getImagePath()).toString();
+            imageCache.loadImage(path);
+            Image image = imageCache.getImage(path);
+
+            p.getGeometry().setFill(new ImagePattern(image));
             renderSurface.getChildren().add(p.getGeometry());
         }
 
         for (Drawable p : players){
-            p.getGeometry().setFill(new ImagePattern(test2));
+
+            String path = getClass().getResource(p.getImagePath()).toString();
+            imageCache.loadImage(path);
+            Image image = imageCache.getImage(path);
+
+            p.getGeometry().setFill(new ImagePattern(image));
             renderSurface.getChildren().add(p.getGeometry());
 
         }
 
         // man måste cachea bilderna / gif
         for (Drawable p : targets){
+
+            String path = getClass().getResource(p.getImagePath()).toString();
+            imageCache.loadImage(path);
+            Image image = imageCache.getImage(path);
+
+            p.getGeometry().setFill(new ImagePattern(image));
             renderSurface.getChildren().add(p.getGeometry());
-            p.getGeometry().setFill(new ImagePattern(test));
+
         }
 
         if(gameModel.getShowPlayerArrows()){
