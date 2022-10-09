@@ -24,8 +24,6 @@ public abstract class AGameModel {
 
 
     boolean showArrows = true;
-    boolean isRunning = false;
-    boolean isPaused = false;
 
     public void addObserver(Observer observer){
         observers.add(observer);
