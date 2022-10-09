@@ -39,10 +39,6 @@ public class GameView extends AnchorPane implements Observer {
 
     ImageCache imageCache = new ImageCache();
 
-    Image test = new Image(getClass().getResource("/img/testhole3.gif").toString());
-    Image test2 = new Image(getClass().getResource("/img/kanye.jpg").toString());
-    Image test3 = new Image(getClass().getResource("/img/testtst2.gif").toString());
-
     public GameView(Mediator mediator) {
 
         this.mediator = mediator;
