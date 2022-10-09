@@ -1,12 +1,8 @@
 package model.modelObjects;
 
-import com.grupp7.spaceorbit.controllers.Drawable;
+import com.grupp7.spaceorbit.views.Drawable;
 import javafx.application.Platform;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Shape;
 import model.collisionModel.Collisionable;
 import model.gravitationModel.ObjectForGravitationModel;
 import utilitys.Vector2D;

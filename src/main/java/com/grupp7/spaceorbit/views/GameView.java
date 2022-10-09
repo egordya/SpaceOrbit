@@ -1,5 +1,6 @@
-package com.grupp7.spaceorbit.controllers;
+package com.grupp7.spaceorbit.views;
 
+import com.grupp7.spaceorbit.controllers.GameController;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,7 +10,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Line;
 import model.gameModel.GameModel;
 import model.gameModel.GameModelBuilder;
 import model.gameModel.Observer;

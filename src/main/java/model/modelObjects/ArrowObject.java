@@ -1,7 +1,6 @@
 package model.modelObjects;
 
-import com.grupp7.spaceorbit.controllers.Drawable;
-import javafx.scene.shape.Polygon;
+import com.grupp7.spaceorbit.views.Drawable;
 import javafx.scene.shape.Polyline;
 import javafx.scene.shape.Shape;
 import utilitys.Vector2D;

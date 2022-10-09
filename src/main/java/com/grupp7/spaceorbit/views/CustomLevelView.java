@@ -1,4 +1,4 @@
-package com.grupp7.spaceorbit.controllers;
+package com.grupp7.spaceorbit.views;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.io.Writer;
 
 
-public class CustomLevelController extends AnchorPane {
+public class CustomLevelView extends AnchorPane {
 
     @FXML
     private AnchorPane addObjectCustomLevelAnchorPane;
@@ -68,7 +68,7 @@ public class CustomLevelController extends AnchorPane {
     JsonArrayBuilder targetArrayBuilder = Json.createArrayBuilder();
     JsonArrayBuilder playerArrayBuilder = Json.createArrayBuilder();
 
-    public CustomLevelController(Mediator mediator) {
+    public CustomLevelView(Mediator mediator) {
 
         this.mediator = mediator;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/customlevel.fxml"));
