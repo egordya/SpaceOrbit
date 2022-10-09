@@ -43,10 +43,8 @@ public class CelestialObject implements ObjectForGravitationModel, Collisionable
 
 
     public void updateHitBoxPos(){
-        Platform.runLater(() -> {
             this.Geometry.setCenterX(this.getPos().getX());
             this.Geometry.setCenterY(this.getPos().getY());
-        });
 
     }
 
