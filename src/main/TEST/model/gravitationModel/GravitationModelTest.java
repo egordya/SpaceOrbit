@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import utilitys.Vector2D;
 
 class GravitationModelTest {
+/*
 
     //source: https://nssdc.gsfc.nasa.gov/planetary/factsheet/
 
@@ -74,6 +75,7 @@ class GravitationModelTest {
         Assertions.assertEquals(true, (planteter[index + 1].getPos().getY() < (PerihelionForPlanets[index]*(1-error))) && planteter[index+1].getPos().getY() > (PerihelionForPlanets[index]*(1+error)));
 
     }
+*/
 
 
 }

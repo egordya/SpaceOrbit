@@ -17,6 +17,7 @@ import model.gameModel.GameModel;
 import model.gameModel.GameModelBuilder;
 import model.gameModel.Observer;
 import model.gameModel.ObserverCommand;
+import model.modelObjects.Geometry;
 import utilitys.ImageCache;
 
 import java.io.FileNotFoundException;
@@ -103,7 +104,7 @@ public class GameView extends AnchorPane implements Observer {
 
     private void showObjects(){
 
-        ArrayList<Drawable<Circle>> DrawableList = new ArrayList<>();
+        ArrayList<Drawable> DrawableList = new ArrayList<>();
         DrawableList.addAll(Arrays.stream(gameModel.getPlanets()).toList());
         DrawableList.addAll(Arrays.stream(gameModel.getPlayers()).toList());
         DrawableList.addAll(Arrays.stream(gameModel.getTargets()).toList());
@@ -111,28 +112,30 @@ public class GameView extends AnchorPane implements Observer {
         anchor.getChildren().remove(winBox);
         renderSurface.getChildren().clear();
 
-        for (Drawable<Circle> p : DrawableList){
+        for (Drawable p : DrawableList){
 
+            Geometry<Shape> s = p.getGeometry();
 
 
             String path = getClass().getResource(p.getImagePath()).toString();
             imageCache.loadImage(path);
             Image image = imageCache.getImage(path);
 
-            p.getGeometry().setFill(new ImagePattern(image));
-            renderSurface.getChildren().add(p.getGeometry());
+            s.getGeometry().setFill(new ImagePattern(image));
+            renderSurface.getChildren().add(s.getGeometry());
         }
-
 
         if(gameModel.getShowPlayerArrows()){
-            Drawable<Polyline>[] arrows = gameModel.getPlayerArrows();
-            for (Drawable<Polyline> p : arrows){
-
-
-                p.getGeometry().setStroke(Color.WHITE);
-                renderSurface.getChildren().add(p.getGeometry());
+            Drawable[] arrows = gameModel.getPlayerArrows();
+            for(Drawable p : arrows){
+                Geometry<Shape> s = p.getGeometry();
+                s.getGeometry().setStroke(Color.WHITE);
+                renderSurface.getChildren().add(s.getGeometry());
             }
         }
+
+
+
 
     }
 
