@@ -43,6 +43,7 @@ public class GameView extends AnchorPane implements Observer {
 
         this.mediator = mediator;
 
+
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/game.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
@@ -60,7 +61,6 @@ public class GameView extends AnchorPane implements Observer {
         this.gameModel = GameModelBuilder.getGameModel(jsonPath);
         this.gameModel.addObserver(this);
         this.allNextLevelPaths = allNextLevelPaths;
-
         this.gameController = new GameController(gameModel);
 
         renderSurface.setOnMousePressed(gameController);
@@ -166,6 +166,12 @@ public class GameView extends AnchorPane implements Observer {
         gameModel.togglePauseGame();
         this.gameModel = null;
         mediator.notify(this, MediatorCommand.STANDARD);
+    }
+
+    @FXML
+    private void replay() throws Exception {
+        restart();
+        gameController.replayController();
     }
 
 

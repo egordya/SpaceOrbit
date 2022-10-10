@@ -7,11 +7,24 @@ import javafx.scene.shape.Line;
 import model.gameModel.GameModel;
 import utilitys.Vector2D;
 
+import java.io.*;
+import java.nio.file.Files;
+import java.util.*;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class GameController implements EventHandler<MouseEvent> {
 
     private GameModel model;
 
+
     private Vector2D pressedPos = new Vector2D(0,0);
+
+    private Vector2D replayReleased = new Vector2D(0,0);
+
+
 
     public GameController(GameModel model) {
         this.model = model;
@@ -30,7 +43,11 @@ public class GameController implements EventHandler<MouseEvent> {
         }
 
         else if (type == MouseEvent.MOUSE_RELEASED){
-            handleMouseReleased(event);
+            try {
+                handleMouseReleased(event);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         else if (type == MouseEvent.MOUSE_DRAGGED){
@@ -46,8 +63,11 @@ public class GameController implements EventHandler<MouseEvent> {
         pressedPos = new Vector2D(mouseEvent.getX(), mouseEvent.getY());
     }
 
-    private void handleMouseReleased(MouseEvent mouseEvent){
+    private void handleMouseReleased(MouseEvent mouseEvent) throws Exception {
         Vector2D releasedPos = new Vector2D(mouseEvent.getX(), mouseEvent.getY());
+
+        replayReleased = new Vector2D(mouseEvent.getX(), mouseEvent.getY());
+        saveReplayPos();
 
         Vector2D[] vectors = new Vector2D[model.getPlayers().length];
         for(int i = 0; i<model.getPlayers().length; i++){
@@ -66,6 +86,116 @@ public class GameController implements EventHandler<MouseEvent> {
         model.setPlayersArrow(delta);
 
     }
+
+
+    public void replayController() throws Exception {
+
+
+        System.out.println("Here111");
+        readReplayPos();
+        Vector2D draggedPos = new Vector2D(replayReleased.getX(), replayReleased.getY());
+        Vector2D delta = draggedPos.sub(pressedPos);
+//        model.setPlayersArrow(delta);
+
+
+        ScheduledExecutorService exec = Executors.newScheduledThreadPool(1);
+
+        AtomicInteger i = new AtomicInteger(0);
+        AtomicInteger m = new AtomicInteger(0);
+        exec.scheduleAtFixedRate(() -> {
+            int j = i.getAndAdd(1);
+            int n = m.getAndAdd(1);
+
+            if (j >= delta.getY() && n >= delta.getY()) {
+                Vector2D[] vectors = new Vector2D[model.getPlayers().length];
+                for(int a = 0; a<model.getPlayers().length; a++){
+                    vectors[a] = replayReleased.sub(pressedPos);
+                }
+                model.SetShowPlayerArrows(false);
+                model.setPlayerVelocity(vectors);
+                model.startGame();
+
+                exec.shutdownNow();
+                return;
+            }
+            model.setPlayersArrow(new Vector2D(j,n));
+            System.out.println(j); //Will print 0,4,8 etc.. Once every 5 seconds
+            //Do stuff
+        }, 0, 10, TimeUnit.MILLISECONDS);
+
+
+
+//        model.setPlayersArrow(delta);
+
+//        Timer timer = new Timer();
+//        timer.schedule(new TimerTask(){
+//            public void run() {
+//            for(int i = 0, j=0; i<=delta.getX() && i<=delta.getY(); i++, j++) {
+//                model.setPlayersArrow(new Vector2D(i,j));
+//            }
+//            }
+//        }, 1000);
+
+
+
+    }
+
+
+    private void saveReplayPos() throws Exception {
+
+        String filePath =
+                System.getProperty("user.dir") + File.separatorChar + "src"
+                        + File.separatorChar + "main"
+                        + File.separatorChar + "resources"
+                        + File.separatorChar + "replay"
+                        + File.separatorChar + "replay.txt";
+
+        String xPosP = Integer.toString((int)pressedPos.getX());
+        String yPosP = Integer.toString((int)pressedPos.getY());
+
+        String xPosR = Integer.toString((int)replayReleased.getX());
+        String yPosR = Integer.toString((int)replayReleased.getY());
+
+
+
+        BufferedReader file = new BufferedReader(new FileReader(filePath));
+        String line;
+        String input = "";
+        while((line = file.readLine()) != null)
+        {
+            input += line + '\n';
+        }
+        input = xPosP + "\n" + yPosP + "\n" + xPosR + "\n" + yPosR;
+        FileOutputStream out = new FileOutputStream(filePath);
+        out.write(input.getBytes());
+
+    }
+    private void readReplayPos() throws Exception {
+
+        String filePath =
+                System.getProperty("user.dir") + File.separatorChar + "src"
+                        + File.separatorChar + "main"
+                        + File.separatorChar + "resources"
+                        + File.separatorChar + "replay"
+                        + File.separatorChar + "replay.txt";
+
+        File file = new File(filePath);
+        Scanner scan = new Scanner(file);
+
+        int lineContent;
+
+        ArrayList<Integer> coordinates = new ArrayList<>();
+
+        while (scan.hasNextLine()){
+            lineContent = Integer.parseInt(scan.nextLine());
+            coordinates.add(lineContent);
+        }
+
+        pressedPos = new Vector2D(coordinates.get(0), coordinates.get(1));
+        replayReleased = new Vector2D(coordinates.get(2), coordinates.get(3));
+
+    }
+
 
 
 }

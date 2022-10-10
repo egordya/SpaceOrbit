@@ -48,7 +48,7 @@ public class MainView implements Initializable, Mediator{
             //String[] levelPathsArray = levelPathsList.toArray(new String[0]);
 
             //gameView.loadGameModel(menuView.getCurrentLevel(), null);
-            gameView.loadGameModel("src/main/resources/json/levels/level2.json", null);
+            gameView.loadGameModel("src/main/resources/json/levels/level1.json", null);
         }
 
         if((pointer == menuView) && (command == MediatorCommand.BUILDLVL)){
