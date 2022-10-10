@@ -89,14 +89,9 @@ public class GameController implements EventHandler<MouseEvent> {
 
 
     public void replayController() throws Exception {
-
-
-        System.out.println("Here111");
         readReplayPos();
         Vector2D draggedPos = new Vector2D(replayReleased.getX(), replayReleased.getY());
         Vector2D delta = draggedPos.sub(pressedPos);
-//        model.setPlayersArrow(delta);
-
 
         ScheduledExecutorService exec = Executors.newScheduledThreadPool(1);
 
@@ -119,25 +114,8 @@ public class GameController implements EventHandler<MouseEvent> {
                 return;
             }
             model.setPlayersArrow(new Vector2D(j,n));
-            System.out.println(j); //Will print 0,4,8 etc.. Once every 5 seconds
-            //Do stuff
+
         }, 0, 10, TimeUnit.MILLISECONDS);
-
-
-
-//        model.setPlayersArrow(delta);
-
-//        Timer timer = new Timer();
-//        timer.schedule(new TimerTask(){
-//            public void run() {
-//            for(int i = 0, j=0; i<=delta.getX() && i<=delta.getY(); i++, j++) {
-//                model.setPlayersArrow(new Vector2D(i,j));
-//            }
-//            }
-//        }, 1000);
-
-
-
     }
 
 
@@ -190,12 +168,7 @@ public class GameController implements EventHandler<MouseEvent> {
             lineContent = Integer.parseInt(scan.nextLine());
             coordinates.add(lineContent);
         }
-
         pressedPos = new Vector2D(coordinates.get(0), coordinates.get(1));
         replayReleased = new Vector2D(coordinates.get(2), coordinates.get(3));
-
     }
-
-
-
 }
