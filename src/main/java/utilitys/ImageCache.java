@@ -28,4 +28,8 @@ public class ImageCache {
         }
     }
 
+    public void clearCache(){
+        imageMap.clear();
+    }
+
 }
