@@ -1,6 +1,8 @@
 package model.gameModel;
 
 import com.grupp7.spaceorbit.views.Drawable;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Polyline;
 import model.collisionModel.CollisionModel;
 import model.gravitationModel.GravitationModel;
 import model.modelObjects.ArrowObject;
@@ -47,19 +49,19 @@ public abstract class AGameModel {
         notifyObservers(ObserverCommand.Update);
     }
 
-    public Drawable[] getPlayers() {
+    public Drawable<Circle>[] getPlayers() {
         return players;
     }
 
-    public Drawable[] getTargets() {
+    public Drawable<Circle>[] getTargets() {
         return targets;
     }
 
-    public Drawable[] getPlanets() {
+    public Drawable<Circle>[] getPlanets() {
         return planets;
     }
 
-    public Drawable[] getPlayerArrows(){
+    public Drawable<Polyline>[] getPlayerArrows(){
         return playerArrows;
     }
 

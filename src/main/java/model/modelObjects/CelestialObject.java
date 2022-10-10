@@ -9,7 +9,7 @@ import utilitys.Vector2D;
 
 
 
-public class CelestialObject implements ObjectForGravitationModel, Collisionable, Drawable {
+public class CelestialObject implements ObjectForGravitationModel, Collisionable, Drawable<Circle> {
 
     private Vector2D position;
     private Vector2D velocityVector;

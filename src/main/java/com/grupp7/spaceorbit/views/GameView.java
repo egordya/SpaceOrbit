@@ -10,6 +10,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Polyline;
+import javafx.scene.shape.Shape;
 import model.gameModel.GameModel;
 import model.gameModel.GameModelBuilder;
 import model.gameModel.Observer;
@@ -100,7 +103,7 @@ public class GameView extends AnchorPane implements Observer {
 
     private void showObjects(){
 
-        ArrayList<Drawable> DrawableList = new ArrayList<>();
+        ArrayList<Drawable<Circle>> DrawableList = new ArrayList<>();
         DrawableList.addAll(Arrays.stream(gameModel.getPlanets()).toList());
         DrawableList.addAll(Arrays.stream(gameModel.getPlayers()).toList());
         DrawableList.addAll(Arrays.stream(gameModel.getTargets()).toList());
@@ -108,7 +111,9 @@ public class GameView extends AnchorPane implements Observer {
         anchor.getChildren().remove(winBox);
         renderSurface.getChildren().clear();
 
-        for (Drawable p : DrawableList){
+        for (Drawable<Circle> p : DrawableList){
+
+
 
             String path = getClass().getResource(p.getImagePath()).toString();
             imageCache.loadImage(path);
@@ -120,8 +125,10 @@ public class GameView extends AnchorPane implements Observer {
 
 
         if(gameModel.getShowPlayerArrows()){
-            Drawable[] arrows = gameModel.getPlayerArrows();
-            for (Drawable p : arrows){
+            Drawable<Polyline>[] arrows = gameModel.getPlayerArrows();
+            for (Drawable<Polyline> p : arrows){
+
+
                 p.getGeometry().setStroke(Color.WHITE);
                 renderSurface.getChildren().add(p.getGeometry());
             }

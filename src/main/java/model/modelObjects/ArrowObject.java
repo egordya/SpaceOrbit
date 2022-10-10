@@ -5,7 +5,7 @@ import javafx.scene.shape.Polyline;
 import javafx.scene.shape.Shape;
 import utilitys.Vector2D;
 
-public class ArrowObject implements Drawable {
+public class ArrowObject implements Drawable<Polyline> {
 
     Polyline arrow = new Polyline();
     double xPos;
@@ -40,7 +40,7 @@ public class ArrowObject implements Drawable {
     }
 
     @Override
-    public Shape getGeometry() {
+    public Polyline getGeometry() {
         return arrow;
     }
 
