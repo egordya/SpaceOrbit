@@ -55,6 +55,7 @@ public class GameView extends AnchorPane implements Observer {
     }
 
     public void loadGameModel(String jsonPath, String[] allNextLevelPaths) throws FileNotFoundException {
+
         pathToCurrentLevel = jsonPath;
         this.allNextLevelPaths = allNextLevelPaths;
 
@@ -162,6 +163,7 @@ public class GameView extends AnchorPane implements Observer {
     private void backToMainMenu() throws FileNotFoundException {
         gameController.togglePauseGame();
         this.gameModel = null;
+        imageCache.clearCache();
         mediator.notify(this, MediatorCommand.STANDARD);
     }
 
