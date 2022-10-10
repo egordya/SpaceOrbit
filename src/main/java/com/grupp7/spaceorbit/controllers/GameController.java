@@ -3,10 +3,16 @@ package com.grupp7.spaceorbit.controllers;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.shape.Line;
+import javafx.scene.shape.Polyline;
+import javafx.scene.shape.Shape;
 import model.gameModel.GameModel;
+import model.modelObjects.ArrowObject;
+import model.modelObjects.Geometry;
+import model.modelObjects.JavaFXGeometry;
+import utilitys.ArrowPolyLineFactory;
 import utilitys.Vector2D;
 
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -95,9 +101,20 @@ public class GameController implements EventHandler<MouseEvent> {
     }
 
     private void handleMouseDragged(MouseEvent mouseEvent){
+
         Vector2D draggedPos = new Vector2D(mouseEvent.getX(), mouseEvent.getY());
         Vector2D delta = draggedPos.sub(pressedPos);
-        model.setPlayersArrow(delta);
+
+        ArrowPolyLineFactory arrowPolyLineFactoryFactory = new ArrowPolyLineFactory();
+
+        ArrayList<ArrowObject> arrows = new ArrayList<>();
+        for (int i = 0; i<model.getPlayers().length; i++){
+            Vector2D playerPos = new Vector2D(model.getPlayers()[i].getXPos(), model.getPlayers()[i].getYPos());
+            Polyline arrow = arrowPolyLineFactoryFactory.getArrow(playerPos, playerPos.add(delta));
+            arrows.add(new ArrowObject(new JavaFXGeometry(arrow)));
+        }
+
+        model.setPlayersArrow(arrows.toArray(new ArrowObject[0]));
 
     }
 

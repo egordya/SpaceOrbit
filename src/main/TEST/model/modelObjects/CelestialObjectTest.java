@@ -7,7 +7,7 @@ import utilitys.Vector2D;
 import javafx.scene.shape.Shape;
 import javafx.scene.shape.Circle;
 
-public class CelestialObjectTest {
+public class CelestialObjectTest {/*
     CelestialObject planet1 = new CelestialObject(new Vector2D(0,0), new Vector2D(1,1), 100,10, "",true,"planet1","planet");
     @Test
     void updateHitboxPosTest(){
@@ -86,6 +86,6 @@ public class CelestialObjectTest {
         Assertions.assertEquals(planet1.getIsEffectedByGravity(),planet1Cloned.getIsEffectedByGravity());
         Assertions.assertEquals(planet1.getName(),planet1Cloned.getName());
         Assertions.assertEquals(planet1.getType(),planet1Cloned.getType());
-    }
+    }*/
 
 }

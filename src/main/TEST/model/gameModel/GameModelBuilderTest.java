@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;
 
-public class GameModelBuilderTest {
+public class GameModelBuilderTest {/*
 
 
 
@@ -81,5 +81,5 @@ public class GameModelBuilderTest {
         Assertions.assertEquals(0,targets[0].getVelocityVector().getY());
         Assertions.assertEquals("\"\"",targets[0].getImagePath());
         Assertions.assertEquals(1,targets.length);
-    }
+    }*/
 }

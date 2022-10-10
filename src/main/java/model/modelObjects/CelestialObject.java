@@ -1,34 +1,33 @@
 package model.modelObjects;
 
 import com.grupp7.spaceorbit.views.Drawable;
-import javafx.application.Platform;
 import javafx.scene.shape.Circle;
-import model.collisionModel.Collisionable;
+import javafx.scene.shape.Shape;
+import model.collisionModels.Collisionable;
 import model.gravitationModel.ObjectForGravitationModel;
 import utilitys.Vector2D;
 
 
 
-public class CelestialObject implements ObjectForGravitationModel, Collisionable, Drawable<Circle> {
+public class CelestialObject implements ObjectForGravitationModel, Drawable, Collisionable {
 
     private Vector2D position;
     private Vector2D velocityVector;
     private double mass;
-    private Circle Geometry = new Circle(0,0,0);
-    private double radius;
+
+    private Geometry geometry;
     private String imagePath;
     private boolean isAffectedByGravity;
     private String name;
     private String type;
 
 
-    public CelestialObject(Vector2D position, Vector2D velocityVector, double mass, double radius, String imagePath,
+    public CelestialObject(Vector2D position, Vector2D velocityVector, double mass, Geometry geometry, String imagePath,
                            boolean isAffectedByGravity, String name, String type) {
         this.position = position;
         this.velocityVector = velocityVector;
         this.mass = mass;
-        this.radius = radius;
-        this.Geometry.setRadius(this.radius);
+        this.geometry = geometry;
         this.imagePath = imagePath;
         this.isAffectedByGravity = isAffectedByGravity;
         this.name = name;
@@ -36,16 +35,11 @@ public class CelestialObject implements ObjectForGravitationModel, Collisionable
 
         updateHitBoxPos();
 
-
-
-
     }
 
 
     public void updateHitBoxPos(){
-            this.Geometry.setCenterX(this.getPos().getX());
-            this.Geometry.setCenterY(this.getPos().getY());
-
+            this.geometry.relocate(this.getXPos(), this.getYPos());
     }
 
 
@@ -98,8 +92,9 @@ public class CelestialObject implements ObjectForGravitationModel, Collisionable
 
     @Override
     public CelestialObject clone() {
-        return new CelestialObject(position.clone(), velocityVector.clone(), mass, radius, imagePath, isAffectedByGravity, name, type);
+        return new CelestialObject(position.clone(), velocityVector.clone(), mass, geometry, imagePath, isAffectedByGravity, name, type);
     }
+
     @Override
     public String getType(){
         return this.type;
@@ -116,8 +111,8 @@ public class CelestialObject implements ObjectForGravitationModel, Collisionable
     }
 
     @Override
-    public Circle getGeometry() {   //Här är det en dålig ändring JIPPIEE!!!
-        return Geometry;
+    public Geometry getGeometry() {   //Här är det en dålig ändring JIPPIEE!!!
+        return geometry;
     }
 
     @Override

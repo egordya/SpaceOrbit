@@ -3,10 +3,11 @@ package model.gameModel;
 import com.grupp7.spaceorbit.views.Drawable;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polyline;
-import model.collisionModel.CollisionModel;
+import model.collisionModels.CollisionModel;
 import model.gravitationModel.GravitationModel;
 import model.modelObjects.ArrowObject;
 import model.modelObjects.CelestialObject;
+import model.modelObjects.Geometry;
 import utilitys.Vector2D;
 
 import java.util.ArrayList;
@@ -14,7 +15,9 @@ import java.util.ArrayList;
 public abstract class AGameModel {
 
     GravitationModel gravitationModel = new GravitationModel();
+
     CollisionModel collisionModel = new CollisionModel();
+
     CelestialObject[] players;
     CelestialObject[] targets;
     CelestialObject[] planets;
@@ -35,12 +38,8 @@ public abstract class AGameModel {
         }
     }
 
-    public void setPlayersArrow(Vector2D delta){
-        ArrayList<ArrowObject> arrows = new ArrayList<>();
-        for (int i = 0; i<players.length; i++){
-            arrows.add(new ArrowObject(players[i].getPos(), players[i].getPos().add(delta)));
-        }
-        playerArrows = arrows.toArray(new ArrowObject[0]);
+    public void setPlayersArrow(ArrowObject[] arrows){
+        playerArrows = arrows;
         notifyObservers(ObserverCommand.Update);
     }
 
@@ -49,19 +48,19 @@ public abstract class AGameModel {
         notifyObservers(ObserverCommand.Update);
     }
 
-    public Drawable<Circle>[] getPlayers() {
+    public Drawable[] getPlayers() {
         return players;
     }
 
-    public Drawable<Circle>[] getTargets() {
+    public Drawable[] getTargets() {
         return targets;
     }
 
-    public Drawable<Circle>[] getPlanets() {
+    public Drawable[] getPlanets() {
         return planets;
     }
 
-    public Drawable<Polyline>[] getPlayerArrows(){
+    public Drawable[] getPlayerArrows(){
         return playerArrows;
     }
 

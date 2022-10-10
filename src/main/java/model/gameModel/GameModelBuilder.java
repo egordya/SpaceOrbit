@@ -1,6 +1,8 @@
 package model.gameModel;
 
+import javafx.scene.shape.Circle;
 import model.modelObjects.CelestialObject;
+import model.modelObjects.JavaFXGeometry;
 import utilitys.Vector2D;
 
 import java.io.FileInputStream;
@@ -58,7 +60,11 @@ public class GameModelBuilder {
         Vector2D positionVec = new Vector2D(posX, posY);
         Vector2D velocityVec = new Vector2D(velX, velY);
         // String name, boolean hasCrash, String type, String crashWithType
-        CelestialObject theproduct = new CelestialObject(positionVec, velocityVec, planetMass, planetRadius, img_path, isAffectedByGravity, planetName,type);
+
+        Circle test = new Circle();
+        test.setRadius(planetRadius);
+
+        CelestialObject theproduct = new CelestialObject(positionVec, velocityVec, planetMass, new JavaFXGeometry(test), img_path, isAffectedByGravity, planetName,type);
         return  theproduct;
     }
 

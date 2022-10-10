@@ -1,9 +1,9 @@
 package utilitys;
 
-import model.collisionModel.Collisionable;
+
 
 public class Collision_2_Tuple {
-    private Collisionable obj1;
+/*    private Collisionable obj1;
     private Collisionable obj2;
 
     public Collision_2_Tuple(Collisionable obj1, Collisionable obj2) {
@@ -17,5 +17,5 @@ public class Collision_2_Tuple {
 
     public Collisionable getSecondCollided(){
         return obj2;
-    }
+    }*/
 }
