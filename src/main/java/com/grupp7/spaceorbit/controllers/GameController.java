@@ -3,12 +3,10 @@ package com.grupp7.spaceorbit.controllers;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.shape.Line;
 import model.gameModel.GameModel;
 import utilitys.Vector2D;
 
 import java.io.*;
-import java.nio.file.Files;
 import java.util.*;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -89,24 +87,41 @@ public class GameController implements EventHandler<MouseEvent> {
 
 
     public void replayController() throws Exception {
-
-
-        System.out.println("Here111");
         readReplayPos();
         Vector2D draggedPos = new Vector2D(replayReleased.getX(), replayReleased.getY());
         Vector2D delta = draggedPos.sub(pressedPos);
-//        model.setPlayersArrow(delta);
-
 
         ScheduledExecutorService exec = Executors.newScheduledThreadPool(1);
 
         AtomicInteger i = new AtomicInteger(0);
         AtomicInteger m = new AtomicInteger(0);
-        exec.scheduleAtFixedRate(() -> {
-            int j = i.getAndAdd(1);
-            int n = m.getAndAdd(1);
 
-            if (j >= delta.getY() && n >= delta.getY()) {
+        exec.scheduleAtFixedRate(() -> {
+
+            boolean xNotEquals = (i.intValue() != delta.getX());
+            boolean yNotEquals = (m.intValue() != delta.getY());
+
+            if (delta.getX() > 0 && xNotEquals)      {
+                i.incrementAndGet();
+            }
+            if (delta.getX() < 0 && xNotEquals){
+                i.decrementAndGet();
+            }
+            if (delta.getY() > 0 && yNotEquals){
+                m.incrementAndGet();
+            }
+            if (delta.getY() < 0 && yNotEquals){
+                m.decrementAndGet();
+            }
+
+            if ((Math.abs(i.intValue()) >= Math.abs(delta.getX()) ) && (Math.abs(m.intValue()) >= Math.abs(delta.getY()) )) {
+
+                try {
+                    Thread.sleep(1200);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
                 Vector2D[] vectors = new Vector2D[model.getPlayers().length];
                 for(int a = 0; a<model.getPlayers().length; a++){
                     vectors[a] = replayReleased.sub(pressedPos);
@@ -114,30 +129,12 @@ public class GameController implements EventHandler<MouseEvent> {
                 model.SetShowPlayerArrows(false);
                 model.setPlayerVelocity(vectors);
                 model.startGame();
-
                 exec.shutdownNow();
                 return;
             }
-            model.setPlayersArrow(new Vector2D(j,n));
-            System.out.println(j); //Will print 0,4,8 etc.. Once every 5 seconds
-            //Do stuff
-        }, 0, 10, TimeUnit.MILLISECONDS);
+            model.setPlayersArrow(new Vector2D(i.intValue(),m.intValue()));
 
-
-
-//        model.setPlayersArrow(delta);
-
-//        Timer timer = new Timer();
-//        timer.schedule(new TimerTask(){
-//            public void run() {
-//            for(int i = 0, j=0; i<=delta.getX() && i<=delta.getY(); i++, j++) {
-//                model.setPlayersArrow(new Vector2D(i,j));
-//            }
-//            }
-//        }, 1000);
-
-
-
+        }, 0, 5, TimeUnit.MILLISECONDS);
     }
 
 
@@ -190,12 +187,69 @@ public class GameController implements EventHandler<MouseEvent> {
             lineContent = Integer.parseInt(scan.nextLine());
             coordinates.add(lineContent);
         }
-
         pressedPos = new Vector2D(coordinates.get(0), coordinates.get(1));
         replayReleased = new Vector2D(coordinates.get(2), coordinates.get(3));
-
     }
-
-
-
 }
+
+
+//
+//    public void replayController() throws Exception {
+//        readReplayPos();
+//        Vector2D draggedPos = new Vector2D(replayReleased.getX(), replayReleased.getY());
+//        Vector2D delta = draggedPos.sub(pressedPos);
+//
+//        ScheduledExecutorService exec = Executors.newScheduledThreadPool(1);
+//
+//
+////        for(int a = 0; a<model.getPlayers().length; a++){
+////            vectors[a] = replayReleased.sub(pressedPos);
+////        }
+//
+//
+//        AtomicInteger i = new AtomicInteger(0);
+//        AtomicInteger m = new AtomicInteger(0);
+//
+//
+//        exec.scheduleAtFixedRate(() -> {
+////            int j = 0;
+////            int n = 0;
+//
+//            int j = i.getAndAdd(1);
+//            int n = m.getAndAdd(1);
+//
+//
+////            if (replayReleased.getX() >= 0){
+////                j = i.getAndAdd(1);
+////            }
+////            if (replayReleased.getY() >= 0){
+////                n = m.getAndAdd(1);
+////            }
+////            if (replayReleased.getX() <= 0){
+////                j = i.getAndAdd(-1);
+////            }
+////            if (replayReleased.getY() <= 0){
+////                n = m.getAndAdd(-1);
+////            }
+//
+//
+//            int k = 5 - 10;
+//            System.out.println(k);
+//            Vector2D[] vectors = new Vector2D[model.getPlayers().length];
+//            if (j >= delta.getX() && n >= delta.getY()) {
+//
+//                for(int a = 0; a<model.getPlayers().length; a++){
+//                    vectors[a] = replayReleased.sub(pressedPos);
+//                }
+//                model.SetShowPlayerArrows(false);
+//                model.setPlayerVelocity(vectors);
+//                model.startGame();
+//
+//                exec.shutdownNow();
+//                return;
+//            }
+//
+//            model.setPlayersArrow(new Vector2D(j,n));
+//
+//        }, 0, 10, TimeUnit.MILLISECONDS);
+//    }
