@@ -58,10 +58,10 @@ public class GameView extends AnchorPane implements Observer {
 
     }
 
-    public void loadGameModel(String jsonPath, String[] allNextLevelPaths) throws FileNotFoundException {
+    public void loadGameModel(String jsonPath, String[] allNextLevelPathsx) throws FileNotFoundException {
 
         pathToCurrentLevel = jsonPath;
-        this.allNextLevelPaths = allNextLevelPaths;
+        this.allNextLevelPaths = allNextLevelPathsx;
 
         this.gameModel = GameModelBuilder.getGameModel(jsonPath);
         this.gameModel.addObserver(this);
@@ -160,7 +160,11 @@ public class GameView extends AnchorPane implements Observer {
 
     @FXML
     private void nextLevel() throws FileNotFoundException {
-        List<String> pathsList = Arrays.stream(this.allNextLevelPaths).toList();
+
+        ArrayList<String>  pathsList = new ArrayList<>();
+        for(String x : allNextLevelPaths){
+            pathsList.add(x);
+        }
 
         String firstPath = pathsList.get(0);
         pathsList.remove(firstPath);
@@ -176,6 +180,4 @@ public class GameView extends AnchorPane implements Observer {
         imageCache.clearCache();
         mediator.notify(this, MediatorCommand.STANDARD);
     }
-
-
 }

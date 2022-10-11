@@ -7,6 +7,8 @@ import model.menuModel.MenuModel;
 
 import java.io.FileNotFoundException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class MainView implements Initializable, Mediator{
@@ -48,7 +50,8 @@ public class MainView implements Initializable, Mediator{
             //String[] levelPathsArray = levelPathsList.toArray(new String[0]);
 
             //gameView.loadGameModel(menuView.getCurrentLevel(), null);
-            gameView.loadGameModel("src/main/resources/json/levels/level2.json", null);
+            menuView.getRemainingLvls();
+            gameView.loadGameModel(menuView.path, menuView.remainingPaths);
         }
 
         if((pointer == menuView) && (command == MediatorCommand.BUILDLVL)){
@@ -61,6 +64,7 @@ public class MainView implements Initializable, Mediator{
             theStackPane.getChildren().add(menuView);
         }
     }
+
 
     private void showMenu(){
 

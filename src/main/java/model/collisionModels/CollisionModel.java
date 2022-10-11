@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class CollisionModel {
 
-    ArrayList<String[]> collidedPairs;
+    ArrayList<Collisionable[]> collidedPairs;
 
     public void checkCollisions(Collisionable[] collisionables) {
         collidedPairs = new ArrayList<>();
@@ -16,16 +16,16 @@ public class CollisionModel {
                 Geometry geometryA = a.getGeometry();
                 Geometry geometryB = b.getGeometry();
                 if(geometryA.intersects(geometryB.getGeometry())){
-                    String[] pair = new String[2];
-                    pair[0] = a.getType();
-                    pair[1] = b.getType();
+                    Collisionable[] pair = new Collisionable[2];
+                    pair[0] = a;
+                    pair[1] = b;
                     collidedPairs.add(pair);
                 }
             }
         }
     }
 
-    public String[][] getCollidedPairs() {
-        return collidedPairs.toArray(new String[0][0]);
+    public Collisionable[][] getCollidedPairs() {
+        return collidedPairs.toArray(new Collisionable[0][0]);
     }
 }

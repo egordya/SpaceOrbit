@@ -1,5 +1,6 @@
 package model.gameModel;
 
+import model.collisionModels.Collisionable;
 import model.modelObjects.CelestialObject;
 import utilitys.Collision_2_Tuple;
 
@@ -50,7 +51,7 @@ public class GameModel extends AGameModel{
     public void gameStep(double time){
         simulationStep(time);
         handleCollisions();
-        //handleWin();
+        handleWin();
     }
 
     private void handleWin() {
@@ -67,21 +68,21 @@ public class GameModel extends AGameModel{
 
 
         collisionModel.checkCollisions(getAllCelestialObjects());
-        String[][] pairs = collisionModel.getCollidedPairs();
+        Collisionable[][] pairs = collisionModel.getCollidedPairs();
 
-        for(String[] x : pairs){
+        for(Collisionable[] x : pairs){
             handlePlayerTargetCollision(x);
         }
     }
 
-    private void handlePlayerTargetCollision(String[] x){
-        if (x[0].equals("player") && x[1].equals("target")) {
-/*            List<CelestialObject> players = new ArrayList<>(Arrays.stream(this.players).toList());
-            players.remove(players.get(players.indexOf(x.getFirstCollided())));
+    private void handlePlayerTargetCollision(Collisionable[] hitboxes){
+        if (hitboxes[0].getType().equals("player") && hitboxes[1].getType().equals("target")) {
+            List<CelestialObject> players = new ArrayList<>(Arrays.stream(this.players).toList());
+            players.remove(players.get(players.indexOf(hitboxes[0])));
             this.players = players.toArray(new CelestialObject[0]);
-            notifyObservers(ObserverCommand.Update);*/
+            notifyObservers(ObserverCommand.Update);
         }
-        else if(x[0].equals("player") && x[1].equals("planet")){
+        else if(hitboxes[0].getType().equals("player") && hitboxes[1].getType().equals("planet")){
             notifyObservers(ObserverCommand.Restart);
         }
     }

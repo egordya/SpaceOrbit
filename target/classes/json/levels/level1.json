@@ -2,51 +2,62 @@
   "planets": [
     {
       "name": "planet1",
-      "mass": 10000,
-      "radius": 1,
-      "isAffectedByGravity": true,
-      "posX": 10000,
-      "posY": 1000,
-      "velX": 20,
-      "velY": 20,
-      "img_path": "/test/hest/best/yes-t"
-    },
-    {
-      "name": "planet2",
-      "mass": 500,
-      "radius": 1,
-      "isAffectedByGravity": true,
-      "posX": 1000,
-      "posY": 1000,
-      "velX": 20,
-      "velY": 20,
-      "img_path": ""
+      "mass": 7000000000000000.0,
+      "radius": 6,
+      "isAffectedByGravity": false,
+      "posX": 400,
+      "posY": 100,
+      "velX": 0,
+      "velY": 0,
+      "img_path": "/img/kanye.jpg"
     }
   ],
   "playerObject": [
     {
       "name": "playerObj",
-      "mass": 500,
+      "mass": 4,
       "radius": 20,
       "isAffectedByGravity": true,
       "posX": 50,
       "posY": 50,
       "velX": 0,
       "velY": 0,
-      "img_path": ""
+      "img_path": "/img/kanye.jpg"
+    },
+    {
+      "name": "playerObj1",
+      "mass": 4,
+      "radius": 20,
+      "isAffectedByGravity": true,
+      "posX": 70,
+      "posY": 50,
+      "velX": 0,
+      "velY": 0,
+      "img_path": "/img/kanye.jpg"
     }
   ],
   "target": [
-  {
-    "name": "target1",
-    "mass": null,
-    "radius": 64,
-    "isAffectedByGravity": false,
-    "posX": 100,
-    "posY": 100,
-    "velX": 0,
-    "velY": 0,
-    "img_path": ""
-  }
-]
+    {
+      "name": "target1",
+      "mass": 786000000000000,
+      "radius": 20,
+      "isAffectedByGravity": false,
+      "posX": 150,
+      "posY": 0,
+      "velX": 0,
+      "velY": 0,
+      "img_path": "/img/kanye.jpg"
+    },
+    {
+      "name": "target2",
+      "mass": 786000000000000,
+      "radius": 20,
+      "isAffectedByGravity": false,
+      "posX": 100,
+      "posY": 250,
+      "velX": 0,
+      "velY": 0,
+      "img_path": "/img/kanye.jpg"
+    }
+  ]
 }
