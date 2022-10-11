@@ -50,22 +50,22 @@
       "name": "playerObj",
       "mass": 4,
       "radius": 10,
-      "isAffectedByGravity": true,
+      "isAffectedByGravity": false,
       "posX": 375,
       "posY": 300,
-      "velX": -9,
-      "velY": -23.5,
+      "velX": 0,
+      "velY": 0,
       "img_path": "/img/testhole3.gif"
     },
     {
       "name": "playerObj",
       "mass": 4,
       "radius": 10,
-      "isAffectedByGravity": true,
+      "isAffectedByGravity": false,
       "posX": 175,
       "posY": 300,
-      "velX": -9,
-      "velY": -23.5,
+      "velX": 0,
+      "velY": 0,
       "img_path": "/img/testhole3.gif"
     }
   ],
