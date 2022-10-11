@@ -105,7 +105,6 @@ public class GameController implements EventHandler<MouseEvent> {
         }
         setPlayerVelocity(vectors);
         model.setPlayerAffectedByGravity(effectedByGravityBooleans);
-        //startGame();
 
     }
 
