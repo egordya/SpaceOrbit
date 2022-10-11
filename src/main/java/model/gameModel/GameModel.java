@@ -52,6 +52,7 @@ public class GameModel extends AGameModel{
         simulationStep(time);
         handleCollisions();
         handleWin();
+        notifyObservers(ObserverCommand.Update);
     }
 
     private void handleWin() {

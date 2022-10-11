@@ -73,6 +73,7 @@ public class GameView extends AnchorPane implements Observer {
         renderSurface.setOnMouseDragged(gameController);
 
         showObjects();
+        resume();
     }
 
     @Override

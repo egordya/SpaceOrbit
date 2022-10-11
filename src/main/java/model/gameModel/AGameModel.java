@@ -38,6 +38,12 @@ public abstract class AGameModel {
         }
     }
 
+    public void setPlayerAffectedByGravity(boolean[] isAffectedByGravity){
+        for (int i = 0; i < players.length; i++) {
+            this.players[i].setAffectedByGravity(isAffectedByGravity[i]);
+        }
+    }
+
     public void setPlayersArrow(ArrowObject[] arrows){
         playerArrows = arrows;
         notifyObservers(ObserverCommand.Update);
