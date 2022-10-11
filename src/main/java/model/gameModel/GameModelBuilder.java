@@ -61,10 +61,10 @@ public class GameModelBuilder {
         Vector2D velocityVec = new Vector2D(velX, velY);
         // String name, boolean hasCrash, String type, String crashWithType
 
-        Circle test = new Circle();
-        test.setRadius(planetRadius);
+        Circle circle = new Circle();
+        circle.setRadius(planetRadius);
 
-        CelestialObject theproduct = new CelestialObject(positionVec, velocityVec, planetMass, new JavaFXGeometry(test), img_path, isAffectedByGravity, planetName,type);
+        CelestialObject theproduct = new CelestialObject(positionVec, velocityVec, planetMass, new JavaFXGeometry(circle), img_path, isAffectedByGravity, planetName,type);
         return  theproduct;
     }
 
