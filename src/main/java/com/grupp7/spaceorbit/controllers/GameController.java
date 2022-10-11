@@ -27,6 +27,9 @@ public class GameController implements EventHandler<MouseEvent> {
     private boolean isRunning;
     private boolean isPaused;
 
+    int allowedMoves = 1;
+    int current = 0;
+
     public GameController(GameModel model) {
         this.model = model;
     }
@@ -76,9 +79,12 @@ public class GameController implements EventHandler<MouseEvent> {
     }
 
     public void setPlayerVelocity(Vector2D[] vectors){
-        if(!isRunning && !isPaused) {
+        if(current < allowedMoves) {
+            current++;
             model.setPlayerVelocity(vectors);
+            model.SetShowPlayerArrows(false);
         }
+
     }
 
 
@@ -93,14 +99,21 @@ public class GameController implements EventHandler<MouseEvent> {
         for(int i = 0; i<model.getPlayers().length; i++){
             vectors[i] = releasedPos.sub(pressedPos);
         }
-
-        model.SetShowPlayerArrows(false);
+        boolean[] effectedByGravityBooleans = new boolean[model.getPlayers().length];
+        for(int i = 0; i<model.getPlayers().length; i++){
+            effectedByGravityBooleans[i] = true;
+        }
         setPlayerVelocity(vectors);
-        startGame();
+        model.setPlayerAffectedByGravity(effectedByGravityBooleans);
+        //startGame();
 
     }
 
     private void handleMouseDragged(MouseEvent mouseEvent){
+        
+        if(current < allowedMoves){
+            model.SetShowPlayerArrows(true);
+        }
 
         Vector2D draggedPos = new Vector2D(mouseEvent.getX(), mouseEvent.getY());
         Vector2D delta = draggedPos.sub(pressedPos);
