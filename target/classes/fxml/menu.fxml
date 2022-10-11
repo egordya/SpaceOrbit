@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
+
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.FlowPane?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
 
 <fx:root prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: black;" type="AnchorPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <FlowPane fx:id="lvlSelectorPane" alignment="CENTER" hgap="10" prefHeight="300" prefWidth="400" style="-fx-background-color: grey;">
+        <FlowPane fx:id="lvlSelectorPane" hgap="10" alignment="CENTER" prefWidth="400" prefHeight="300">
+            <Button fx:id="back" layoutX="100.0" layoutY="50.0" mnemonicParsing="false" onAction="#back" text="Back" visible="false"/>
         </FlowPane>
-        <StackPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.1">
-         <VBox alignment="CENTER" spacing="12" style="-fx-background-color: grey;">
-            <Button layoutX="274.0" layoutY="187.0" mnemonicParsing="false" onAction="#testbutton" style="-fx-background-color: white;" text="Start Game" />
-            <Button layoutX="274.0" layoutY="187.0" mnemonicParsing="false" onAction="#buildNewLevel" style="-fx-background-color: white;" text="Build new Level" />
-            <Button layoutX="274.0" layoutY="187.0" mnemonicParsing="false" onAction="#lvlSelector" style="-fx-background-color: white;" text="Select Lvl" />
-            <Button layoutX="274.0" layoutY="187.0" mnemonicParsing="false" onAction="#quitgame" style="-fx-background-color: white;" text="Quit" />
-         </VBox>
+        <StackPane fx:id="sp" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.1">
+            <VBox spacing="12" alignment="CENTER" >
+                <Button layoutX="274.0" layoutY="187.0" mnemonicParsing="false" onAction="#testbutton" text="Start Game"/>
+                <Button layoutX="274.0" layoutY="187.0" mnemonicParsing="false" text="Build new Level" />
+                <Button layoutX="274.0" layoutY="187.0" mnemonicParsing="false" onAction="#lvlSelector" text="Select Lvl" />
+                <Button layoutX="274.0" layoutY="187.0" mnemonicParsing="false" onAction="#quitgame" text="Quit" />
+            </VBox>
         </StackPane>
     </children>
     <stylesheets>

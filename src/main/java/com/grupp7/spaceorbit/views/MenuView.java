@@ -1,15 +1,21 @@
 package com.grupp7.spaceorbit.views;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.StackPane;
 import model.menuModel.MenuModel;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class MenuView extends AnchorPane{
     Mediator mediator;
@@ -17,6 +23,13 @@ public class MenuView extends AnchorPane{
 
     @FXML
     FlowPane lvlSelectorPane;
+    @FXML
+    StackPane sp;
+    @FXML
+    Button back;
+
+    String[] remainingPaths;
+    String path = "src/main/resources/json/levels/level1.json";
 
     public MenuView(Mediator mediator, MenuModel model) {
 
@@ -53,23 +66,43 @@ public class MenuView extends AnchorPane{
     public void buildNewLevel() throws FileNotFoundException {
         mediator.notify(this, MediatorCommand.BUILDLVL);
     }
-
-
     @FXML
     public void lvlSelector() {
         this.getChildren().clear();
-
         this.getChildren().add(lvlSelectorPane);
-        File[] lvlfolder = new File("src/main/resources/json/levels").listFiles();
+        back.setVisible(true);
+        if(lvlSelectorPane.getChildren().size() < 3){
+            createLvlButtons();
+        }
+    }
 
-        for (File file : lvlfolder) {
-            if (file.isFile()) {
-                lvlSelectorPane.getChildren().add(new Button((file.getName().replaceFirst("[.][^.]+$", ""))));}}}
+    public void back(){
+        this.getChildren().remove(lvlSelectorPane);
+        this.getChildren().add(sp);
+
+    }
 
 
+    public void getRemainingLvls(){
+        List<String> level = new ArrayList<String>(List.of(model.getAllLevels()));
+        String[] levels = model.getAllLevels();
+        for (int i = 0; i< levels.length; i++){
+            if(level.get(i).contains(path.substring(path.length()-10))){
+                remainingPaths = Arrays.copyOfRange(levels,i+1, levels.length);
+                break;
+            }}}
 
 
-    public String[] getRemainingLevels() {return null;}
+    public void createLvlButtons(){
+        List<Button> buttons = model.getlvlbuttons();
+        for (Button button : buttons) {
+            lvlSelectorPane.getChildren().add(button);
+            button.setOnAction((new EventHandler<ActionEvent>() {
+                public void handle(ActionEvent event) {
+                    path = ("src/main/resources/json/levels/" + button.getText() + ".json");
+                    getRemainingLvls();
+                    testbutton();
+                }}));}}
 
     public String getCurrentLevel(){
         //Button bp = (Button) e.getTarget();
