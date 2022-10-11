@@ -109,7 +109,7 @@ public class GameController implements EventHandler<MouseEvent> {
     }
 
     private void handleMouseDragged(MouseEvent mouseEvent){
-        
+
         if(current < allowedMoves){
             model.SetShowPlayerArrows(true);
         }
