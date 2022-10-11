@@ -14,7 +14,6 @@ public class CelestialObject implements ObjectForGravitationModel, Drawable, Col
     private Vector2D position;
     private Vector2D velocityVector;
     private double mass;
-
     private Geometry geometry;
     private String imagePath;
     private boolean isAffectedByGravity;
