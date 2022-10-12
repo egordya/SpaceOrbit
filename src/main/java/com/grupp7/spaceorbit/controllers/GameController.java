@@ -38,21 +38,17 @@ public class GameController implements EventHandler<MouseEvent> {
 
     @Override
     public void handle(MouseEvent event) {
+        if((!isPaused) && (current < allowedMoves)) {
         EventType<? extends MouseEvent> type = event.getEventType();
-
-        if (type == MouseEvent.MOUSE_PRESSED){
-            handleMousePressed(event);
-        }
-
-        else if (type == MouseEvent.MOUSE_RELEASED){
-            handleMouseReleased(event);
-        }
-
-        else if (type == MouseEvent.MOUSE_DRAGGED){
-            handleMouseDragged(event);
-        }
-        else{
-            throw new IllegalArgumentException("EventType not implemented");
+            if (type == MouseEvent.MOUSE_PRESSED) {
+                handleMousePressed(event);
+            } else if (type == MouseEvent.MOUSE_RELEASED) {
+                handleMouseReleased(event);
+            } else if (type == MouseEvent.MOUSE_DRAGGED) {
+                handleMouseDragged(event);
+            } else {
+                throw new IllegalArgumentException("EventType not implemented");
+            }
         }
     }
 
@@ -81,12 +77,9 @@ public class GameController implements EventHandler<MouseEvent> {
     }
 
     public void setPlayerVelocity(Vector2D[] vectors){
-        if(current < allowedMoves) {
             current++;
             model.setPlayerVelocity(vectors);
             model.SetShowPlayerArrows(false);
-        }
-
     }
 
 
@@ -112,9 +105,9 @@ public class GameController implements EventHandler<MouseEvent> {
 
     private void handleMouseDragged(MouseEvent mouseEvent){
 
-        if(current < allowedMoves){
-            model.SetShowPlayerArrows(true);
-        }
+
+        model.SetShowPlayerArrows(true);
+
 
         Vector2D draggedPos = new Vector2D(mouseEvent.getX(), mouseEvent.getY());
         Vector2D delta = draggedPos.sub(pressedPos);

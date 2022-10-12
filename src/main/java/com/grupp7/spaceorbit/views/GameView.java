@@ -82,8 +82,6 @@ public class GameView extends AnchorPane implements Observer {
             Platform.runLater(() -> {
                 anchor.getChildren().add(winBox);
             });
-
-            gameController.togglePauseGame();
             System.out.println("win");
         }
         else if (command == ObserverCommand.Update) {
@@ -157,7 +155,7 @@ public class GameView extends AnchorPane implements Observer {
 
     @FXML
     private void restart() throws FileNotFoundException {
-        gameController.togglePauseGame();
+        gameController.terminate();
         loadGameModel(pathToCurrentLevel, allNextLevelPaths);
     }
 
