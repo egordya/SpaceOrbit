@@ -16,6 +16,11 @@
    <children>
       <AnchorPane fx:id="addObjectCustomLevelAnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: black;">
          <children>
+            <Label fx:id="objectAdded" layoutX="246.0" layoutY="299.0" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
             <Button layoutX="276.0" layoutY="346.0" mnemonicParsing="false" text="Reset" />
             <TextField fx:id="nameInput" layoutX="220.0" layoutY="123.0" promptText="Object Name" />
             <Text fill="WHITE" layoutX="168.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:" />
@@ -24,7 +29,14 @@
             <Text fill="WHITE" layoutX="31.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Static: " />
             <TextField fx:id="massInput" layoutX="168.0" layoutY="209.0" prefHeight="26.0" prefWidth="77.0" promptText="9999" text="99999" />
             <Text fill="WHITE" layoutX="33.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mass:" />
-            <ComboBox fx:id="staticComboBoxInput" layoutX="168.0" layoutY="247.0" prefHeight="26.0" prefWidth="77.0" promptText="False" />
+            <ComboBox fx:id="staticComboBoxInput" layoutX="168.0" layoutY="247.0" prefHeight="26.0" prefWidth="77.0" promptText="False">
+            <items>
+               <FXCollections fx:factory="observableArrayList">
+                  <String fx:value="false" />
+                  <String fx:value="true" />
+               </FXCollections>
+            </items>
+            </ComboBox>
             <Button layoutX="468.0" layoutY="346.0" mnemonicParsing="false" onAction="#submitButtonTwo" text="Done" />
             <Text fill="WHITE" layoutX="333.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start Position" />
             <TextField fx:id="startXInput" layoutX="468.0" layoutY="173.0" prefHeight="26.0" prefWidth="77.0" promptText="X" text="0" />
@@ -32,18 +44,18 @@
             <TextField fx:id="startYInput" layoutX="468.0" layoutY="209.0" prefHeight="26.0" prefWidth="77.0" promptText="Y" text="0" />
             <Text fill="WHITE" layoutX="333.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start Position:" />
             <ComboBox fx:id="imageComboBoxInput" layoutX="468.0" layoutY="247.0" prefHeight="26.0" prefWidth="77.0" promptText="Add">
-               <items>
-                  <FXCollections fx:factory="observableArrayList">
-                     <String fx:value="---Planets---" />
-                     <String fx:value="Dark Green" />
-                     <String fx:value="Light Green" />
-                     <String fx:value="Cloudy Blue" />
-                     <String fx:value="Hazy Clouds" />
-                     <String fx:value="PlaKanyet West" />
-                     <String fx:value="---Player Objects---" />
-                     <String fx:value="Black and White" />
-                  </FXCollections>
-               </items>
+            <items>
+               <FXCollections fx:factory="observableArrayList">
+                  <String fx:value="---Planets---" />
+                  <String fx:value="Dark Green" />
+                  <String fx:value="Light Green" />
+                  <String fx:value="Cloudy Blue" />
+                  <String fx:value="Hazy Clouds" />
+                  <String fx:value="PlaKanyet West" />
+                  <String fx:value="---Player Objects---" />
+                  <String fx:value="Black and White" />
+               </FXCollections>
+            </items>
             </ComboBox>
             <Text fill="WHITE" layoutX="168.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type:" />
             <ChoiceBox fx:id="typeChoiceBox" layoutX="225.0" layoutY="72.0" prefWidth="150.0" value="Planet">
@@ -56,25 +68,23 @@
                </items>
             </ChoiceBox>
             <Button layoutX="468.0" layoutY="312.0" mnemonicParsing="false" onAction="#submitButton" text="Add Object" />
-            <Button fx:id="backToList" layoutX="30.0" layoutY="346.0" mnemonicParsing="false" text="Back" />
-            <Label fx:id="addedObjectLabel" layoutX="285.0" layoutY="304.0" textFill="WHITE" />
+            <Button fx:id="backToList" layoutX="30.0" layoutY="346.0" mnemonicParsing="false" onAction="#backToList" text="Back" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="levelOverviewAnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: black;" visible="false">
+      <AnchorPane fx:id="levelOverviewAnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: black;">
          <children>
-            <Label fx:id="levelNameLabel" layoutX="255.0" layoutY="30.0" text="levelname" textAlignment="CENTER" textFill="WHITE">
+            <Label fx:id="levelNameLabel" layoutX="255.0" layoutY="30.0" text="levelname" textFill="WHITE">
                <font>
                   <Font size="21.0" />
                </font>
             </Label>
-            <Button layoutX="257.0" layoutY="344.0" mnemonicParsing="false" text="Main Menu" textAlignment="CENTER" />
-            <Button fx:id="addObjectButton" layoutX="93.0" layoutY="284.0" mnemonicParsing="false" onAction="#addObject" text="Add Object" textAlignment="CENTER" />
+            <Button layoutX="257.0" layoutY="344.0" mnemonicParsing="false" onAction="#backToMainMenu" text="Main Menu" textAlignment="CENTER" />
+            <Button fx:id="addObjectButton" layoutX="93.0" layoutY="284.0" mnemonicParsing="false" onAction="#addObject" text="Add Objects" textAlignment="CENTER" />
             <Button layoutX="406.0" layoutY="284.0" mnemonicParsing="false" text="Remove Object" textAlignment="CENTER" />
-            <Button layoutX="257.0" layoutY="284.0" mnemonicParsing="false" text="Edit Object" textAlignment="CENTER" />
             <ListView fx:id="objectsListView" layoutX="93.0" layoutY="72.0" prefHeight="195.0" prefWidth="414.0" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="nameCustomLevelAnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: black;" visible="false">
+      <AnchorPane fx:id="nameCustomLevelAnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: black;">
          <children>
             <Button layoutX="253.0" layoutY="308.0" mnemonicParsing="false" onAction="#nameNewLevel" text="Create Level" />
             <TextField fx:id="levelNameTextField" layoutX="220.0" layoutY="200.0" promptText="Name your level...." />

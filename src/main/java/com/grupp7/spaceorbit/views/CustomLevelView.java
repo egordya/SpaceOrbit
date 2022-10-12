@@ -11,14 +11,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import model.customLevelModels.CustomLevelModel;
 
-import javax.json.*;
-import java.io.FileWriter;
+import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.Writer;
 
 
 public class CustomLevelView extends AnchorPane {
     CustomLevelModel cml = new CustomLevelModel();
+
     @FXML
     private AnchorPane addObjectCustomLevelAnchorPane;
 
@@ -60,11 +59,14 @@ public class CustomLevelView extends AnchorPane {
 
     @FXML
     private Label levelNameLabel;
+
+    @FXML
+    private Label objectAdded;
+
     String levelName;
     Mediator mediator;
 
     public CustomLevelView(Mediator mediator) {
-
         this.mediator = mediator;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/customlevel.fxml"));
         fxmlLoader.setRoot(this);
@@ -79,7 +81,6 @@ public class CustomLevelView extends AnchorPane {
 
     @FXML
     public void submitButton() throws IOException {
-
         String name = nameInput.getText();
         int mass = Integer.parseInt(massInput.getText());
         int radius = Integer.parseInt(radiusInput.getText());
@@ -89,11 +90,12 @@ public class CustomLevelView extends AnchorPane {
         String type = typeChoiceBox.getValue();
         String isFixed = staticComboBoxInput.getValue().toString();
         cml.createJsonObject(name, mass, radius, posX, posY, imagePath, type, isFixed);
+        objectAdded.setText(name + " added!");
     }
 
     @FXML
     public void submitButtonTwo() throws IOException {
-        cml.finishAll(levelName);
+        cml.createJson(levelName);
     }
 
     @FXML
@@ -106,6 +108,16 @@ public class CustomLevelView extends AnchorPane {
     @FXML
     public void addObject() throws IOException{
         levelOverviewAnchorPane.toBack();
+    }
+
+    @FXML
+    public void backToList() throws IOException{
+        levelOverviewAnchorPane.toFront();
+    }
+
+    @FXML
+    public void backToMainMenu() throws FileNotFoundException {
+        mediator.notify(this, MediatorCommand.STANDARD);
     }
 
     @Override

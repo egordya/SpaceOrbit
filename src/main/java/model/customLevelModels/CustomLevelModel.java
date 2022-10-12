@@ -54,7 +54,7 @@ public class CustomLevelModel {
                 }
         }
 
-        public void finishAll(String levelName) throws IOException {
+        public void createJson(String levelName) throws IOException {
                 JsonArray planetArray = planetArrayBuilder.build();
                 JsonArray targetArray = targetArrayBuilder.build();
                 JsonArray playerArray = playerArrayBuilder.build();

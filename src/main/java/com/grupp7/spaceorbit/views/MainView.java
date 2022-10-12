@@ -21,6 +21,7 @@ public class MainView implements Initializable, Mediator{
     CustomLevelView customLevelView;
 
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         menuView = new MenuView(this, new MenuModel());
@@ -61,6 +62,10 @@ public class MainView implements Initializable, Mediator{
         }
 
         else if (pointer == gameView) {
+            theStackPane.getChildren().clear();
+            theStackPane.getChildren().add(menuView);
+        }
+        else if (pointer == customLevelView) {
             theStackPane.getChildren().clear();
             theStackPane.getChildren().add(menuView);
         }

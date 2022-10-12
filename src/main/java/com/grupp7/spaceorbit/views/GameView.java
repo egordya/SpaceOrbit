@@ -173,13 +173,10 @@ public class GameView extends AnchorPane implements Observer {
         pathsList.remove(firstPath);
 
         this.loadGameModel(firstPath, pathsList.toArray(new String[0]));
-
     }
 
     @FXML
     private void backToMainMenu() throws FileNotFoundException {
-
-
         this.gameController.terminate();
         this.gameModel = null;
         imageCache.clearCache();
