@@ -1,5 +1,6 @@
 package model.modelObjects;
 
+import javafx.application.Platform;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
 

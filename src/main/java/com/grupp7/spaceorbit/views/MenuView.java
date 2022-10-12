@@ -64,6 +64,7 @@ public class MenuView extends AnchorPane{
 
     @FXML
     public void buildNewLevel() throws FileNotFoundException {
+        System.out.println("button");
         mediator.notify(this, MediatorCommand.BUILDLVL);
     }
     @FXML
