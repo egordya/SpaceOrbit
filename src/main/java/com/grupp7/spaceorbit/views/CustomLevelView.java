@@ -93,12 +93,18 @@ public class CustomLevelView extends AnchorPane {
         String imagePath = imageComboBoxInput.getValue();
         String type = typeChoiceBox.getValue();
         imageComboBoxInput.getSelectionModel().selectFirst();
-        //boolean isFixed = staticComboBoxInput.getValue();
+        String isFixed = staticComboBoxInput.getValue().toString();
 
         switch (imagePath) {
-            case "Green Planet" -> imagePath = "src/main/resources/img/planet_green.gif";
-            case "Blue Planet" -> imagePath = "src/main/resources/img/planet_blue.gif";
+            // Planets
+            case "Dark Green" -> imagePath = "src/main/resources/img/darkGreen.gif";
+            case "Cloudy Blue" -> imagePath = "src/main/resources/img/cloudyBlue.gif";
+            case "Dark Red" -> imagePath = "src/main/resources/img/darkRed.gif";
+            case "Hazy Clouds" -> imagePath = "src/main/resources/img/hazyClouds.gif";
+            case "Light Green" -> imagePath = "src/main/resources/img/lightGreen.gif";
             case "PlaKanyet West" -> imagePath = "src/main/resources/img/kanye.jpg";
+            // Player Objects
+            case "Black and White" -> imagePath = "src/main/resources/img/blackWhitePlayer2.gif";
         }
 
         JsonObject jsonLevelObject = Json.createObjectBuilder()
@@ -108,7 +114,7 @@ public class CustomLevelView extends AnchorPane {
                     .add("startPosX", posX)
                     .add("startPosY", posY)
                     .add("imagePath", imagePath)
-                    //.add("fixedPosition", isFixed)
+                    .add("fixedPosition", isFixed)
                     .add("radius", radius)
                     .build();
 

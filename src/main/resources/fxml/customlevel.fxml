@@ -34,9 +34,14 @@
             <ComboBox fx:id="imageComboBoxInput" layoutX="468.0" layoutY="247.0" prefHeight="26.0" prefWidth="77.0" promptText="Add">
             <items>
                <FXCollections fx:factory="observableArrayList">
-                  <String fx:value="Green Planet" />
-                  <String fx:value="Blue Planet" />
+                  <String fx:value="---Planets---" />
+                  <String fx:value="Dark Green" />
+                  <String fx:value="Light Green" />
+                  <String fx:value="Cloudy Blue" />
+                  <String fx:value="Hazy Clouds" />
                   <String fx:value="PlaKanyet West" />
+                  <String fx:value="---Player Objects---" />
+                  <String fx:value="Black and White" />
                </FXCollections>
             </items>
             </ComboBox>
