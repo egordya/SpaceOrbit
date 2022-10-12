@@ -27,8 +27,8 @@
             <ComboBox fx:id="staticComboBoxInput" layoutX="168.0" layoutY="247.0" prefHeight="26.0" prefWidth="77.0" promptText="False" >
             <items>
                <FXCollections fx:factory="observableArrayList">
-                  <String fx:value="False" />
-                  <String fx:value="True" />
+                  <String fx:value="false" />
+                  <String fx:value="true" />
                </FXCollections>
             </items>
             </ComboBox>

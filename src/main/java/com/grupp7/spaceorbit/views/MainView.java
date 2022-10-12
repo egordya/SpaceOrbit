@@ -37,7 +37,7 @@ public class MainView implements Initializable, Mediator{
 
     @Override
     public void notify(Object pointer, MediatorCommand command) throws FileNotFoundException {
-        if (pointer == menuView){
+        if ((pointer == menuView) && (command == MediatorCommand.STANDARD)){
             theStackPane.getChildren().clear();
             theStackPane.getChildren().add(gameView);
 
@@ -54,7 +54,8 @@ public class MainView implements Initializable, Mediator{
             gameView.loadGameModel(menuView.path, menuView.remainingPaths);
         }
 
-        if((pointer == menuView) && (command == MediatorCommand.BUILDLVL)){
+        else if((pointer == menuView) && (command == MediatorCommand.BUILDLVL)){
+            System.out.println("awdawdawdawd");
             theStackPane.getChildren().clear();
             theStackPane.getChildren().add(customLevelView);
         }
