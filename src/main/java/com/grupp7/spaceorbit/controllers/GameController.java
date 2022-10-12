@@ -4,10 +4,8 @@ import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Polyline;
-import javafx.scene.shape.Shape;
 import model.gameModel.GameModel;
 import model.modelObjects.ArrowObject;
-import model.modelObjects.Geometry;
 import model.modelObjects.JavaFXGeometry;
 import utilitys.ArrowPolyLineFactory;
 import utilitys.Vector2D;
@@ -67,15 +65,19 @@ public class GameController implements EventHandler<MouseEvent> {
     }
 
     public void togglePauseGame(){
-        if(isRunning && !isPaused) {
+        if(!isPaused) {
             tr.cancel();
             isRunning = false;
             isPaused = true;
         }
-        else if(!isRunning && isPaused) {
+        else if(isPaused) {
             isPaused = false;
             startGame();
         }
+    }
+
+    public void terminate(){
+        tr.cancel();
     }
 
     public void setPlayerVelocity(Vector2D[] vectors){
