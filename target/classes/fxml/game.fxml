@@ -14,7 +14,7 @@
 <fx:root fx:id="anchor" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: black;" type="AnchorPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <FlowPane fx:id="lvlSelectorPane" alignment="CENTER" columnHalignment="CENTER" focusTraversable="true" hgap="10" nodeOrientation="LEFT_TO_RIGHT" vgap="10.0" />
-      <StackPane fx:id="winBox" layoutX="180.0" layoutY="130.0" style="-fx-background-color: BLACK">
+      <StackPane fx:id="winBox" layoutX="180.0" layoutY="130.0" style="-fx-blend-mode: BLACK;">
          <HBox alignment="BOTTOM_CENTER" spacing="20" StackPane.alignment="CENTER">
             <Button mnemonicParsing="false" onAction="#restart" text="Restart" />
             <Button mnemonicParsing="false" onAction="#nextLevel" text="Next Level" />
@@ -28,7 +28,7 @@
                <Insets bottom="40.0" />
             </StackPane.margin>
             <image>
-               <Image url="@../img/kanye.jpg" />
+               <Image url="@../img/WinScreen.png" />
             </image>
          </ImageView>
       </StackPane>

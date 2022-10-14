@@ -6,7 +6,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -30,10 +29,6 @@ public class GameView extends AnchorPane implements Observer {
     Pane renderSurface;
     @FXML
     StackPane winBox;
-    @FXML
-    AnchorPane anchor;
-    @FXML
-    HBox karl;
 
     Mediator mediator;
     GameModel gameModel;
@@ -72,6 +67,7 @@ public class GameView extends AnchorPane implements Observer {
         renderSurface.setOnMouseReleased(gameController);
         renderSurface.setOnMouseDragged(gameController);
         winBox.setVisible(false);
+        winBox.toBack();
         //winBox.toBack();
         showObjects();
         resume();
@@ -80,14 +76,13 @@ public class GameView extends AnchorPane implements Observer {
     @Override
     public void commandFromModel(ObserverCommand command) {
         if(command == ObserverCommand.Win){
-            Platform.runLater(() -> {
                     winBox.toFront();
                     winBox.setVisible(true);
                     System.out.println("Win");
 
 
 
-            });
+
 
 
         }
@@ -117,6 +112,7 @@ public class GameView extends AnchorPane implements Observer {
         DrawableList.addAll(Arrays.stream(gameModel.getPlayers()).toList());
         DrawableList.addAll(Arrays.stream(gameModel.getTargets()).toList());
         //anchor.getChildren().remove(winBox);
+        winBox.toFront();
         renderSurface.getChildren().clear();
 
         for (Drawable p : DrawableList){
@@ -167,7 +163,7 @@ public class GameView extends AnchorPane implements Observer {
 
     @FXML
     private void nextLevel() throws FileNotFoundException {
-        gameController.terminate();
+        this.gameController.terminate();
         ArrayList<String>  pathsList = new ArrayList<>();
         for(String x : allNextLevelPaths){
             pathsList.add(x);
