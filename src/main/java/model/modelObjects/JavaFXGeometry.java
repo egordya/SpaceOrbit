@@ -6,7 +6,7 @@ import javafx.scene.shape.Shape;
 
 public class JavaFXGeometry implements Geometry<Shape>{
 
-    Shape geometry;
+    private Shape geometry;
 
     public JavaFXGeometry(Shape geometry) {
         this.geometry = geometry;

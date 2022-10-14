@@ -12,6 +12,11 @@ public class ImageCache {
     public ImageCache() {
     }
 
+    /**
+     *
+     * @param path
+     * @return
+     */
     public Image getImage(String path) {
         if (imageMap.containsKey(path)) {
             return imageMap.get(path);
