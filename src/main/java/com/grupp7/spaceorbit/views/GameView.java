@@ -8,10 +8,9 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Polyline;
 import javafx.scene.shape.Shape;
 import model.gameModel.GameModel;
 import model.gameModel.GameModelBuilder;
@@ -24,16 +23,17 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class GameView extends AnchorPane implements Observer {
     
     @FXML
     Pane renderSurface;
     @FXML
-    HBox winBox;
+    StackPane winBox;
     @FXML
-    Pane anchor;
+    AnchorPane anchor;
+    @FXML
+    HBox karl;
 
     Mediator mediator;
     GameModel gameModel;
@@ -71,7 +71,8 @@ public class GameView extends AnchorPane implements Observer {
         renderSurface.setOnMousePressed(gameController);
         renderSurface.setOnMouseReleased(gameController);
         renderSurface.setOnMouseDragged(gameController);
-
+        winBox.setVisible(false);
+        //winBox.toBack();
         showObjects();
         resume();
     }
@@ -80,9 +81,15 @@ public class GameView extends AnchorPane implements Observer {
     public void commandFromModel(ObserverCommand command) {
         if(command == ObserverCommand.Win){
             Platform.runLater(() -> {
-                anchor.getChildren().add(winBox);
+                    winBox.toFront();
+                    winBox.setVisible(true);
+                    System.out.println("Win");
+
+
+
             });
-            System.out.println("win");
+
+
         }
         else if (command == ObserverCommand.Update) {
             Platform.runLater(() -> {
@@ -109,8 +116,7 @@ public class GameView extends AnchorPane implements Observer {
         DrawableList.addAll(Arrays.stream(gameModel.getPlanets()).toList());
         DrawableList.addAll(Arrays.stream(gameModel.getPlayers()).toList());
         DrawableList.addAll(Arrays.stream(gameModel.getTargets()).toList());
-
-        anchor.getChildren().remove(winBox);
+        //anchor.getChildren().remove(winBox);
         renderSurface.getChildren().clear();
 
         for (Drawable p : DrawableList){
@@ -161,16 +167,15 @@ public class GameView extends AnchorPane implements Observer {
 
     @FXML
     private void nextLevel() throws FileNotFoundException {
-
+        gameController.terminate();
         ArrayList<String>  pathsList = new ArrayList<>();
         for(String x : allNextLevelPaths){
             pathsList.add(x);
         }
-
         String firstPath = pathsList.get(0);
         pathsList.remove(firstPath);
+        loadGameModel(firstPath, pathsList.toArray(new String[0]));
 
-        this.loadGameModel(firstPath, pathsList.toArray(new String[0]));
 
     }
 

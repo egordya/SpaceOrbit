@@ -2,9 +2,10 @@ package model.gameModel;
 
 import model.collisionModels.Collisionable;
 import model.modelObjects.CelestialObject;
-import utilitys.Collision_2_Tuple;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 
 public class GameModel extends AGameModel{

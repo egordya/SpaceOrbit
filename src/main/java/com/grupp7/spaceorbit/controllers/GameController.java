@@ -125,6 +125,7 @@ public class GameController implements EventHandler<MouseEvent> {
 
     }
 
+
     private TimerTask getTimerTask(){
         return new TimerTask(){
             @Override
