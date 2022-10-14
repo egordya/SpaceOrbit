@@ -93,7 +93,7 @@ public class CustomLevelController extends AnchorPane {
         String imagePath = imageComboBoxInput.getValue();
         String type = typeChoiceBox.getValue();
         imageComboBoxInput.getSelectionModel().selectFirst();
-        //boolean isFixed = staticComboBoxInput.getValue();
+        boolean isFixed = staticComboBoxInput.getValue();
 
         switch (imagePath) {
             case "Green Planet" -> imagePath = "src/main/resources/img/planet_green.gif";
@@ -108,7 +108,7 @@ public class CustomLevelController extends AnchorPane {
                     .add("startPosX", posX)
                     .add("startPosY", posY)
                     .add("imagePath", imagePath)
-                    //.add("fixedPosition", isFixed)
+                    .add("fixedPosition", isFixed)
                     .add("radius", radius)
                     .build();
 

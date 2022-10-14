@@ -16,7 +16,7 @@
             <Button layoutX="274.0" layoutY="187.0" mnemonicParsing="false" onAction="#testbutton" style="-fx-background-color: white;" text="Start Game" />
             <Button layoutX="274.0" layoutY="187.0" mnemonicParsing="false" onAction="#buildNewLevel" style="-fx-background-color: white;" text="Build new Level" />
             <Button layoutX="274.0" layoutY="187.0" mnemonicParsing="false" onAction="#lvlSelector" style="-fx-background-color: white;" text="Select Lvl" />
-            <Button layoutX="274.0" layoutY="187.0" mnemonicParsing="false" onAction="#quitgame" style="-fx-background-color: white;" text="Quit" />
+            <Button fx:id="quitGameButton" layoutX="274.0" layoutY="187.0" mnemonicParsing="false" onAction="#quitgame" style="-fx-background-color: white;" text="Quit" />
          </VBox>
         </StackPane>
     </children>

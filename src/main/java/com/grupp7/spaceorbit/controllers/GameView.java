@@ -103,7 +103,7 @@ public class GameView extends AnchorPane implements Observer {
         Drawable[] targets = gameModel.getTargets();
         anchor.getChildren().remove(winBox);
         renderSurface.getChildren().clear();
-
+        System.out.println("Update");
         for (Drawable p : planets){
             p.getGeometry().setFill(new ImagePattern(test3));
             renderSurface.getChildren().add(p.getGeometry());

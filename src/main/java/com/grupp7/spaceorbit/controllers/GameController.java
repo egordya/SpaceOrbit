@@ -3,7 +3,9 @@ package com.grupp7.spaceorbit.controllers;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.scene.input.MouseEvent;
+import model.gameModel.AGameModel;
 import model.gameModel.GameModel;
+import model.modelObjects.CelestialObject;
 import utilitys.Vector2D;
 
 import java.io.*;
@@ -190,66 +192,53 @@ public class GameController implements EventHandler<MouseEvent> {
         pressedPos = new Vector2D(coordinates.get(0), coordinates.get(1));
         replayReleased = new Vector2D(coordinates.get(2), coordinates.get(3));
     }
+
+
+
+    private void savePlanetPos() throws Exception {
+
+//        String filePath =
+//                System.getProperty("user.dir") + File.separatorChar + "src"
+//                        + File.separatorChar + "main"
+//                        + File.separatorChar + "resources"
+//                        + File.separatorChar + "replay"
+//                        + File.separatorChar + "replay.txt";
+//
+//        Drawable[] planets = model.getPlanets();
+//
+//        for(Drawable i: planets)
+//        {
+//            double xPos = i.getXPos();
+//            double yPos = i.getYPos();
+//        }
+//
+//
+//        String xPosP = Integer.toString((int)model.getPlanets());
+//        String yPosP = Integer.toString((int)pressedPos.getY());
+//
+//        String xPosR = Integer.toString((int)replayReleased.getX());
+//        String yPosR = Integer.toString((int)replayReleased.getY());
+//
+//
+//
+//        BufferedReader file = new BufferedReader(new FileReader(filePath));
+//        String line;
+//        String input = "";
+//        while((line = file.readLine()) != null)
+//        {
+//            input += line + '\n';
+//        }
+//        input = xPosP + "\n"
+//                + yPosP + "\n"
+//                + xPosR + "\n"
+//                + yPosR;
+//        FileOutputStream out = new FileOutputStream(filePath);
+//        out.write(input.getBytes());
+//
+    }
+
+
+
 }
 
 
-//
-//    public void replayController() throws Exception {
-//        readReplayPos();
-//        Vector2D draggedPos = new Vector2D(replayReleased.getX(), replayReleased.getY());
-//        Vector2D delta = draggedPos.sub(pressedPos);
-//
-//        ScheduledExecutorService exec = Executors.newScheduledThreadPool(1);
-//
-//
-////        for(int a = 0; a<model.getPlayers().length; a++){
-////            vectors[a] = replayReleased.sub(pressedPos);
-////        }
-//
-//
-//        AtomicInteger i = new AtomicInteger(0);
-//        AtomicInteger m = new AtomicInteger(0);
-//
-//
-//        exec.scheduleAtFixedRate(() -> {
-////            int j = 0;
-////            int n = 0;
-//
-//            int j = i.getAndAdd(1);
-//            int n = m.getAndAdd(1);
-//
-//
-////            if (replayReleased.getX() >= 0){
-////                j = i.getAndAdd(1);
-////            }
-////            if (replayReleased.getY() >= 0){
-////                n = m.getAndAdd(1);
-////            }
-////            if (replayReleased.getX() <= 0){
-////                j = i.getAndAdd(-1);
-////            }
-////            if (replayReleased.getY() <= 0){
-////                n = m.getAndAdd(-1);
-////            }
-//
-//
-//            int k = 5 - 10;
-//            System.out.println(k);
-//            Vector2D[] vectors = new Vector2D[model.getPlayers().length];
-//            if (j >= delta.getX() && n >= delta.getY()) {
-//
-//                for(int a = 0; a<model.getPlayers().length; a++){
-//                    vectors[a] = replayReleased.sub(pressedPos);
-//                }
-//                model.SetShowPlayerArrows(false);
-//                model.setPlayerVelocity(vectors);
-//                model.startGame();
-//
-//                exec.shutdownNow();
-//                return;
-//            }
-//
-//            model.setPlayersArrow(new Vector2D(j,n));
-//
-//        }, 0, 10, TimeUnit.MILLISECONDS);
-//    }
