@@ -1,12 +1,11 @@
 package com.grupp7.spaceorbit.views;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import model.customLevelModels.CustomLevelModel;
@@ -17,6 +16,9 @@ import java.io.IOException;
 
 public class CustomLevelView extends AnchorPane {
     CustomLevelModel cml = new CustomLevelModel();
+
+    @FXML
+    ListView<String> objectsListView = new ListView<String>();
 
     @FXML
     private AnchorPane addObjectCustomLevelAnchorPane;
@@ -46,7 +48,7 @@ public class CustomLevelView extends AnchorPane {
     private TextField startYInput;
 
     @FXML
-    private ComboBox<Boolean> staticComboBoxInput;
+    private ComboBox<String> staticComboBoxInput;
 
     @FXML
     private ChoiceBox<String> typeChoiceBox;
@@ -63,8 +65,15 @@ public class CustomLevelView extends AnchorPane {
     @FXML
     private Label objectAdded;
 
+    @FXML
+    private Label levelNameMissing;
+
+    @FXML
+    private Label levelAddedLabel;
+
     String levelName;
     Mediator mediator;
+    ObservableList<String> objectList = FXCollections.observableArrayList();
 
     public CustomLevelView(Mediator mediator) {
         this.mediator = mediator;
@@ -88,30 +97,48 @@ public class CustomLevelView extends AnchorPane {
         double posY = Double.parseDouble(startYInput.getText());
         String imagePath = imageComboBoxInput.getValue();
         String type = typeChoiceBox.getValue();
-        String isFixed = staticComboBoxInput.getValue().toString();
-        cml.createJsonObject(name, mass, radius, posX, posY, imagePath, type, isFixed);
-        objectAdded.setText(name + " added!");
+        String isFixed = staticComboBoxInput.getValue();
+        if(name != "" && type != null && isFixed != null) {
+            cml.createJsonObject(name, mass, radius, posX, posY, imagePath, type, isFixed);
+            objectAdded.setText(name + " added!");
+            objectList.add(name + "  Type:   " + type + "    Start position(x,y):   (" + posX + " , " + posY + ")");
+        }else{
+            objectAdded.setText("Missing parameters!");
+        }
+
     }
 
     @FXML
-    public void submitButtonTwo() throws IOException {
-        cml.createJson(levelName);
+    public void createLevel() throws IOException {
+            cml.createJson(levelName);
+            if(cml.levelBuilt){
+                levelAddedLabel.setText("Your level was added to the Game. Enjoy!");
+            }else{
+                levelAddedLabel.setText("You are missing required objects.");
+            }
     }
 
     @FXML
     public void nameNewLevel() throws IOException {
         levelName = levelNameTextField.getText();
-        levelNameLabel.setText(levelName);
-        nameCustomLevelAnchorPane.toBack();
+        levelName = levelName.replace(" ", "_");
+        if(levelName != "") {
+            levelNameLabel.setText(levelName);
+            nameCustomLevelAnchorPane.toBack();
+            levelNameMissing.setText("");
+        }else{
+            levelNameMissing.setText("Please write a name for your level! ");
+        }
     }
 
     @FXML
     public void addObject() throws IOException{
-        levelOverviewAnchorPane.toBack();
+        addObjectCustomLevelAnchorPane.toFront();
     }
 
     @FXML
     public void backToList() throws IOException{
+        objectsListView.setItems(objectList);
         levelOverviewAnchorPane.toFront();
     }
 

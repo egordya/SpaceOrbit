@@ -1,15 +1,16 @@
 package com.grupp7.spaceorbit;
 
-import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+
 import javafx.stage.Stage;
+
 import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 
-public class HelloApplication extends Application {
+public class Application extends javafx.application.Application {
 
     double day = 0.0;
 
@@ -31,6 +32,10 @@ public class HelloApplication extends Application {
         });
 
         stage.show();
+
+
+
+
 
     }
 

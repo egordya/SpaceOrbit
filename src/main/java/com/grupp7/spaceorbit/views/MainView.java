@@ -20,8 +20,6 @@ public class MainView implements Initializable, Mediator{
     GameView gameView;
     CustomLevelView customLevelView;
 
-
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         menuView = new MenuView(this, new MenuModel());
