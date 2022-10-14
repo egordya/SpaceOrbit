@@ -46,12 +46,10 @@ public abstract class AGameModel {
 
     public void setPlayersArrow(ArrowObject[] arrows){
         playerArrows = arrows;
-        notifyObservers(ObserverCommand.Update);
     }
 
     public void SetShowPlayerArrows(boolean show){
         showArrows = show;
-        notifyObservers(ObserverCommand.Update);
     }
 
     public Drawable[] getPlayers() {

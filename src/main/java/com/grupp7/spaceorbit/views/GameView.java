@@ -105,8 +105,6 @@ public class GameView extends AnchorPane implements Observer {
 
     private void showObjects(){
 
-        System.out.println("update");
-
         ArrayList<Drawable> DrawableList = new ArrayList<>();
         DrawableList.addAll(Arrays.stream(gameModel.getPlanets()).toList());
         DrawableList.addAll(Arrays.stream(gameModel.getPlayers()).toList());
