@@ -161,6 +161,7 @@ public class GameView extends AnchorPane implements Observer {
 
     @FXML
     private void nextLevel() throws FileNotFoundException {
+        imageCache.clearCache();
         this.gameController.terminate();
         ArrayList<String>  pathsList = new ArrayList<>();
         for(String x : allNextLevelPaths){
@@ -176,10 +177,9 @@ public class GameView extends AnchorPane implements Observer {
     @FXML
     private void backToMainMenu() throws FileNotFoundException {
 
-
+        imageCache.clearCache();
         this.gameController.terminate();
         this.gameModel = null;
-        imageCache.clearCache();
         mediator.notify(this, MediatorCommand.STANDARD);
     }
 }
