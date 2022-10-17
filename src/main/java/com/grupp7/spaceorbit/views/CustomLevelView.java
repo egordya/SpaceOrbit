@@ -36,6 +36,12 @@ public class CustomLevelView extends AnchorPane {
     private TextField nameInput;
 
     @FXML
+    private TextField velYInput;
+
+    @FXML
+    private TextField velXInput;
+
+    @FXML
     private ImageView planetPreview;
 
     @FXML
@@ -88,6 +94,9 @@ public class CustomLevelView extends AnchorPane {
         }
     }
 
+    /**
+     * @throws IOException
+     */
     @FXML
     public void submitButton() throws IOException {
         String name = nameInput.getText();
@@ -98,8 +107,12 @@ public class CustomLevelView extends AnchorPane {
         String imagePath = imageComboBoxInput.getValue();
         String type = typeChoiceBox.getValue();
         String isFixed = staticComboBoxInput.getValue();
+        double velX = Double.parseDouble(velXInput.getText());
+        double velY = Double.parseDouble(velYInput.getText());
+
+
         if(name != "" && type != null && isFixed != null) {
-            cml.createJsonObject(name, mass, radius, posX, posY, imagePath, type, isFixed);
+            cml.createJsonObject(name, mass, radius, posX, posY, velX, velY, imagePath, type, isFixed);
             objectAdded.setText(name + " added!");
             objectList.add(name + "  Type:   " + type + "    Start position(x,y):   (" + posX + " , " + posY + ")");
         }else{
@@ -108,6 +121,10 @@ public class CustomLevelView extends AnchorPane {
 
     }
 
+    /**
+     * @throws IOException
+     *
+     */
     @FXML
     public void createLevel() throws IOException {
             cml.createJson(levelName);
@@ -122,7 +139,7 @@ public class CustomLevelView extends AnchorPane {
     public void nameNewLevel() throws IOException {
         levelName = levelNameTextField.getText();
         levelName = levelName.replace(" ", "_");
-        if(levelName != "") {
+        if(!levelName.equals("")) {
             levelNameLabel.setText(levelName);
             nameCustomLevelAnchorPane.toBack();
             levelNameMissing.setText("");
@@ -145,6 +162,7 @@ public class CustomLevelView extends AnchorPane {
     @FXML
     public void backToMainMenu() throws FileNotFoundException {
         mediator.notify(this, MediatorCommand.STANDARD);
+
     }
 
     @Override

@@ -28,31 +28,32 @@ public class CustomLevelModel {
                         case "Light Green" -> imagePath = "src/main/resources/img/lightGreen.gif";
                         case "PlaKanyet West" -> imagePath = "src/main/resources/img/kanye.jpg";
                         // Target Objects
+
                         // Player Objects
                         case "Black/White" -> imagePath = "src/main/resources/img/blackWhitePlayer.gif";
                         case "Gold" -> imagePath = "src/main/resources/img/goldPlayer.gif";
                         case "Red" -> imagePath = "src/main/resources/img/redPlayer.gif";
                         case "White/Orange" -> imagePath = "src/main/resources/img/whiteOrangePlayer.gif";
                         default -> imagePath = "src/main/resources/img/kanye.jpg";
-
-
                 }
                 return imagePath;
         }
 
         public void createJsonObject(String name, double mass, double radius, double posX, double posY,
-                                     String imageName, String type, String isFixed){
+                                     double velX, double velY, String imageName, String type, String isFixed){
 
                 String imagePath = setImagePath(imageName);
                 JsonObject jsonLevelObject = Json.createObjectBuilder()
                         .add("type",type)
                         .add("name", name)
                         .add("mass", mass)
-                        .add("startPosX", posX)
-                        .add("startPosY", posY)
-                        .add("imagePath", imagePath)
-                        .add("fixedPosition", isFixed)
                         .add("radius", radius)
+                        .add("posX", posX)
+                        .add("posY", posY)
+                        .add("velX", velX)
+                        .add("velY", velY)
+                        .add("image_path", imagePath)
+                        .add("isAffectedByGravity", isFixed)
                         .build();
 
                 String typeString = jsonLevelObject.getString("type");
