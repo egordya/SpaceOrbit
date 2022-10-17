@@ -12,6 +12,7 @@ import model.customLevelModels.CustomLevelModel;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Objects;
 
 
 public class CustomLevelView extends AnchorPane {
@@ -96,6 +97,8 @@ public class CustomLevelView extends AnchorPane {
 
     /**
      * @throws IOException
+     * Gathers user input data from GUI, checks if all mandatory parameters are set.
+     * Adds type and starting positions to list of objects in objectsListView.
      */
     @FXML
     public void submitButton() throws IOException {
@@ -110,20 +113,19 @@ public class CustomLevelView extends AnchorPane {
         double velX = Double.parseDouble(velXInput.getText());
         double velY = Double.parseDouble(velYInput.getText());
 
-
-        if(name != "" && type != null && isFixed != null) {
+        if(!Objects.equals(name, "") && type != null && isFixed != null && imagePath != null) {
             cml.createJsonObject(name, mass, radius, posX, posY, velX, velY, imagePath, type, isFixed);
             objectAdded.setText(name + " added!");
             objectList.add(name + "  Type:   " + type + "    Start position(x,y):   (" + posX + " , " + posY + ")");
         }else{
             objectAdded.setText("Missing parameters!");
         }
-
     }
 
     /**
      * @throws IOException
-     *
+     * Sends gathered data to model.
+     * If cml.levelBuilt returns true, confirms that level json is added.
      */
     @FXML
     public void createLevel() throws IOException {
@@ -131,10 +133,16 @@ public class CustomLevelView extends AnchorPane {
             if(cml.levelBuilt){
                 levelAddedLabel.setText("Your level was added to the Game. Enjoy!");
             }else{
-                levelAddedLabel.setText("You are missing required objects.");
+                levelAddedLabel.setText("You are missing required objects (Planet, Target, Player)");
             }
     }
 
+
+    /**
+     * @throws IOException
+     * Sets name of level.
+     * Used for naming json file.
+     */
     @FXML
     public void nameNewLevel() throws IOException {
         levelName = levelNameTextField.getText();
@@ -149,7 +157,7 @@ public class CustomLevelView extends AnchorPane {
     }
 
     @FXML
-    public void addObject() throws IOException{
+    public void showAddObjectListPane() throws IOException{
         addObjectCustomLevelAnchorPane.toFront();
     }
 
@@ -161,10 +169,10 @@ public class CustomLevelView extends AnchorPane {
 
     @FXML
     public void backToMainMenu() throws FileNotFoundException {
+        objectsListView.toFront();
         mediator.notify(this, MediatorCommand.STANDARD);
 
     }
-
     @Override
     public Node getStyleableNode() {
         return super.getStyleableNode();

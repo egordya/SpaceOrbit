@@ -26,7 +26,6 @@ public class MainView implements Initializable, Mediator{
         gameView = new GameView(this);
         customLevelView = new CustomLevelView(this);
 
-
         theStackPane.getChildren().add(gameView);
         theStackPane.getChildren().add(menuView);
 
