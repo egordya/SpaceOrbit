@@ -82,7 +82,6 @@ public class GameModel extends AGameModel{
             List<CelestialObject> players = new ArrayList<>(Arrays.stream(this.players).toList());
             players.remove(players.get(players.indexOf(hitboxes[0])));
             this.players = players.toArray(new CelestialObject[0]);
-            notifyObservers(ObserverCommand.Update);
         }
         else if(hitboxes[0].getType().equals("player") && hitboxes[1].getType().equals("planet")){
             notifyObservers(ObserverCommand.Restart);

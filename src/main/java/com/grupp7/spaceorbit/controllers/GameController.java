@@ -20,7 +20,7 @@ public class GameController implements EventHandler<MouseEvent> {
 
     private Vector2D pressedPos = new Vector2D(0,0);
 
-    final long timePeriod = 10;
+    final long timePeriod = 17;
     private Timer tr;
     private boolean isRunning;
     private boolean isPaused;

@@ -3,35 +3,35 @@
     {
       "name": "planet1",
       "mass": 7000000000000000.0,
-      "radius": 6,
+      "radius": 10,
       "isAffectedByGravity": false,
       "posX": 350,
       "posY": 200,
       "velX": 0,
       "velY": 0,
-      "img_path": "/img/testtst2.gif"
+      "img_path": "/img/lightGreen.gif"
     },
     {
       "name": "planet2",
       "mass": 7000000000000000.0,
-      "radius": 6,
+      "radius": 10,
       "isAffectedByGravity": false,
       "posX": 350,
       "posY": 100,
       "velX": 0,
       "velY": 0,
-      "img_path": "/img/testtst2.gif"
+      "img_path": "/img/darkRed.gif"
     },
     {
       "name": "planet3",
       "mass": 7000000000000000.0,
-      "radius": 6,
+      "radius": 10,
       "isAffectedByGravity": false,
       "posX": 200,
       "posY": 100,
       "velX": 0,
       "velY": 0,
-      "img_path": "/img/testtst2.gif"
+      "img_path": "/img/darkGreen.gif"
     },
     {
       "name": "planet4",
