@@ -179,7 +179,6 @@ public class GameView extends AnchorPane implements Observer {
 
         imageCache.clearCache();
         this.gameController.terminate();
-        this.gameModel = null;
         mediator.notify(this, MediatorCommand.STANDARD);
     }
 }
