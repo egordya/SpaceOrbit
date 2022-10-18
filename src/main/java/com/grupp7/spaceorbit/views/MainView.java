@@ -28,10 +28,8 @@ public class MainView implements Initializable, Mediator{
         gameView = new GameView(this, new GameModelBuilder());
         customLevelView = new CustomLevelView(this);
 
-
         theStackPane.getChildren().add(gameView);
         theStackPane.getChildren().add(menuView);
-
 
     }
 
@@ -41,7 +39,6 @@ public class MainView implements Initializable, Mediator{
         if ((pointer == menuView) && (command == MediatorCommand.STANDARD)){
             theStackPane.getChildren().clear();
             theStackPane.getChildren().add(gameView);
-
 
             //String[] levelPaths = menuView.getRemainingLevels();
             //List<String> levelPathsList = Arrays.stream(levelPaths).toList();
@@ -56,9 +53,13 @@ public class MainView implements Initializable, Mediator{
         }
 
         else if((pointer == menuView) && (command == MediatorCommand.BUILDLVL)){
-            System.out.println("awdawdawdawd");
             theStackPane.getChildren().clear();
             theStackPane.getChildren().add(customLevelView);
+        }
+
+        else if((pointer == customLevelView) && (command == MediatorCommand.STANDARD)){
+            theStackPane.getChildren().clear();
+            theStackPane.getChildren().add(menuView);
         }
 
         else if (pointer == gameView) {
