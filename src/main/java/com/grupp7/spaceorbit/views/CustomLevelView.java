@@ -103,7 +103,7 @@ public class CustomLevelView extends AnchorPane {
     @FXML
     public void submitButton() throws IOException {
         String name = nameInput.getText();
-        int mass = Integer.parseInt(massInput.getText());
+        double mass = Double.parseDouble(massInput.getText())*1000000000.0;
         int radius = Integer.parseInt(radiusInput.getText());
         double posX = Double.parseDouble(startXInput.getText());
         double posY = Double.parseDouble(startYInput.getText());
@@ -117,6 +117,8 @@ public class CustomLevelView extends AnchorPane {
             cml.createJsonObject(name, mass, radius, posX, posY, velX, velY, imagePath, type, isFixed);
             objectAdded.setText(name + " added!");
             objectList.add(name + "  Type:   " + type + "    Start position(x,y):   (" + posX + " , " + posY + ")");
+            startXInput.setText(String.valueOf(posX + 50));
+            startYInput.setText(String.valueOf(posX + 50));
         }else{
             objectAdded.setText("Missing parameters!");
         }
