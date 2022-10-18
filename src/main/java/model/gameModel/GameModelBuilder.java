@@ -18,7 +18,7 @@ public class GameModelBuilder implements IGameModelBuilder{
     public GameModel getGameModel(String pathToJsonLevel) throws FileNotFoundException {
 
 
-        String jsonPath = "src/main/resources/json/levels/level2.json";
+
         InputStream levelTest = new FileInputStream(pathToJsonLevel);
         JsonReader reader = Json.createReader(levelTest);
         JsonObject levelObject = reader.readObject();
