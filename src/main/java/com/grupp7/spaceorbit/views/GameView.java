@@ -11,10 +11,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Shape;
-import model.gameModel.GameModel;
-import model.gameModel.GameModelBuilder;
-import model.gameModel.Observer;
-import model.gameModel.ObserverCommand;
+import model.gameModel.*;
 import model.modelObjects.Geometry;
 import utilitys.ImageCache;
 
@@ -38,9 +35,12 @@ public class GameView extends AnchorPane implements Observer {
 
     ImageCache imageCache = new ImageCache();
 
-    public GameView(Mediator mediator) {
+    IGameModelBuilder gameModelBuilder;
+
+    public GameView(Mediator mediator,IGameModelBuilder gameModelBuilder ) {
 
         this.mediator = mediator;
+        this.gameModelBuilder = gameModelBuilder;
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/game.fxml"));
         fxmlLoader.setRoot(this);
@@ -58,7 +58,7 @@ public class GameView extends AnchorPane implements Observer {
         pathToCurrentLevel = jsonPath;
         this.allNextLevelPaths = allNextLevelPathsx;
 
-        this.gameModel = GameModelBuilder.getGameModel(jsonPath);
+        this.gameModel = gameModelBuilder.getGameModel(jsonPath);
         this.gameModel.addObserver(this);
 
         this.gameController = new GameController(gameModel);
