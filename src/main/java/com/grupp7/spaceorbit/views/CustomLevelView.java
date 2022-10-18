@@ -113,7 +113,7 @@ public class CustomLevelView extends AnchorPane {
         double velX = Double.parseDouble(velXInput.getText());
         double velY = Double.parseDouble(velYInput.getText());
 
-        if(!Objects.equals(name, "") && type != null && isFixed && imagePath != null) {
+        if(!Objects.equals(name, "") && type != null && isFixed != null && imagePath != null) {
             cml.createJsonObject(name, mass, radius, posX, posY, velX, velY, imagePath, type, isFixed);
             objectAdded.setText(name + " added!");
             objectList.add(name + "  Type:   " + type + "    Start position(x,y):   (" + posX + " , " + posY + ")");
@@ -136,7 +136,6 @@ public class CustomLevelView extends AnchorPane {
             levelAddedLabel.setText("You are missing required objects (Planet, Target, Player)");
         }
     }
-
 
     /**
      * @throws IOException
@@ -169,7 +168,6 @@ public class CustomLevelView extends AnchorPane {
 
     @FXML
     public void backToMainMenu() throws FileNotFoundException {
-        objectsListView.toFront();
         mediator.notify(this, MediatorCommand.STANDARD);
 
     }
