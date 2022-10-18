@@ -31,6 +31,7 @@ public class HelloApplication extends Application {
 
     private Stage stage;
 
+
     @Override
     public void start(Stage stage) throws IOException, InterruptedException {
 

@@ -13,6 +13,11 @@ import javax.json.*;
 
 public class GameModelBuilder {
 
+    /**
+     * @param pathToJsonLevel a path to a json level that describes all elements of the level
+     * @return  a GameModel
+     * @throws FileNotFoundException If no json file is found the exception will not be caught
+     */
     public static GameModel getGameModel(String pathToJsonLevel) throws FileNotFoundException {
 
 
@@ -34,6 +39,12 @@ public class GameModelBuilder {
         return product;
     }
 
+    /**
+     * @param levelObject a jsonObject of the json-file that describes all elements of the level
+     * @param jsonFilter a keyword that determines from which array in the json-file the data will be collected from
+     * @param type what type the CelestialObject will get
+     * @return a list of celestialObjects created from the data in the json-file
+     */
     private static ArrayList<CelestialObject> getCelestialObjetsFromJson(JsonObject levelObject, String jsonFilter, String type){
         ArrayList<CelestialObject> planets = new ArrayList<>();
         JsonArray planetArray = levelObject.getJsonArray(jsonFilter);
@@ -44,6 +55,11 @@ public class GameModelBuilder {
         return planets;
     }
 
+    /**
+     * @param jsonObject an array form the json-file containing all the necessary data
+     * @param type what type the CelestialObject will get
+     * @return a new CelestialObject created from the data in the json-file
+     */
     private static CelestialObject createCelestialObjects(JsonObject jsonObject, String type){
         String planetName = jsonObject.get("name").toString();
         double planetMass = Double.parseDouble(jsonObject.get("mass").toString());

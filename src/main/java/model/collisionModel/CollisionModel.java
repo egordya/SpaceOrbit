@@ -7,9 +7,10 @@ import java.util.List;
 
 public class CollisionModel{
 
+
     /**
-     * @param originalAllObjects all the objects to be accounted in the check
-     * @return an array that contains arrays of two collided objects
+     * @param allObjects all objects that will be checked for collisions
+     * @return an array of tuples containing objects that has collided
      */
     public Collision_2_Tuple[] checkForCollisions(Collisionable[] allObjects){
 
@@ -30,6 +31,11 @@ public class CollisionModel{
         return allCollidedObjects.toArray(new Collision_2_Tuple[0]);
     }
 
+    /**
+     * @param theObject one seperated object that will be checked for collisions with all other objects
+     * @param otherObjects  all other objects
+     * @return an array of 2 object that has collided
+     */
     private ArrayList<Collision_2_Tuple> checkForCollisionsWithX(Collisionable theObject, List<Collisionable> otherObjects) {
 
         ArrayList<Collision_2_Tuple> collidedObjects = new ArrayList<>();
@@ -41,6 +47,12 @@ public class CollisionModel{
         return collidedObjects;
     }
 
+    /**
+     * checks if two objects have collided
+     * @param object1 object number 1 that will be checked
+     * @param object2 object number 2 that will be checked
+     * @return a boolean, true if collision, false otherwise
+     */
     private boolean checkIfCollision(Collisionable object1, Collisionable object2){
         return object1.getGeometry().getBoundsInParent().intersects(object2.getGeometry().getBoundsInParent());
     }

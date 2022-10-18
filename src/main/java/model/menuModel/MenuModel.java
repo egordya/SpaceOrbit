@@ -10,6 +10,10 @@ public class MenuModel {
     public MenuModel(){
     }
 
+    /**
+     * gets all level paths
+     * @return an array containing paths to all levels
+     */
     public String[] getAllLevels(){
         File folder = new File(pathToLevels);
         File[] listOfFiles = folder.listFiles();
