@@ -9,7 +9,7 @@
       "posY": 200,
       "velX": 0,
       "velY": 0,
-      "img_path": "/img/lightGreen.gif"
+      "img_path": "/img/kanye.jpg"
     },
     {
       "name": "planet2",
@@ -20,7 +20,7 @@
       "posY": 100,
       "velX": 0,
       "velY": 0,
-      "img_path": "/img/darkRed.gif"
+      "img_path": "/img/kanye.jpg"
     },
     {
       "name": "planet3",
@@ -31,7 +31,7 @@
       "posY": 100,
       "velX": 0,
       "velY": 0,
-      "img_path": "/img/darkGreen.gif"
+      "img_path": "/img/kanye.jpg"
     },
     {
       "name": "planet4",
@@ -42,7 +42,7 @@
       "posY": 200,
       "velX": 0,
       "velY": 0,
-      "img_path": "/img/testtst2.gif"
+      "img_path": "/img/kanye.jpg"
     }
   ],
   "playerObject": [
@@ -55,7 +55,7 @@
       "posY": 300,
       "velX": 0,
       "velY": 0,
-      "img_path": "/img/testhole3.gif"
+      "img_path": "/img/kanye.jpg"
     },
     {
       "name": "playerObj",
@@ -66,7 +66,7 @@
       "posY": 300,
       "velX": 0,
       "velY": 0,
-      "img_path": "/img/testhole3.gif"
+      "img_path": "/img/kanye.jpg"
     }
   ],
   "target": [
