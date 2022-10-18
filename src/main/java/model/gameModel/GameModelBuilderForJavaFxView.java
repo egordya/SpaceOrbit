@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import javax.json.*;
 
 
-public class GameModelBuilderWithJavaFxGeometry implements GameModellBuilder {
+public class GameModelBuilderForJavaFxView implements GameModellBuilder {
 
     public GameModel getGameModel(String pathToJsonLevel) throws FileNotFoundException {
 
@@ -64,8 +64,8 @@ public class GameModelBuilderWithJavaFxGeometry implements GameModellBuilder {
         Circle circle = new Circle();
         circle.setRadius(planetRadius);
 
-        CelestialObject theproduct = new CelestialObject(positionVec, velocityVec, planetMass, new JavaFXGeometry(circle), img_path, isAffectedByGravity, planetName,type);
-        return  theproduct;
+        CelestialObject celestialObject = new CelestialObject(positionVec, velocityVec, planetMass, new JavaFXGeometry(circle), img_path, isAffectedByGravity, planetName,type);
+        return  celestialObject;
     }
 
     //private static
