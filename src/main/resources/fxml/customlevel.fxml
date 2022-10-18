@@ -26,11 +26,11 @@
                   </FXCollections>
                </items>
             </ComboBox>
-            <Text fill="WHITE" layoutX="333.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start Position" />
+            <Text fill="WHITE" layoutX="333.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start Position X:" />
             <TextField fx:id="startXInput" layoutX="468.0" layoutY="173.0" prefHeight="26.0" prefWidth="77.0" promptText="X" text="0" />
             <Text fill="WHITE" layoutX="332.0" layoutY="316.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Image:" />
             <TextField fx:id="startYInput" layoutX="468.0" layoutY="209.0" prefHeight="26.0" prefWidth="77.0" promptText="Y" text="0" />
-            <Text fill="WHITE" layoutX="333.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start Position:" />
+            <Text fill="WHITE" layoutX="333.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start Position Y:" />
             <ComboBox fx:id="imageComboBoxInput" layoutX="435.0" layoutY="298.0" prefHeight="26.0" prefWidth="109.0" promptText="Pick">
                <items>
                   <FXCollections fx:factory="observableArrayList">
