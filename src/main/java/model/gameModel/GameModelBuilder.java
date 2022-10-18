@@ -13,9 +13,9 @@ import java.util.ArrayList;
 import javax.json.*;
 
 
-public class GameModelBuilder {
+public class GameModelBuilder implements IGameModellBuilder{
 
-    public static GameModel getGameModel(String pathToJsonLevel) throws FileNotFoundException {
+    public GameModel getGameModel(String pathToJsonLevel) throws FileNotFoundException {
 
 
         String jsonPath = "src/main/resources/json/levels/level2.json";
@@ -36,7 +36,7 @@ public class GameModelBuilder {
         return product;
     }
 
-    private static ArrayList<CelestialObject> getCelestialObjetsFromJson(JsonObject levelObject, String jsonFilter, String type){
+    private ArrayList<CelestialObject> getCelestialObjetsFromJson(JsonObject levelObject, String jsonFilter, String type){
         ArrayList<CelestialObject> planets = new ArrayList<>();
         JsonArray planetArray = levelObject.getJsonArray(jsonFilter);
         for (int i = 0; i < planetArray.size(); i++) {
@@ -46,7 +46,7 @@ public class GameModelBuilder {
         return planets;
     }
 
-    private static CelestialObject createCelestialObjects(JsonObject jsonObject, String type){
+    private CelestialObject createCelestialObjects(JsonObject jsonObject, String type){
         String planetName = jsonObject.get("name").toString();
         double planetMass = Double.parseDouble(jsonObject.get("mass").toString());
         double planetRadius = Double.parseDouble(jsonObject.get("radius").toString());
