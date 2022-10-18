@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import javax.json.*;
 
 
-public class GameModelBuilder implements IGameModellBuilder{
+public class GameModelBuilderWithJavaFxGeometry implements GameModellBuilder {
 
     public GameModel getGameModel(String pathToJsonLevel) throws FileNotFoundException {
 
