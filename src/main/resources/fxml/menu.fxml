@@ -9,8 +9,8 @@
 
 <fx:root prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: black;" type="AnchorPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <FlowPane fx:id="lvlSelectorPane" alignment="CENTER" hgap="10" prefHeight="300" prefWidth="400">
-            <Button fx:id="back" layoutX="100.0" layoutY="50.0" mnemonicParsing="false" onAction="#back" text="Back" visible="false" />
+        <FlowPane fx:id="lvlSelectorPane" alignment="CENTER" hgap="10" vgap="10" prefHeight="300" prefWidth="400" layoutY="50" layoutX="100">
+            <Button fx:id="back" prefWidth="75" prefHeight="20" mnemonicParsing="false" onAction="#back" text="Back" visible="false" />
         </FlowPane>
         <StackPane fx:id="sp" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.1">
             <VBox alignment="CENTER" spacing="12">
