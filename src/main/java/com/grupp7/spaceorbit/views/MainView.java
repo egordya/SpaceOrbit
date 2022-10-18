@@ -3,13 +3,11 @@ package com.grupp7.spaceorbit.views;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.StackPane;
-import model.gameModel.GameModelBuilder;
+import model.gameModel.GameModelBuilderForJavaFxView;
 import model.menuModel.MenuModel;
 
 import java.io.FileNotFoundException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class MainView implements Initializable, Mediator{
@@ -25,7 +23,7 @@ public class MainView implements Initializable, Mediator{
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         menuView = new MenuView(this, new MenuModel());
-        gameView = new GameView(this, new GameModelBuilder());
+        gameView = new GameView(this, new GameModelBuilderForJavaFxView());
         customLevelView = new CustomLevelView(this);
 
         theStackPane.getChildren().add(gameView);

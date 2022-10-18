@@ -34,9 +34,9 @@ public class GameView extends AnchorPane implements Observer {
     String[] allNextLevelPaths;
 
     ImageCache imageCache = new ImageCache();
-    IGameModellBuilder gameModellBuilder;
+    GameModellBuilder gameModellBuilder;
 
-    public GameView(Mediator mediator, IGameModellBuilder gameModellBuilder) {
+    public GameView(Mediator mediator, GameModellBuilder gameModellBuilder) {
 
         this.mediator = mediator;
         this.gameModellBuilder = gameModellBuilder;
