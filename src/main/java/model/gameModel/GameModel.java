@@ -68,6 +68,7 @@ public class GameModel extends AGameModel{
 
     private void handleCollisions() {
 
+
         collisionModel.checkCollisions(getAllCelestialObjects());
         Collisionable[][] pairs = collisionModel.getCollidedPairs();
 
