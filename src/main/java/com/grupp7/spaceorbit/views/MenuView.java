@@ -10,7 +10,6 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
 import model.menuModel.MenuModel;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -98,6 +97,7 @@ public class MenuView extends AnchorPane{
         List<Button> buttons = model.getlvlbuttons();
         for (Button button : buttons) {
             lvlSelectorPane.getChildren().add(button);
+            button.setPrefSize(75,20);
             button.setOnAction((new EventHandler<ActionEvent>() {
                 public void handle(ActionEvent event) {
                     path = ("src/main/resources/json/levels/" + button.getText() + ".json");
