@@ -77,13 +77,6 @@ public class GameView extends AnchorPane implements Observer {
         if(command == ObserverCommand.Win){
                     winBox.toFront();
                     winBox.setVisible(true);
-                    System.out.println("Win");
-
-
-
-
-
-
         }
         else if (command == ObserverCommand.Update) {
             Platform.runLater(() -> {

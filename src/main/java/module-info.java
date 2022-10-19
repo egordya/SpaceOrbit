@@ -2,6 +2,7 @@ module com.grupp7.spaceorbit {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.json;
+    requires javafx.graphics;
 
 
     opens com.grupp7.spaceorbit to javafx.fxml;
