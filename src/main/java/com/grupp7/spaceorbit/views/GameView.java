@@ -163,6 +163,8 @@ public class GameView extends AnchorPane implements Observer {
         imageCache.clearCache();
         this.gameController.terminate();
         ArrayList<String>  pathsList = new ArrayList<>();
+
+
         for(String x : allNextLevelPaths){
             pathsList.add(x);
         }

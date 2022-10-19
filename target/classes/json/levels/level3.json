@@ -1,0 +1,96 @@
+{
+  "planets": [
+    {
+      "name": "planet1",
+      "mass": 10.0,
+      "radius": 6,
+      "isAffectedByGravity": true,
+      "posX": 275,
+      "posY": 40,
+      "velX": 100,
+      "velY": 0,
+      "img_path": "/img/testtst2.gif"
+    },
+    {
+      "name": "planet1",
+      "mass": 10.0,
+      "radius": 6,
+      "isAffectedByGravity": true,
+      "posX": 315,
+      "posY": 0,
+      "velX": 0,
+      "velY": -100,
+      "img_path": "/img/testtst2.gif"
+    },
+    {
+      "name": "planet1",
+      "mass": 10.0,
+      "radius": 6,
+      "isAffectedByGravity": true,
+      "posX": 315,
+      "posY": -1,
+      "velX": 0,
+      "velY": -100,
+      "img_path": "/img/testtst2.gif"
+    },
+    {
+      "name": "planet1",
+      "mass": 10.0,
+      "radius": 6,
+      "isAffectedByGravity": true,
+      "posX": 315,
+      "posY": -2,
+      "velX": 0,
+      "velY": -100,
+      "img_path": "/img/testtst2.gif"
+    },
+    {
+      "name": "planet2",
+      "mass": 4000000000000000.0,
+      "radius": 6,
+      "isAffectedByGravity": false,
+      "posX": 275,
+      "posY": 250,
+      "velX": 0,
+      "velY": 0,
+      "img_path": "/img/testtst2.gif"
+    },
+    {
+      "name": "planet3",
+      "mass": 4000000000000000.0,
+      "radius": 6,
+      "isAffectedByGravity": false,
+      "posX": 275,
+      "posY": -250,
+      "velX": 0,
+      "velY": 0,
+      "img_path": "/img/testtst2.gif"
+    }
+  ],
+  "playerObject": [
+    {
+      "name": "playerObj",
+      "mass": 4,
+      "radius": 10,
+      "isAffectedByGravity": false,
+      "posX": 275,
+      "posY": 300,
+      "velX": 0,
+      "velY": 0,
+      "img_path": "/img/testhole3.gif"
+    }
+  ],
+  "target": [
+    {
+      "name": "target1",
+      "mass": 7500000000000000.0,
+      "radius": 15,
+      "isAffectedByGravity": false,
+      "posX": 275,
+      "posY": 0,
+      "velX": 0,
+      "velY": 0,
+      "img_path": "/img/kanye.jpg"
+    }
+  ]
+}

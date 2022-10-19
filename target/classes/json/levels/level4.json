@@ -1,0 +1,85 @@
+{
+  "planets": [
+    {
+      "name": "planet1",
+      "mass": 7000000000000000.0,
+      "radius": 10,
+      "isAffectedByGravity": false,
+      "posX": 350,
+      "posY": 200,
+      "velX": 0,
+      "velY": 0,
+      "img_path": "/img/lightGreen.gif"
+    },
+    {
+      "name": "planet2",
+      "mass": 7000000000000000.0,
+      "radius": 10,
+      "isAffectedByGravity": false,
+      "posX": 350,
+      "posY": 100,
+      "velX": 0,
+      "velY": 0,
+      "img_path": "/img/darkGreen.gif"
+    },
+    {
+      "name": "planet3",
+      "mass": 7000000000000000.0,
+      "radius": 10,
+      "isAffectedByGravity": false,
+      "posX": 200,
+      "posY": 100,
+      "velX": 0,
+      "velY": 0,
+      "img_path": "/img/cloudyBlue.gif"
+    },
+    {
+      "name": "planet4",
+      "mass": 7000000000000000.0,
+      "radius": 10,
+      "isAffectedByGravity": false,
+      "posX": 200,
+      "posY": 200,
+      "velX": 0,
+      "velY": 0,
+      "img_path": "/img/hazyClouds.gif"
+    }
+  ],
+  "playerObject": [
+    {
+      "name": "playerObj",
+      "mass": 4,
+      "radius": 15,
+      "isAffectedByGravity": false,
+      "posX": 375,
+      "posY": 300,
+      "velX": 0,
+      "velY": 0,
+      "img_path": "/img/redPlayer.gif"
+    },
+    {
+      "name": "playerObj",
+      "mass": 4,
+      "radius": 15,
+      "isAffectedByGravity": false,
+      "posX": 175,
+      "posY": 300,
+      "velX": 0,
+      "velY": 0,
+      "img_path": "/img/goldPlayer.gif"
+    }
+  ],
+  "target": [
+    {
+      "name": "target1",
+      "mass": 786000000000000.0,
+      "radius": 25,
+      "isAffectedByGravity": false,
+      "posX": 275,
+      "posY": 20,
+      "velX": 0,
+      "velY": 0,
+      "img_path": "/img/kanye.jpg"
+    }
+  ]
+}
