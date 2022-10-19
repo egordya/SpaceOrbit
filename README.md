@@ -4,11 +4,9 @@
 <h4>Prerequisite</h4>
 To run Gravity Aim, you need to have Maven installed on your computer. <br>
 <br>
-Oncce you have maven set-up, open your terminal, cd to the folder where you want to install the game and write: <br>
-``` git clone https://github.com/egordya/SpaceOrbit.git ``` <br>
-This will clone the master branch of this repository to your desired folder. <br><br>
+Once you have maven set up, clone the repo. <br>
+<br>
 Once the download has finished, make sure to change the directory in your terminal using: <br>
-
 ```cd PATH_TO_SPACEORBIT_FOLDER ``` <br>
 <br>
 To start the game, write: <br>
