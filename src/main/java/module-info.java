@@ -15,4 +15,6 @@ module com.grupp7.spaceorbit {
     exports utilitys;
     opens utilitys to javafx.fxml;
 
+
+
 }
