@@ -10,33 +10,6 @@ import java.util.List;
 
 public class GameModel extends AGameModel{
 
-    //method
-    //    start
-    //    setplayerVelociraptor
-    //    getDrawble
-    //      planets
-    //      targets
-    //      players
-    //    gameEnded
-    //    gamePause
-
-
-
-
-    //TODO
-    // - Rest of the code goes here
-    // - Timer
-    // - Regler:
-    // TODO - Man vinner när player krockar med target
-    //  - man förlorar om player kommer 1000 pixlar utanför skärmen
-    //  - man förlorar om player krockar i planet
-    //      Om man förlorar startas leveln om.
-    //(scoringsystem) tid och stjärnor
-
-
-
-    //planets(new Vector2D(0, 69.8 *Math.pow(10,6) * Math.pow(10,3)), new Vector2D(38.86 *Math.pow(10,3), 0), 0.330 * Math.pow(10,24), 2),
-
     //package private
     GameModel() {}
 
