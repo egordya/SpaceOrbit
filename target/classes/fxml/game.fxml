@@ -40,8 +40,7 @@
       <Pane fx:id="renderSurface" layoutX="10.0" layoutY="86.0" prefHeight="277.0" prefWidth="580.0" />
 
       <Button layoutX="36.0" layoutY="14.0" mnemonicParsing="false" onAction="#pause" text="Toggle Pause" />
-      <Button layoutX="131.0" layoutY="14.0" mnemonicParsing="false" onAction="#resume" text="Start" />
-      <Button layoutX="185.0" layoutY="14.0" mnemonicParsing="false" onAction="#restart" text="Restart" />
+      <Button layoutX="135.0" layoutY="14.0" mnemonicParsing="false" onAction="#restart" text="Restart" />
       <Button layoutX="491.0" layoutY="14.0" mnemonicParsing="false" onAction="#backToMainMenu" text="main menu" />
       
    </children>
