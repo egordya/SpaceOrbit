@@ -9,4 +9,6 @@ public interface Drawable {
     Geometry getGeometry();
     String getImagePath();
     String getName();
+
+
 }
