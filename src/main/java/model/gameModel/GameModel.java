@@ -25,11 +25,11 @@ public class GameModel extends AGameModel{
     public void gameStep(double time){
         simulationStep(time);
         handleCollisions();
-        handleWin();
+        checkWin();
         notifyObservers(ObserverCommand.Update);
     }
 
-    private void handleWin() {
+    private void checkWin() {
         if (players.length == 0){
             notifyObservers(ObserverCommand.Win);
         }
@@ -49,13 +49,13 @@ public class GameModel extends AGameModel{
         }
     }
 
-    private void handlePlayerTargetCollision(Collisionable[] hitboxes){
-        if (hitboxes[0].getType().equals("player") && hitboxes[1].getType().equals("target")) {
+    private void handlePlayerTargetCollision(Collisionable[] TwoCollidedObjects){
+        if (TwoCollidedObjects[0].getType().equals("player") && TwoCollidedObjects[1].getType().equals("target")) {
             List<CelestialObject> players = new ArrayList<>(Arrays.stream(this.players).toList());
-            players.remove(players.get(players.indexOf(hitboxes[0])));
+            players.remove(players.get(players.indexOf(TwoCollidedObjects[0])));
             this.players = players.toArray(new CelestialObject[0]);
         }
-        else if(hitboxes[0].getType().equals("player") && hitboxes[1].getType().equals("planet")){
+        else if(TwoCollidedObjects[0].getType().equals("player") && TwoCollidedObjects[1].getType().equals("planet")){
             notifyObservers(ObserverCommand.Restart);
         }
     }
