@@ -3,6 +3,7 @@ package com.grupp7.spaceorbit.views;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.StackPane;
+import model.gameModel.GameModelBuilderForJavaFxView;
 import model.menuModel.MenuModel;
 
 import java.io.FileNotFoundException;
@@ -22,23 +23,20 @@ public class MainView implements Initializable, Mediator{
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         menuView = new MenuView(this, new MenuModel());
-        gameView = new GameView(this);
+        gameView = new GameView(this, new GameModelBuilderForJavaFxView());
         customLevelView = new CustomLevelView(this);
-
 
         theStackPane.getChildren().add(gameView);
         theStackPane.getChildren().add(menuView);
-
 
     }
 
 
     @Override
     public void notify(Object pointer, MediatorCommand command) throws FileNotFoundException {
-        if (pointer == menuView){
+        if ((pointer == menuView) && (command == MediatorCommand.STANDARD)){
             theStackPane.getChildren().clear();
             theStackPane.getChildren().add(gameView);
-
 
             //String[] levelPaths = menuView.getRemainingLevels();
             //List<String> levelPathsList = Arrays.stream(levelPaths).toList();
@@ -48,12 +46,18 @@ public class MainView implements Initializable, Mediator{
             //String[] levelPathsArray = levelPathsList.toArray(new String[0]);
 
             //gameView.loadGameModel(menuView.getCurrentLevel(), null);
-            gameView.loadGameModel("src/main/resources/json/levels/level2.json", null);
+            menuView.getRemainingLvls();
+            gameView.loadGameModel(menuView.path, menuView.remainingPaths);
         }
 
-        if((pointer == menuView) && (command == MediatorCommand.BUILDLVL)){
+        else if((pointer == menuView) && (command == MediatorCommand.BUILDLVL)){
             theStackPane.getChildren().clear();
             theStackPane.getChildren().add(customLevelView);
+        }
+
+        else if((pointer == customLevelView) && (command == MediatorCommand.STANDARD)){
+            theStackPane.getChildren().clear();
+            theStackPane.getChildren().add(menuView);
         }
 
         else if (pointer == gameView) {
@@ -61,6 +65,7 @@ public class MainView implements Initializable, Mediator{
             theStackPane.getChildren().add(menuView);
         }
     }
+
 
     private void showMenu(){
 

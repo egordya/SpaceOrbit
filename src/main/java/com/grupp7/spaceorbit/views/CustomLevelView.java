@@ -1,22 +1,25 @@
 package com.grupp7.spaceorbit.views;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import model.customLevelModels.CustomLevelModel;
 
-import javax.json.*;
-import java.io.FileWriter;
+import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.Writer;
+import java.util.Objects;
 
 
 public class CustomLevelView extends AnchorPane {
+    CustomLevelModel cml = new CustomLevelModel();
+
+    @FXML
+    ListView<String> objectsListView = new ListView<String>();
 
     @FXML
     private AnchorPane addObjectCustomLevelAnchorPane;
@@ -34,6 +37,12 @@ public class CustomLevelView extends AnchorPane {
     private TextField nameInput;
 
     @FXML
+    private TextField velYInput;
+
+    @FXML
+    private TextField velXInput;
+
+    @FXML
     private ImageView planetPreview;
 
     @FXML
@@ -46,7 +55,7 @@ public class CustomLevelView extends AnchorPane {
     private TextField startYInput;
 
     @FXML
-    private ComboBox<Boolean> staticComboBoxInput;
+    private ComboBox<String> staticComboBoxInput;
 
     @FXML
     private ChoiceBox<String> typeChoiceBox;
@@ -60,16 +69,20 @@ public class CustomLevelView extends AnchorPane {
     @FXML
     private Label levelNameLabel;
 
+    @FXML
+    private Label objectAdded;
+
+    @FXML
+    private Label levelNameMissing;
+
+    @FXML
+    private Label levelAddedLabel;
+
     String levelName;
     Mediator mediator;
-    Writer writer;
-
-    JsonArrayBuilder planetArrayBuilder = Json.createArrayBuilder();
-    JsonArrayBuilder targetArrayBuilder = Json.createArrayBuilder();
-    JsonArrayBuilder playerArrayBuilder = Json.createArrayBuilder();
+    ObservableList<String> objectList = FXCollections.observableArrayList();
 
     public CustomLevelView(Mediator mediator) {
-
         this.mediator = mediator;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/customlevel.fxml"));
         fxmlLoader.setRoot(this);
@@ -82,77 +95,84 @@ public class CustomLevelView extends AnchorPane {
         }
     }
 
+    /**
+     * @throws IOException
+     * Gathers user input data from GUI, checks if all mandatory parameters are set.
+     * Adds type and starting positions to list of objects in objectsListView.
+     */
     @FXML
     public void submitButton() throws IOException {
-
         String name = nameInput.getText();
-        int mass = Integer.parseInt(massInput.getText());
+        double mass = Double.parseDouble(massInput.getText())*1000000000.0;
         int radius = Integer.parseInt(radiusInput.getText());
         double posX = Double.parseDouble(startXInput.getText());
         double posY = Double.parseDouble(startYInput.getText());
         String imagePath = imageComboBoxInput.getValue();
         String type = typeChoiceBox.getValue();
-        imageComboBoxInput.getSelectionModel().selectFirst();
-        //boolean isFixed = staticComboBoxInput.getValue();
+        Boolean isFixed = Boolean.valueOf(staticComboBoxInput.getValue());
+        double velX = Double.parseDouble(velXInput.getText());
+        double velY = Double.parseDouble(velYInput.getText());
 
-        switch (imagePath) {
-            case "Green Planet" -> imagePath = "src/main/resources/img/planet_green.gif";
-            case "Blue Planet" -> imagePath = "src/main/resources/img/planet_blue.gif";
-            case "PlaKanyet West" -> imagePath = "src/main/resources/img/kanye.jpg";
-        }
-
-        JsonObject jsonLevelObject = Json.createObjectBuilder()
-                    .add("type",type)
-                    .add("name", name)
-                    .add("mass", mass)
-                    .add("startPosX", posX)
-                    .add("startPosY", posY)
-                    .add("imagePath", imagePath)
-                    //.add("fixedPosition", isFixed)
-                    .add("radius", radius)
-                    .build();
-
-        String typeString = jsonLevelObject.getString("type");
-        if(typeString.equals("Planet")){
-            planetArrayBuilder.add(jsonLevelObject);
-        }else if(typeString.equals("Target")){
-            targetArrayBuilder.add(jsonLevelObject);
+        if(!Objects.equals(name, "") && type != null && isFixed != null && imagePath != null) {
+            cml.createJsonObject(name, mass, radius, posX, posY, velX, velY, imagePath, type, isFixed);
+            objectAdded.setText(name + " added!");
+            objectList.add(name + "  Type:   " + type + "    Start position(x,y):   (" + posX + " , " + posY + ")");
+            startXInput.setText(String.valueOf(posX + 50));
+            startYInput.setText(String.valueOf(posX + 50));
         }else{
-            playerArrayBuilder.add(jsonLevelObject);
+            objectAdded.setText("Missing parameters!");
         }
     }
 
+    /**
+     * @throws IOException
+     * Sends gathered data to model.
+     * If cml.levelBuilt returns true, confirms that level json is added.
+     */
     @FXML
-    public void submitButtonTwo() throws IOException {
-        JsonArray planetArray = planetArrayBuilder.build();
-        JsonArray targetArray = targetArrayBuilder.build();
-        JsonArray playerArray = playerArrayBuilder.build();
-
-        JsonObject jsonFile = Json.createObjectBuilder()
-                .add("planets", planetArray)
-                .add("targets", targetArray)
-                .add("players", playerArray)
-                .build();
-
-        FileWriter fileWriter = new FileWriter("src/main/resources/json/levels/" + levelName + ".json");
-        JsonWriter jWrite = Json.createWriter(fileWriter);
-        jWrite.writeObject(jsonFile);
-        jWrite.close();
-
+    public void createLevel() throws IOException {
+        cml.createJson(levelName);
+        if(cml.levelBuilt){
+            levelAddedLabel.setText("Your level was added to the Game. Enjoy!");
+        }else{
+            levelAddedLabel.setText("You are missing required objects (Planet, Target, Player)");
+        }
     }
 
+    /**
+     * @throws IOException
+     * Sets name of level.
+     * Used for naming json file.
+     */
     @FXML
     public void nameNewLevel() throws IOException {
         levelName = levelNameTextField.getText();
-        levelNameLabel.setText(levelName);
-        nameCustomLevelAnchorPane.toBack();
+        levelName = levelName.replace(" ", "_");
+        if(!levelName.equals("")) {
+            levelNameLabel.setText(levelName);
+            nameCustomLevelAnchorPane.toBack();
+            levelNameMissing.setText("");
+        }else{
+            levelNameMissing.setText("Please write a name for your level! ");
+        }
     }
 
     @FXML
-    public void addObject() throws IOException{
-        levelOverviewAnchorPane.toBack();
+    public void showAddObjectListPane() throws IOException{
+        addObjectCustomLevelAnchorPane.toFront();
     }
 
+    @FXML
+    public void backToList() throws IOException{
+        objectsListView.setItems(objectList);
+        levelOverviewAnchorPane.toFront();
+    }
+
+    @FXML
+    public void backToMainMenu() throws FileNotFoundException {
+        mediator.notify(this, MediatorCommand.STANDARD);
+
+    }
     @Override
     public Node getStyleableNode() {
         return super.getStyleableNode();

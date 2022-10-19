@@ -6,17 +6,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Polyline;
 import javafx.scene.shape.Shape;
-import model.gameModel.GameModel;
-import model.gameModel.GameModelBuilder;
-import model.gameModel.Observer;
-import model.gameModel.ObserverCommand;
+import model.gameModel.*;
 import model.modelObjects.Geometry;
 import utilitys.ImageCache;
 
@@ -24,16 +19,13 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class GameView extends AnchorPane implements Observer {
     
     @FXML
     Pane renderSurface;
     @FXML
-    HBox winBox;
-    @FXML
-    Pane anchor;
+    StackPane winBox;
 
     Mediator mediator;
     GameModel gameModel;
@@ -42,10 +34,12 @@ public class GameView extends AnchorPane implements Observer {
     String[] allNextLevelPaths;
 
     ImageCache imageCache = new ImageCache();
+    GameModellBuilder gameModellBuilder;
 
-    public GameView(Mediator mediator) {
+    public GameView(Mediator mediator, GameModellBuilder gameModellBuilder) {
 
         this.mediator = mediator;
+        this.gameModellBuilder = gameModellBuilder;
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/game.fxml"));
         fxmlLoader.setRoot(this);
@@ -58,12 +52,12 @@ public class GameView extends AnchorPane implements Observer {
 
     }
 
-    public void loadGameModel(String jsonPath, String[] allNextLevelPaths) throws FileNotFoundException {
+    public void loadGameModel(String jsonPath, String[] allNextLevelPathsx) throws FileNotFoundException {
 
         pathToCurrentLevel = jsonPath;
-        this.allNextLevelPaths = allNextLevelPaths;
+        this.allNextLevelPaths = allNextLevelPathsx;
 
-        this.gameModel = GameModelBuilder.getGameModel(jsonPath);
+        this.gameModel = gameModellBuilder.getGameModel(jsonPath);
         this.gameModel.addObserver(this);
 
         this.gameController = new GameController(gameModel);
@@ -71,19 +65,25 @@ public class GameView extends AnchorPane implements Observer {
         renderSurface.setOnMousePressed(gameController);
         renderSurface.setOnMouseReleased(gameController);
         renderSurface.setOnMouseDragged(gameController);
-
+        winBox.setVisible(false);
+        winBox.toBack();
+        //winBox.toBack();
         showObjects();
+        resume();
     }
 
     @Override
     public void commandFromModel(ObserverCommand command) {
         if(command == ObserverCommand.Win){
-            Platform.runLater(() -> {
-                anchor.getChildren().add(winBox);
-            });
+                    winBox.toFront();
+                    winBox.setVisible(true);
+                    System.out.println("Win");
 
-            gameController.togglePauseGame();
-            System.out.println("win");
+
+
+
+
+
         }
         else if (command == ObserverCommand.Update) {
             Platform.runLater(() -> {
@@ -108,8 +108,8 @@ public class GameView extends AnchorPane implements Observer {
         DrawableList.addAll(Arrays.stream(gameModel.getPlanets()).toList());
         DrawableList.addAll(Arrays.stream(gameModel.getPlayers()).toList());
         DrawableList.addAll(Arrays.stream(gameModel.getTargets()).toList());
-
-        anchor.getChildren().remove(winBox);
+        //anchor.getChildren().remove(winBox);
+        winBox.toFront();
         renderSurface.getChildren().clear();
 
         for (Drawable p : DrawableList){
@@ -154,28 +154,32 @@ public class GameView extends AnchorPane implements Observer {
 
     @FXML
     private void restart() throws FileNotFoundException {
-        gameController.togglePauseGame();
+        gameController.terminate();
         loadGameModel(pathToCurrentLevel, allNextLevelPaths);
     }
 
     @FXML
     private void nextLevel() throws FileNotFoundException {
-        List<String> pathsList = Arrays.stream(this.allNextLevelPaths).toList();
+        imageCache.clearCache();
+        this.gameController.terminate();
+        ArrayList<String>  pathsList = new ArrayList<>();
 
+
+        for(String x : allNextLevelPaths){
+            pathsList.add(x);
+        }
         String firstPath = pathsList.get(0);
         pathsList.remove(firstPath);
+        loadGameModel(firstPath, pathsList.toArray(new String[0]));
 
-        this.loadGameModel(firstPath, pathsList.toArray(new String[0]));
 
     }
 
     @FXML
     private void backToMainMenu() throws FileNotFoundException {
-        gameController.togglePauseGame();
-        this.gameModel = null;
+
         imageCache.clearCache();
+        this.gameController.terminate();
         mediator.notify(this, MediatorCommand.STANDARD);
     }
-
-
 }

@@ -4,10 +4,8 @@ import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Polyline;
-import javafx.scene.shape.Shape;
 import model.gameModel.GameModel;
 import model.modelObjects.ArrowObject;
-import model.modelObjects.Geometry;
 import model.modelObjects.JavaFXGeometry;
 import utilitys.ArrowPolyLineFactory;
 import utilitys.Vector2D;
@@ -22,10 +20,13 @@ public class GameController implements EventHandler<MouseEvent> {
 
     private Vector2D pressedPos = new Vector2D(0,0);
 
-    final long timePeriod = 20;
+    final long timePeriod = 17;
     private Timer tr;
     private boolean isRunning;
     private boolean isPaused;
+
+    int allowedMoves = 1;
+    int current = 0;
 
     public GameController(GameModel model) {
         this.model = model;
@@ -37,21 +38,17 @@ public class GameController implements EventHandler<MouseEvent> {
 
     @Override
     public void handle(MouseEvent event) {
+        if((!isPaused) && (current < allowedMoves)) {
         EventType<? extends MouseEvent> type = event.getEventType();
-
-        if (type == MouseEvent.MOUSE_PRESSED){
-            handleMousePressed(event);
-        }
-
-        else if (type == MouseEvent.MOUSE_RELEASED){
-            handleMouseReleased(event);
-        }
-
-        else if (type == MouseEvent.MOUSE_DRAGGED){
-            handleMouseDragged(event);
-        }
-        else{
-            throw new IllegalArgumentException("EventType not implemented");
+            if (type == MouseEvent.MOUSE_PRESSED) {
+                handleMousePressed(event);
+            } else if (type == MouseEvent.MOUSE_RELEASED) {
+                handleMouseReleased(event);
+            } else if (type == MouseEvent.MOUSE_DRAGGED) {
+                handleMouseDragged(event);
+            } else {
+                throw new IllegalArgumentException("EventType not implemented");
+            }
         }
     }
 
@@ -64,21 +61,25 @@ public class GameController implements EventHandler<MouseEvent> {
     }
 
     public void togglePauseGame(){
-        if(isRunning && !isPaused) {
+        if(!isPaused) {
             tr.cancel();
             isRunning = false;
             isPaused = true;
         }
-        else if(!isRunning && isPaused) {
+        else if(isPaused) {
             isPaused = false;
             startGame();
         }
     }
 
+    public void terminate(){
+        tr.cancel();
+    }
+
     public void setPlayerVelocity(Vector2D[] vectors){
-        if(!isRunning && !isPaused) {
+            current++;
             model.setPlayerVelocity(vectors);
-        }
+            model.SetShowPlayerArrows(false);
     }
 
 
@@ -93,14 +94,20 @@ public class GameController implements EventHandler<MouseEvent> {
         for(int i = 0; i<model.getPlayers().length; i++){
             vectors[i] = releasedPos.sub(pressedPos);
         }
-
-        model.SetShowPlayerArrows(false);
+        boolean[] effectedByGravityBooleans = new boolean[model.getPlayers().length];
+        for(int i = 0; i<model.getPlayers().length; i++){
+            effectedByGravityBooleans[i] = true;
+        }
         setPlayerVelocity(vectors);
-        startGame();
+        model.setPlayerAffectedByGravity(effectedByGravityBooleans);
 
     }
 
     private void handleMouseDragged(MouseEvent mouseEvent){
+
+
+        model.SetShowPlayerArrows(true);
+
 
         Vector2D draggedPos = new Vector2D(mouseEvent.getX(), mouseEvent.getY());
         Vector2D delta = draggedPos.sub(pressedPos);
@@ -117,6 +124,7 @@ public class GameController implements EventHandler<MouseEvent> {
         model.setPlayersArrow(arrows.toArray(new ArrowObject[0]));
 
     }
+
 
     private TimerTask getTimerTask(){
         return new TimerTask(){

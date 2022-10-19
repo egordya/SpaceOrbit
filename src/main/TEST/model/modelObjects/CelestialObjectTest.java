@@ -88,4 +88,5 @@ public class CelestialObjectTest {/*
         Assertions.assertEquals(planet1.getType(),planet1Cloned.getType());
     }*/
 
+
 }
