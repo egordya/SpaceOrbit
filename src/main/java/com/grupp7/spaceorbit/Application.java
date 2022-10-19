@@ -1,9 +1,11 @@
 package com.grupp7.spaceorbit;
 
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 import javafx.stage.WindowEvent;
@@ -11,6 +13,8 @@ import javafx.stage.WindowEvent;
 import java.io.IOException;
 
 public class Application extends javafx.application.Application {
+    @FXML
+    StackPane theStackPane;
 
     double day = 0.0;
 
@@ -32,8 +36,6 @@ public class Application extends javafx.application.Application {
         });
 
         stage.show();
-
-
 
 
 

@@ -13,7 +13,12 @@
 
 <fx:root fx:id="anchor" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: black;" type="AnchorPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <FlowPane fx:id="lvlSelectorPane" alignment="CENTER" columnHalignment="CENTER" focusTraversable="true" hgap="20.0" maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" prefWrapLength="0.0" vgap="30.0" />
+      <ImageView fitHeight="400.0" fitWidth="600.0" opacity="0.65" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/gameBg.jpg" />
+         </image>
+      </ImageView>
+      <FlowPane fx:id="lvlSelectorPane" alignment="CENTER" columnHalignment="CENTER" focusTraversable="true" hgap="10" nodeOrientation="LEFT_TO_RIGHT" vgap="10.0" />
       <StackPane fx:id="winBox" layoutX="180.0" layoutY="130.0" style="-fx-blend-mode: BLACK;">
          <HBox alignment="BOTTOM_CENTER" spacing="20" StackPane.alignment="CENTER">
             <Button mnemonicParsing="false" onAction="#restart" text="Restart" />

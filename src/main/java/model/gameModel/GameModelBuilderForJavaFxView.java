@@ -17,8 +17,6 @@ public class GameModelBuilderForJavaFxView implements GameModellBuilder {
 
     public GameModel getGameModel(String pathToJsonLevel) throws FileNotFoundException {
 
-
-
         InputStream levelTest = new FileInputStream(pathToJsonLevel);
         JsonReader reader = Json.createReader(levelTest);
         JsonObject levelObject = reader.readObject();
