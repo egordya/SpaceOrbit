@@ -19,6 +19,9 @@ public class MainView implements Initializable, Mediator{
     CustomLevelController customLevelController;
 
 
+    /**
+     * initializes the program. Creates necessary views and controllers
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         menuView = new MenuView(this, new MenuModel());
@@ -33,6 +36,12 @@ public class MainView implements Initializable, Mediator{
     }
 
 
+    /**
+     * changes which view that is displayed
+     * @param pointer a pointer that points to the view that is currently displayed
+     * @param command a command for more things needs to be done
+     * @throws FileNotFoundException if the file of the view that shall be displayed the exception will not be caught
+     */
     @Override
     public void notify(Object pointer, MediatorCommand command) throws FileNotFoundException {
         if (pointer == menuView){

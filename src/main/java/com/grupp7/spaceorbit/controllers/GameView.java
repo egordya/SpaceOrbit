@@ -39,6 +39,10 @@ public class GameView extends AnchorPane implements Observer {
     Image test2 = new Image(getClass().getResource("/img/kanye.jpg").toString());
     Image test3 = new Image(getClass().getResource("/img/testtst2.gif").toString());
 
+    /**
+     * constructs a gameView
+     * @param mediator the messenger between the observers and the model
+     */
     public GameView(Mediator mediator) {
 
         this.mediator = mediator;
@@ -54,6 +58,12 @@ public class GameView extends AnchorPane implements Observer {
 
     }
 
+    /**
+     * loads a new gameModel
+     * @param jsonPath the json-file that describes the level that the newly created gameModel will run
+     * @param allNextLevelPaths an array of paths to all remaining levels
+     * @throws FileNotFoundException if the json-files is not found the exception will not be caught
+     */
     public void loadGameModel(String jsonPath, String[] allNextLevelPaths) throws FileNotFoundException {
         pathToCurrentLevel = jsonPath;
 
@@ -70,6 +80,10 @@ public class GameView extends AnchorPane implements Observer {
         showObjects();
     }
 
+    /**
+     * performs actions for a given command
+     * @param command the command
+     */
     @Override
     public void commandFromModel(ObserverCommand command) {
         if(command == ObserverCommand.Win){
@@ -97,6 +111,9 @@ public class GameView extends AnchorPane implements Observer {
         }
     }
 
+    /**
+     * draws all the objects
+     */
     private void showObjects(){
         Drawable[] planets = gameModel.getPlanets();
         Drawable[] players = gameModel.getPlayers();
@@ -132,24 +149,36 @@ public class GameView extends AnchorPane implements Observer {
     }
 
 
-
-
+    /**
+     * pauses the game
+     */
     @FXML
     private void pause(){
         gameModel.togglePauseGame();
     }
 
+    /**
+     * resumes the game
+     */
     @FXML
     private void resume(){
         gameModel.startGame();
     }
 
+    /**
+     * restarts the current level
+     * @throws FileNotFoundException if no files are found for the levels the exception will not be caught
+     */
     @FXML
     private void restart() throws FileNotFoundException {
         gameModel.togglePauseGame();
         loadGameModel(pathToCurrentLevel, allNextLevelPaths);
     }
 
+    /**
+     * loads a gameModel for the next level
+     * @throws FileNotFoundException if no files are found for the levels the exception will not be caught
+     */
     @FXML
     private void nextLevel() throws FileNotFoundException {
         List<String> pathsList = Arrays.stream(this.allNextLevelPaths).toList();
@@ -161,6 +190,10 @@ public class GameView extends AnchorPane implements Observer {
 
     }
 
+    /**
+     * takes the user back to the menu
+     * @throws FileNotFoundException if no fxml-file are found for the menu the exception will not be caught
+     */
     @FXML
     private void backToMainMenu() throws FileNotFoundException {
         gameModel.togglePauseGame();

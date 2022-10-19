@@ -22,6 +22,11 @@ public class MenuView extends AnchorPane{
     @FXML
     FlowPane lvlSelectorPane;
 
+    /**
+     * Constructs a view for the menu
+     * @param mediator the messenger between the observers and the model
+     * @param model the Game Model
+     */
     public MenuView(Mediator mediator, MenuModel model) {
 
         this.mediator = mediator;
@@ -41,6 +46,9 @@ public class MenuView extends AnchorPane{
 
     }
 
+    /**
+     * just a test function. Doesn't really do anything
+     */
     @FXML
     public void testbutton(){
         try {
@@ -49,16 +57,27 @@ public class MenuView extends AnchorPane{
             throw new RuntimeException(e);
         }
     }
+
+    /**
+     * quits the game
+     */
     @FXML
     public void quitgame(){System.exit(0);}
 
 
+    /**
+     * starts the process of building a level
+     * @throws FileNotFoundException if the fxml-file for custom level builder is not found an exception will not be caught
+     */
     @FXML
     public void buildNewLevel() throws FileNotFoundException {
         mediator.notify(this, MediatorCommand.BUILDLVL);
     }
 
 
+    /**
+     * takes the user to the area in which a level can be selected
+     */
     @FXML
     public void lvlSelector() {
         this.getChildren().clear();
@@ -71,10 +90,16 @@ public class MenuView extends AnchorPane{
                 lvlSelectorPane.getChildren().add(new Button((file.getName().replaceFirst("[.][^.]+$", ""))));}}}
 
 
-
-
+    /**
+     * retrieves an array of all remaining levels
+     * @return an array of paths to json-files
+     */
     public String[] getRemainingLevels() {return null;}
 
+    /**
+     * retrieves the current level
+     * @return a poth to a json-file
+     */
     public String getCurrentLevel(){
         //Button bp = (Button) e.getTarget();
         //String path = "src/main/resources/json/levels/" + bp.getText() + "json";
