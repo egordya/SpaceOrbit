@@ -14,7 +14,7 @@ cd PATH_TO_SPACEORBIT_FOLDER <br>
 To start the game, write: <br>
 mvn clean javafx:run <br>
 Enjoy playing the game! <br><br><br>
-<h2>Known issues<h2>
+<h2>Known issues</h2>
 Issue: After building a level (or adding an object to a customly built level), you are currently not able to edit or delete the level.<br>
 Solution: Should you still want to edit your Custom Built Level, you can open the json file with your level name in a text editor. <br>
 <br>
