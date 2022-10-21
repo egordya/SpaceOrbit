@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import javax.json.*;
 
 
-public class GameModelBuilderForJavaFxView implements GameModellBuilder {
+public class GameModelBuilder {
 
     public GameModel getGameModel(String pathToJsonLevel) throws FileNotFoundException {
 

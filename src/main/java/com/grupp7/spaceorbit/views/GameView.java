@@ -34,12 +34,12 @@ public class GameView extends AnchorPane implements Observer {
     String[] allNextLevelPaths;
 
     ImageCache imageCache = new ImageCache();
-    GameModellBuilder gameModellBuilder;
+    GameModelBuilder gameModelBuilder;
 
-    public GameView(Mediator mediator, GameModellBuilder gameModellBuilder) {
+    public GameView(Mediator mediator) {
 
         this.mediator = mediator;
-        this.gameModellBuilder = gameModellBuilder;
+        this.gameModelBuilder = new GameModelBuilder();
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/game.fxml"));
         fxmlLoader.setRoot(this);
@@ -57,7 +57,7 @@ public class GameView extends AnchorPane implements Observer {
         pathToCurrentLevel = jsonPath;
         this.allNextLevelPaths = allNextLevelPathsx;
 
-        this.gameModel = gameModellBuilder.getGameModel(jsonPath);
+        this.gameModel = gameModelBuilder.getGameModel(jsonPath);
         this.gameModel.addObserver(this);
 
         this.gameController = new GameController(gameModel);
