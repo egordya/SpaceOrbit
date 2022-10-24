@@ -9,6 +9,10 @@ public class CollisionModel {
 
     ArrayList<Collisionable[]> collidedPairs;
 
+    /**
+     * Checks for collisions. If to objects collide they will be added to a list containing all collided objects as a couple
+     * @param collisionables all objects that will be checked for collisions
+     */
     public void checkCollisions(Collisionable[] collisionables) {
         collidedPairs = new ArrayList<>();
         for(Collisionable a : collisionables){
@@ -25,6 +29,9 @@ public class CollisionModel {
         }
     }
 
+    /**
+     * @return a list of all collided pairs
+     */
     public Collisionable[][] getCollidedPairs() {
         return collidedPairs.toArray(new Collisionable[0][0]);
     }

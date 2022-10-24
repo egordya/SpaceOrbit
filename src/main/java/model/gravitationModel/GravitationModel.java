@@ -15,6 +15,11 @@ public class GravitationModel {
     }
 
 
+    /**
+     * @param Objects all objects that will be affected by gravity and/or affect other objects with gravity
+     * @param time  the amount of time that all object will affect eachother.
+     * @return all objects with updated positions post calculations
+     */
     public ObjectForGravitationModel[] doSimulationStep(ObjectForGravitationModel[] Objects, double time){
 
         allObjects = Objects;
@@ -37,6 +42,10 @@ public class GravitationModel {
         return allObjectsWithNextState.toArray(new ObjectForGravitationModel[0]);
     }
 
+    /**
+     * updates all necessary parameters of the objects
+     * @param allObjectsWithNextState all objects that will be updated
+     */
     private void mutateAllObjectsArray(ObjectForGravitationModel[] allObjectsWithNextState){
         for (int i = 0; i<allObjects.length; i++){
             allObjects[i].setVelocityVector(allObjectsWithNextState[i].getVelocityVector());
@@ -45,6 +54,13 @@ public class GravitationModel {
         }
     }
 
+    /**
+     * calculates how one object is affected by all other objects
+     * @param x the object in question
+     * @param allOtherObjects all other objects
+     * @param time  the amount of time the object is affected by all other objects in this specific state
+     * @return the object with updated parameters
+     */
     private ObjectForGravitationModel nextStateForObject (ObjectForGravitationModel x, List<ObjectForGravitationModel> allOtherObjects, double time){
         ObjectForGravitationModel mainObject = x.clone();
 
@@ -88,6 +104,14 @@ public class GravitationModel {
 
     }
 
+    /**
+     * calculates a forcevector for one specific object
+     * @param unitVectorsOfDistanceVectors an array of unit vector to all other objects. The unitvector of object x describes the direction from the object to x
+     * @param lengthOfDistanceVectors an array of lenghts between the object and other objects
+     * @param theObjectMass the object mass
+     * @param otherObjectsMass an array of the other objects mass
+     * @return a forcevector
+     */
     private Vector2D getSummedForceVector(ArrayList<Vector2D> unitVectorsOfDistanceVectors, ArrayList<Double> lengthOfDistanceVectors, double theObjectMass, ArrayList<Double> otherObjectsMass) {
 
         ArrayList<Vector2D> forceVectors = new ArrayList<>();
@@ -107,11 +131,22 @@ public class GravitationModel {
 
     }
 
+    /**
+     * @param m1 mass1
+     * @param m2 mass2
+     * @param r distance between objects
+     * @return newton's gravitional Law
+     */
     private double newtonGravitationalLaw(double m1, double m2, double r){
         return G * ((m1 * m2) / Math.pow(r, 2));
     }
 
 
+    /**
+     * @param theObjectPos the object's position
+     * @param otherObjectsPos an array of all other objects positions
+     * @return an array of vectors describing the distance to all other objects surrounding the object
+     */
     private ArrayList<Vector2D> getDistanceVectorsToSurroundingObjects(Vector2D theObjectPos, ArrayList<Vector2D> otherObjectsPos){
 
         ArrayList<Vector2D> distanceVectors = new ArrayList<>();
