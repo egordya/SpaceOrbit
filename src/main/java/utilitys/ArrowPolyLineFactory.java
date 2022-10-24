@@ -3,9 +3,14 @@ package utilitys;
 import javafx.scene.shape.Polyline;
 
 public class ArrowPolyLineFactory {
-    public ArrowPolyLineFactory() {
-    }
 
+
+    /**
+     *  Draws the arrow on top of the line by doing some vector calculations.
+     * @param startPos Base of the arrow
+     * @param endPos Tip of arrow
+     * @return Returns the arrow object.
+     */
     public Polyline getArrow(Vector2D startPos, Vector2D endPos){
 
         Polyline arrow = new Polyline();

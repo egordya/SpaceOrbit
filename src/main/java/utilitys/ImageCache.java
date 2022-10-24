@@ -26,6 +26,11 @@ public class ImageCache {
         }
     }
 
+
+    /**
+     * Loads the image of the objects
+     * @param path Takes in the path to the image
+     */
     public void loadImage(String path){
         if (!imageMap.containsKey(path)) {
             Image image = new Image(path);

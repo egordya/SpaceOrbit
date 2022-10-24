@@ -6,7 +6,6 @@ import model.collisionModels.Collisionable;
 import model.modelObjects.CelestialObject;
 import model.modelObjects.JavaFXGeometry;
 import org.junit.jupiter.api.Test;
-import utilitys.Collision_2_Tuple;
 import utilitys.Vector2D;
 
 import static org.junit.jupiter.api.Assertions.*;
